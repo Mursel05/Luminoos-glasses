@@ -11,6 +11,8 @@ import Details from "./pages/details";
 import NotFound from "./components/NotFound";
 import Faq from "./pages/faq";
 import "./App.scss";
+import Cart from "./pages/cart";
+import Wishlist from "./pages/wishlist";
 const App = () => {
   return (
     <div>
@@ -25,6 +27,8 @@ const App = () => {
           <Route path="/Sunglasses" element={<SunGlasses />} />
           <Route path="" element={<Details />} />
           <Route path="/Faq" element={<Faq />} />
+          <Route path="/Shopping Cart" element={<Cart />} />
+          <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
