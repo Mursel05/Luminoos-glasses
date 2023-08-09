@@ -2,14 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
-import Header from "../components/Header";
-import Search from "../components/Search";
+import Section from "../components/Section";
+import Slider from "../components/Slider";
 const home = () => {
   return (
     <div>
       <Navbar />
-      <Search />
-      <Header />
+      <Section />
+      <Slider />
       <Main />
       <Footer />
     </div>

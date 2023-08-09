@@ -10,10 +10,9 @@ import SunGlasses from "./pages/sunGlasses";
 import Details from "./pages/details";
 import NotFound from "./components/NotFound";
 import Faq from "./pages/faq";
-import "./App.scss";
 import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
-const App = () => {
+const router = () => {
   return (
     <div>
       <BrowserRouter>
@@ -36,4 +35,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default router;

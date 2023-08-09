@@ -1,7 +1,7 @@
 eynek satisi olacaq ad:Luminoos.
 navbar- logo olacaq; sonra linkler- game ucun, sunglasses, uzagi gormeye, yaxini gormeye, bezekli eynek ,about us ,contact us, servis;linkler dropdown olsun markaya gore, kisiye, qadina gore deyissin.
-search hisse-axtaris, sign in , dil , light mod.
-header hisse -slide olsun, reklamlar yayda kompaniya, etrafli button olsun.
+header hisse-axtaris, sign in , dil , light mod.
+slide hisse -slide olsun, reklamlar yayda kompaniya, etrafli button olsun.
 main hisse - 3*3 seklinde  markalarin eynek sekilleri.
 footer-logo, linkler; alt hissede kicik text ,applar;
 reserved yazisi, mesaj butonu.

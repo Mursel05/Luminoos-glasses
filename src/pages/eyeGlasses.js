@@ -2,12 +2,12 @@ import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import EyeGlasses from "../components/EyeGlasses";
-import Search from '../components/Search';
+import Section from '../components/Section';
 const eyeGlasses = () => {
   return (
     <div>
       <Navbar/>
-      <Search/>
+      <Section/>
       <EyeGlasses/>
       <Footer/>
     </div>

@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Search from "../components/Search";
 import Footer from "../components/Footer";
 import Cart from "../components/Cart";
+import Section from "../components/Section";
 
 const cart = () => {
   return (
     <div>
       <Navbar />
-      <Search />
+      <Section />
       <Cart />
       <Footer />
     </div>

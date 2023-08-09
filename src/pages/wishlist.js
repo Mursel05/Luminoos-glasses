@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Search from "../components/Search";
 import Footer from "../components/Footer";
 import Wishlist from "../components/Wishlist";
+import Section from "../components/Section";
 const wishlist = () => {
   return (
     <div>
       <Navbar />
-      <Search />
+      <Section />
       <Wishlist />
       <Footer />
     </div>

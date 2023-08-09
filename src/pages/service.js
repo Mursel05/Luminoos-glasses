@@ -2,13 +2,13 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Service from "../components/Service";
-import Search from "../components/Search";
+import Section from "../components/Section";
 
 const service = () => {
   return (
     <div>
       <Navbar />
-      <Search />
+      <Section />
       <Service />
       <Footer />
     </div>
