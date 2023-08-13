@@ -1,16 +1,19 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Main from "../components/Main";
+import Brands from "../components/Brands";
 import Section from "../components/Section";
 import Slider from "../components/Slider";
+import Blog from "../components/Blog";
 const home = () => {
   return (
     <div>
       <Navbar />
       <Section />
       <Slider />
-      <Main />
+
+      <Brands />
+      <Blog />
       <Footer />
     </div>
   );
