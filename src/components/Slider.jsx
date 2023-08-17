@@ -58,7 +58,7 @@ const Slider = () => {
         <div className="each-slide-effect">
           <div
             style={{
-              backgroundImage: "/images/advertizes/top60-discount.png",
+              backgroundImage: "url(/images/advertizes/top60-discount.png)",
               backgroundRepeat: "no-repeat",
               backgroundSize: "1200px 290px",
             }}

@@ -5,13 +5,14 @@ import Brands from "../components/Brands";
 import Section from "../components/Section";
 import Slider from "../components/Slider";
 import Blog from "../components/Blog";
+import BestSeller from "../components/BestSeller";
 const home = () => {
   return (
     <div>
       <Navbar />
       <Section />
       <Slider />
-
+      <BestSeller />
       <Brands />
       <Blog />
       <Footer />

@@ -29,30 +29,37 @@ const Section = () => {
             <hr className="link-line" />
           </NavLink>
         </div>
-        <div
-          className="link-section"
-          onMouseEnter={() => {
-            setActiveCart("/images/light/icons/shopping-cart-icon-active.png");
-          }}
-          onMouseLeave={() => {
-            setActiveCart("/images/light/icons/shopping-cart-icon.png");
-          }}
-        >
-          <img src={activeCart} alt="heart icon" />
-          <span>Cart</span>
-        </div>
-        <div
-          className="link-section"
-          onMouseEnter={() => {
-            setActiveWishlist ("/images/light/icons/heart-icon-active.png");
-          }}
-          onMouseLeave={() => {
-            setActiveWishlist("/images/light/icons/heart-icon.png");
-          }}
-        >
-          <img src={activeWishlist} alt="heart icon" />
-          <span>Wishlist</span>
-        </div>
+        <NavLink className="navLink" to="/Cart">
+          <div
+            className="link-section"
+            onMouseEnter={() => {
+              setActiveCart(
+                "/images/light/icons/shopping-cart-icon-active1.png"
+              );
+            }}
+            onMouseLeave={() => {
+              setActiveCart("/images/light/icons/shopping-cart-icon.png");
+            }}
+          >
+            <img src={activeCart} alt="heart icon" />
+            <span>Cart</span>
+          </div>
+        </NavLink>
+        <NavLink className="navLink" to="/Wishlist">
+          <div
+            className="link-section"
+            onMouseEnter={() => {
+              setActiveWishlist("/images/light/icons/heart-icon-active1.png");
+            }}
+            onMouseLeave={() => {
+              setActiveWishlist("/images/light/icons/heart-icon.png");
+            }}
+          >
+            <img src={activeWishlist} alt="heart icon" />
+            <span>Wishlist</span>
+          </div>
+        </NavLink>
+
         <div
           className="profile"
           onMouseEnter={() => {
