@@ -9,7 +9,7 @@ const sunGlasses = () => {
       <Navbar />
       <Section />
       <SunGlasses />
-      <Footer />{" "}
+      <Footer />
     </div>
   );
 };

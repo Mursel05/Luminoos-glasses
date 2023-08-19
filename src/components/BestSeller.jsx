@@ -23,9 +23,12 @@ const BestSeller = () => {
   if (data !== "") {
     return (
       <div className="bestSeller">
-        {data.map((product) => {
-          return <Product product={product} />;
-        })}
+        <h1>BestSeller</h1>
+      <div className="four-product">
+          {data.map((product) => {
+            return <Product product={product} />;
+          })}
+        </div>
       </div>
     );
   }

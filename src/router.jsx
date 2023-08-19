@@ -7,11 +7,12 @@ import Service from "./pages/service";
 import EyeGlasses from "./pages/eyeGlasses";
 import GameGlasses from "./pages/gameGlasses";
 import SunGlasses from "./pages/sunGlasses";
-import Details from "./pages/details";
+import Details from "./pages/Detail";
 import NotFound from "./components/NotFound";
 import Faq from "./pages/faq";
 import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
+import Thank from "./pages/thank";
 import supabase from "./supabase";
 
 export const DataContext = createContext();
@@ -27,12 +28,15 @@ const Router = () => {
       if (error) throw error;
       if (data !== "") setProducts(data);
     } catch (error) {
-      alert(error.message);
+      window.location.reload();
     }
   };
   useEffect(() => {
     fetchData();
   }, []);
+  if (localStorage.getItem("mode") == undefined) {
+    localStorage.setItem("mode", "light");
+  }
   return (
     <div>
       <DataContext.Provider value={products}>
@@ -41,6 +45,7 @@ const Router = () => {
             <Route path="/" element={<Home />} />
             <Route path="/About Us" element={<AboutUs />} />
             <Route path="/Contact Us" element={<ContactUs />} />
+            <Route path="/Thank" element={<Thank />} />
             <Route path="/Service" element={<Service />} />
             <Route path="/Eyeglasses" element={<EyeGlasses />} />
             <Route path="/Game Glasses" element={<GameGlasses />} />

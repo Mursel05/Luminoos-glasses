@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Section from "../components/Section";
+import Thank from "../components/Thank";
 import Footer from "../components/Footer";
-import Details from "../components/Details";
 
-const details = () => {
+const thank = () => {
   return (
     <div>
       <Navbar />
-      <Section/>
-      <Details/>
+      <Section />
+      <Thank />
       <Footer />
     </div>
   );
 };
 
-export default details;
+export default thank;

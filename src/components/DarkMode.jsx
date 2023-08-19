@@ -3,7 +3,11 @@ import React, { useState } from "react";
 const DarkMode = () => {
   const [transition, setTransition] = useState("");
   const [source, setSource] = useState(
-    <img src="/images/light/icons/dark-mode.png" alt="dark mode icon" />
+    localStorage.getItem("mode") == "light" ? (
+      <img src="/images/light/icons/dark-mode.png" alt="dark mode icon" />
+    ) : (
+      <img src="/images/light/icons/dark-mode.png" alt="dark mode icon" />
+    )
   );
   const [light, setLight] = useState("dark-mode-eye");
   function openEye() {
@@ -29,6 +33,9 @@ const DarkMode = () => {
       onClick={() => {
         setTransition("close-eye");
         setTimeout(openEye, 350);
+        localStorage.getItem("mode") == "light"
+          ? localStorage.setItem("mode", "dark")
+          : localStorage.setItem("mode", "light");
       }}
     >
       <div className="close">
