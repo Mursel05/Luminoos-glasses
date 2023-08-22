@@ -1,17 +1,17 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import SunGlasses from "../components/SunGlasses";
+import Sunglasses from "../components/Sunglasses";
 import Section from "../components/Section";
-const sunGlasses = () => {
+const sunglasses = () => {
   return (
     <div>
       <Navbar />
       <Section />
-      <SunGlasses />
+      <Sunglasses />
       <Footer />
     </div>
   );
 };
 
-export default sunGlasses;
+export default sunglasses;

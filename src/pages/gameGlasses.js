@@ -2,14 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
-import SunGlasses from "../components/SunGlasses";
+import GameGlasses from "../components/GameGlasses";
 
 const gameGlasses = () => {
   return (
     <div>
       <Navbar />
       <Section />
-      <SunGlasses />
+      <GameGlasses />
       <Footer />
     </div>
   );

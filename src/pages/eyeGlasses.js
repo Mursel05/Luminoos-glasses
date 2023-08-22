@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import EyeGlasses from "../components/EyeGlasses";
+import EyeGlasses from "../components/Eyeglasses";
 import Section from '../components/Section';
-const eyeGlasses = () => {
+const eyeglasses = () => {
   return (
     <div>
       <Navbar/>
@@ -14,4 +14,4 @@ const eyeGlasses = () => {
   )
 }
 
-export default eyeGlasses
+export default eyeglasses

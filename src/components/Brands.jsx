@@ -4,12 +4,12 @@ import "react-multi-carousel/lib/styles.css";
 
 const Brands = () => {
   const slides = [
-    { image: "/images/brands/persol.png" },
-    { image: "/images/brands/gucci.png" },
-    { image: "/images/brands/adidas.png" },
-    { image: "/images/brands/hyperx.png" },
-    { image: "/images/brands/razer.png" },
-    { image: "/images/brands/ray-ban.png" },
+    { image: "/images/brands/persol.png", id: 1 },
+    { image: "/images/brands/gucci.png", id: 2 },
+    { image: "/images/brands/adidas.png", id: 3 },
+    { image: "/images/brands/hyperx.png", id: 4 },
+    { image: "/images/brands/razer.png", id: 5 },
+    { image: "/images/brands/ray-ban.png", id: 6 },
   ];
   const responsive = {
     superLargeDesktop: {
@@ -41,7 +41,7 @@ const Brands = () => {
         centerMode={true}
       >
         {slides.map((slide) => {
-          return <img src={slide.image} alt="brand" />;
+          return <img src={slide.image} alt="brand" key={slide.id} />;
         })}
       </Carousel>
     </div>

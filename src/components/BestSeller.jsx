@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from "react";
-import supabase from "../supabase";
+import React from "react";
 import Product from "./Product";
+import { useSelector } from "react-redux";
 const BestSeller = () => {
-  const [data, setData] = useState("");
-  const fetchData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("Products")
-        .select("*")
-        .eq("bestSeller", true)
-        .limit(4);
-      if (error) throw error;
-      if (data !== "") setData(data);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  if (data !== "") {
+  const products = useSelector((state) => state.allReducer.products).filter(
+    (product) => product.bestSeller == true
+  );
+  if (products !== "") {
     return (
       <div className="bestSeller">
         <h1>BestSeller</h1>
-      <div className="four-product">
-          {data.map((product) => {
-            return <Product product={product} />;
+        <div className="four-product">
+          {products.map((product) => {
+            return <Product product={product} key={product.id} />;
           })}
         </div>
       </div>

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@chakra-ui/react-use-update-effect": "^2.1.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@supabase/supabase-js": "^2.32.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -12,9 +14,11 @@
     "react-animated-slider": "^1.1.4",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.4",
+    "react-redux": "^8.1.2",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.2.1",
     "react-use-cart": "^1.13.0",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.64.1",
     "web-vitals": "^2.1.4"
   },
@@ -43,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "react-router-dom": "^6.15.0"
   }
 }
