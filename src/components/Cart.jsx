@@ -22,7 +22,7 @@ const Cart = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const { isEmpty, cartTotal, totalItems, items } = useCart();
+  const { isEmpty, cartTotal, totalItems, items, emptyCart } = useCart();
   const [price, setPrice] = useState(cartTotal);
   const [code, setCode] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -64,7 +64,14 @@ const Cart = () => {
             <span className="cart-items">{totalItems} product</span>
             <span className="cart-total">Total: ${price}</span>
           </div>
-          <button onClick={() => navigate("/Thank")}>Buy</button>
+          <button
+            onClick={() => {
+              emptyCart();
+              navigate("/Thank");
+            }}
+          >
+            Buy
+          </button>
         </div>
         <div className="discount-code">
           <div className="promo-code">

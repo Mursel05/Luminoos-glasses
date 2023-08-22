@@ -18,6 +18,7 @@ import supabase from "./supabase";
 export const DataContext = createContext();
 
 const Router = () => {
+  const theme = localStorage.getItem("mode");
   const [products, setProducts] = useState("");
   const fetchData = async () => {
     try {
@@ -38,7 +39,7 @@ const Router = () => {
     localStorage.setItem("mode", "light");
   }
   return (
-    <div>
+    <div className={theme}>
       <DataContext.Provider value={products}>
         <BrowserRouter>
           <Routes>

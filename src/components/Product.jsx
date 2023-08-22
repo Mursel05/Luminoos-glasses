@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
 const Product = ({ product, active }) => {
+  const theme = localStorage.getItem("mode");
   const { items, addItem, removeItem, updateItemQuantity } = useCart();
   const [changeVisibility, setChangeVisibility] = useState("");
   const [activeCart, setActiveCart] = useState(
-    "/images/light/icons/shopping-cart-icon.png"
+    `/images/${theme}/icons/shopping-cart-icon.png`
   );
   const [activeWishlist, setActiveWishlist] = useState(
-    "/images/light/icons/heart-icon.png"
+    `/images/${theme}/icons/heart-icon.png`
   );
   return (
     <div className="product" key={product.id}>
@@ -36,18 +37,18 @@ const Product = ({ product, active }) => {
             className="link-section"
             onMouseEnter={() => {
               setActiveCart(
-                "/images/light/icons/shopping-cart-icon-active2.png"
+                `/images/${theme}/icons/shopping-cart-icon-active2.png`
               );
             }}
             onMouseLeave={() => {
-              setActiveCart("/images/light/icons/shopping-cart-icon.png");
+              setActiveCart(`/images/${theme}/icons/shopping-cart-icon.png`);
             }}
           >
             {items.some((item) => {
               return item.id == product.id;
             }) ? (
               <img
-                src="/images/light/icons/shopping-cart-icon-active2.png"
+                src={`/images/${theme}/icons/shopping-cart-icon-active2.png`}
                 alt="heart icon"
                 style={{ backgroundColor: "#ed0f0f" }}
               />
@@ -58,10 +59,12 @@ const Product = ({ product, active }) => {
           <div
             className="link-section"
             onMouseEnter={() => {
-              setActiveWishlist("/images/light/icons/heart-icon-active2.png");
+              setActiveWishlist(
+                `/images/${theme}/icons/heart-icon-active2.png`
+              );
             }}
             onMouseLeave={() => {
-              setActiveWishlist("/images/light/icons/heart-icon.png");
+              setActiveWishlist(`/images/${theme}/icons/heart-icon.png`);
             }}
           >
             <img src={activeWishlist} alt="heart icon" />

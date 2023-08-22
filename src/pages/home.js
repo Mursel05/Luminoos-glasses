@@ -8,7 +8,7 @@ import Blog from "../components/Blog";
 import BestSeller from "../components/BestSeller";
 const home = () => {
   return (
-    <div>
+    <div className="page">
       <Navbar />
       <Section />
       <Slider />

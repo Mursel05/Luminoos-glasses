@@ -5,15 +5,16 @@ import Search from "./Search";
 import { NavLink } from "react-router-dom";
 
 const Section = () => {
+  const theme = localStorage.getItem("mode");
   const [hiddenPart, setHiddenPart] = useState("hidden login");
   const [activeProfile, setActiveProfile] = useState(
-    "/images/light/icons/account-icon.png"
+    `/images/${theme}/icons/account-icon.png`
   );
   const [activeCart, setActiveCart] = useState(
-    "/images/light/icons/shopping-cart-icon.png"
+    `/images/${theme}/icons/shopping-cart-icon.png`
   );
   const [activeWishlist, setActiveWishlist] = useState(
-    "/images/light/icons/heart-icon.png"
+    `/images/${theme}/icons/heart-icon.png`
   );
   return (
     <div className="section">
@@ -34,11 +35,11 @@ const Section = () => {
             className="link-section"
             onMouseEnter={() => {
               setActiveCart(
-                "/images/light/icons/shopping-cart-icon-active1.png"
+                `/images/${theme}/icons/shopping-cart-icon-active1.png`
               );
             }}
             onMouseLeave={() => {
-              setActiveCart("/images/light/icons/shopping-cart-icon.png");
+              setActiveCart(`/images/${theme}/icons/shopping-cart-icon.png`);
             }}
           >
             <img src={activeCart} alt="heart icon" />
@@ -49,10 +50,12 @@ const Section = () => {
           <div
             className="link-section"
             onMouseEnter={() => {
-              setActiveWishlist("/images/light/icons/heart-icon-active1.png");
+              setActiveWishlist(
+                `/images/${theme}/icons/heart-icon-active1.png`
+              );
             }}
             onMouseLeave={() => {
-              setActiveWishlist("/images/light/icons/heart-icon.png");
+              setActiveWishlist(`/images/${theme}/icons/heart-icon.png`);
             }}
           >
             <img src={activeWishlist} alt="heart icon" />
@@ -63,10 +66,10 @@ const Section = () => {
         <div
           className="profile"
           onMouseEnter={() => {
-            setActiveProfile("/images/light/icons/account-icon-active.png");
+            setActiveProfile(`/images/${theme}/icons/account-icon-active.png`);
           }}
           onMouseLeave={() => {
-            setActiveProfile("/images/light/icons/account-icon.png");
+            setActiveProfile(`/images/${theme}/icons/account-icon.png`);
           }}
           onClick={() => {
             hiddenPart === "login"

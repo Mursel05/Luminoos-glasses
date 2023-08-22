@@ -2,12 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const theme =localStorage.getItem("mode")
   return (
     <div className="navbar">
       <NavLink className="logo-link" to="/">
         <div className="logo">
           <span>LUMIN</span>
-          <img src="/images/light/logo/logo.png" alt="logo" />
+          <img src={`/images/${theme}/logo/logo.png`} alt="logo" />
           <span>S</span>
         </div>{" "}
       </NavLink>

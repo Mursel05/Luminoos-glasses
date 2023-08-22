@@ -6,10 +6,14 @@ const DarkMode = () => {
     localStorage.getItem("mode") == "light" ? (
       <img src="/images/light/icons/dark-mode.png" alt="dark mode icon" />
     ) : (
-      <img src="/images/light/icons/dark-mode.png" alt="dark mode icon" />
+      <img src="/images/dark/icons/light-mode.png" alt="dark mode icon" />
     )
   );
-  const [light, setLight] = useState("dark-mode-eye");
+  const [light, setLight] = useState(
+    localStorage.getItem("mode") == "light"
+      ? "dark-mode-eye"
+      : "dark-mode-eye light-mode-eye"
+  );
   function openEye() {
     setTransition("");
     source.props.src === "/images/light/icons/dark-mode.png"
@@ -26,6 +30,7 @@ const DarkMode = () => {
     light === "dark-mode-eye"
       ? setLight("dark-mode-eye light-mode-eye")
       : setLight("dark-mode-eye");
+    window.location.reload();
   }
   return (
     <div

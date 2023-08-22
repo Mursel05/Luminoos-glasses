@@ -345,6 +345,7 @@ body {
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 0rem;
+    margin-top: 2rem;
   }
 }
 .product {
@@ -711,16 +712,150 @@ body {
 }
 .brands {
   img {
-    width: 12rem;
-    height: 7rem;
+    width: 9rem;
+    height: 5rem;
   }
-  padding: 5rem;
+  padding-right: 10rem;
+  padding-top: 5rem;
   padding-bottom: 3rem;
-  .react-multi-carousel-list {
-    overflow: visible;
+}
+.react-multi-carousel-list {
+  overflow: visible;
+}
+.blog {
+  @include padding-sides();
+  padding-bottom: 3rem;
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    margin-top: 0rem;
   }
 }
-
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  .blogs-part {
+    display: flex;
+    flex-direction: column;
+    img {
+      cursor: pointer;
+      width: 24rem;
+      height: 30rem;
+    }
+  }
+  .blog-details {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    width: 20rem;
+    padding-top: 0.5rem;
+    .blog-date {
+      font-size: 0.8rem;
+      color: #a0a0a0;
+    }
+    .blog-question {
+      font-size: 1.7rem;
+      cursor: pointer;
+      text-align: center;
+    }
+    .blog-question:hover {
+      color: #ed0f0f;
+    }
+    .blog-answer {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      text-align: center;
+    }
+    height: 13rem;
+  }
+}
+.footer {
+  display: flex;
+  @include padding-sides();
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  background-color: #f5f5f5;
+  justify-content: space-between;
+  .apps-icons {
+    border-top: 2px #ed0f0f solid;
+    padding-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    img {
+      width: 1.7rem;
+      cursor: pointer;
+    }
+  }
+  .copyright {
+    font-size: 0.6rem;
+    text-align: center;
+    display: block;
+    width: 11rem;
+    margin-top: 1rem;
+  }
+  .links-part {
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .links-name {
+      font-size: 1.2rem;
+    }
+  }
+  .links-column {
+    border-top: 2px #ed0f0f solid;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    .navLink:hover {
+      color: #ed0f0f;
+    }
+  }
+}
+.dark {
+  .page {
+    display: flex;
+    flex-direction: column;
+  }
+  .link {
+    color: $default-light-color;
+  }
+  .link:hover > span {
+    color: #ed0f0f;
+  }
+  .navbar {
+    span {
+      color: $default-light-color;
+    }
+    background-color: #1c1c1c;
+  }
+  .section {
+    .link-section span {
+      color: $default-light-color;
+    }
+    .link-section:hover > span {
+      color: #ed0f0f;
+    }
+    background-color: #004d4d;
+    .close span {
+      background-color: $default-light-color;
+    }
+    .dark-mode-eye {
+      border: #004444 solid;
+    }
+  }
+  .slider,
+  .bestSeller,
+  .brands {
+    background-color: #1c1c1c;
+  }
+}
 .hidden {
   display: none;
 }
