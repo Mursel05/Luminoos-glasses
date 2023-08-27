@@ -1,4 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { allReducer } from "./allPost";
+import { fetchReducer } from "./dataPost";
 
-export const store = configureStore({ reducer: { allReducer } });
+export const store = configureStore({ reducer: { fetchReducer } });

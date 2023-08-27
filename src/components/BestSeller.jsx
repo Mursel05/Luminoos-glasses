@@ -2,7 +2,7 @@ import React from "react";
 import Product from "./Product";
 import { useSelector } from "react-redux";
 const BestSeller = () => {
-  const products = useSelector((state) => state.allReducer.products).filter(
+  const products = useSelector((state) => state.fetchReducer.products).filter(
     (product) => product.bestSeller == true
   );
   if (products !== "") {

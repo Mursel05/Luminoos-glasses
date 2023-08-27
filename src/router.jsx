@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { createContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import AboutUs from "./pages/aboutUs";
@@ -14,16 +14,19 @@ import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
 import Thank from "./pages/thank";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "./redux/allPost";
+import { getData } from "./redux/dataPost";
+import { useState } from "react";
+
+export const SortContext = createContext();
 
 const Router = () => {
+  const [sortedData, setSortedData] = useState([]);
   const theme = localStorage.getItem("mode");
-  const loading = useSelector((state) => state.allReducer.loading);
-  const data = useSelector((state) => state.allReducer.products);
+    const loading = useSelector((state) => state.fetchReducer.loading);
   const dispatch = useDispatch();
-  console.log(data);
+
   useEffect(() => {
-    dispatch(getAll());
+    dispatch(getData());
   }, []);
 
   if (localStorage.getItem("mode") == undefined) {
@@ -38,23 +41,25 @@ const Router = () => {
   }
   return (
     <div className={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About Us" element={<AboutUs />} />
-          <Route path="/Contact Us" element={<ContactUs />} />
-          <Route path="/Thank" element={<Thank />} />
-          <Route path="/Service" element={<Service />} />
-          <Route path="/Eyeglasses" element={<Eyeglasses />} />
-          <Route path="/Game Glasses" element={<GameGlasses />} />
-          <Route path="/Sunglasses" element={<Sunglasses />} />
-          <Route path="/Details/:id" element={<Details />} />
-          <Route path="/Faq" element={<Faq />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/Wishlist" element={<Wishlist />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <SortContext.Provider value={{ sortedData, setSortedData }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/About Us" element={<AboutUs />} />
+            <Route path="/Contact Us" element={<ContactUs />} />
+            <Route path="/Thank" element={<Thank />} />
+            <Route path="/Service" element={<Service />} />
+            <Route path="/Eyeglasses" element={<Eyeglasses />} />
+            <Route path="/Game Glasses" element={<GameGlasses />} />
+            <Route path="/Sunglasses" element={<Sunglasses />} />
+            <Route path="/Details/:id" element={<Details />} />
+            <Route path="/Faq" element={<Faq />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Wishlist" element={<Wishlist />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </SortContext.Provider>
     </div>
   );
 };

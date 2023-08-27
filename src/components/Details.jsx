@@ -9,12 +9,8 @@ const Details = () => {
     "/images/light/icons/heart-icon.png"
   );
   let id = useParams();
-  const products = useSelector((state) => state.allReducer.products);
-  const loading = useSelector((state) => state.allReducer.loading);
-  console.log(products);
-  console.log(loading);
+  const products = useSelector((state) => state.fetchReducer.products);
   const product = products.find((product) => product.id == id.id);
-  console.log(product);
   if (product != undefined) {
     return (
       <div className="details">

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Router from "./router";
+import Router from "./Router";
 import "./Index.scss";
 import { CartProvider } from "react-use-cart";
 import { store } from "./redux/store";
