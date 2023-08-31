@@ -3,10 +3,23 @@ import DarkMode from "./DarkMode";
 import Language from "./Language";
 import Search from "./Search";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { LanguageContext, LoginContext } from "../Router";
+import langData from "../languageData";
+import { useEffect } from "react";
+import Login from "./Login";
+import Profile from "./Profile";
 
 const Section = () => {
+  const { language } = useContext(LanguageContext);
+  const session = useContext(LoginContext);
+  const [data, setData] = useState(langData[language].section);
+  console.log(session);
+  useEffect(() => {
+    setData(langData[language].section);
+  }, [language]);
   const theme = localStorage.getItem("mode");
-  const [hiddenPart, setHiddenPart] = useState("hidden login");
+  const [hiddenPart, setHiddenPart] = useState("login");
   const [activeProfile, setActiveProfile] = useState(
     `/images/${theme}/icons/account-icon.png`
   );
@@ -24,13 +37,29 @@ const Section = () => {
         <Search />
       </div>
       <div className="links-account">
-        <div className="links">
-          <NavLink className="link" to="/Shopping Cart">
-            <span>Add Product</span>
-            <hr className="link-line" />
-          </NavLink>
-        </div>
-        <NavLink className="navLink" to="/Cart">
+        {session && session.user.user_metadata.admin ? (
+          <div className="links">
+            <NavLink className="link" to="/Products">
+              <span>{data.link1}</span>
+              <hr className="link-line" />
+            </NavLink>
+          </div>
+        ) : (
+          ""
+        )}
+        <NavLink
+          className={({ isActive }) => {
+            if (isActive) {
+              setActiveCart(
+                `/images/${theme}/icons/shopping-cart-icon-active1.png`
+              );
+              return "active navLink";
+            } else {
+              return "navLink";
+            }
+          }}
+          to="/Cart"
+        >
           <div
             className="link-section"
             onMouseEnter={() => {
@@ -43,10 +72,22 @@ const Section = () => {
             }}
           >
             <img src={activeCart} alt="heart icon" />
-            <span>Cart</span>
+            <span>{data.cart}</span>
           </div>
         </NavLink>
-        <NavLink className="navLink" to="/Wishlist">
+        <NavLink
+          className={({ isActive }) => {
+            if (isActive) {
+              setActiveWishlist(
+                `/images/${theme}/icons/heart-icon-active1.png`
+              );
+              return "active navLink";
+            } else {
+              return "navLink";
+            }
+          }}
+          to="/Wishlist"
+        >
           <div
             className="link-section"
             onMouseEnter={() => {
@@ -59,7 +100,7 @@ const Section = () => {
             }}
           >
             <img src={activeWishlist} alt="heart icon" />
-            <span>Wishlist</span>
+            <span>{data.wishlist}</span>
           </div>
         </NavLink>
 
@@ -67,24 +108,28 @@ const Section = () => {
           className="profile"
           onMouseEnter={() => {
             setActiveProfile(`/images/${theme}/icons/account-icon-active.png`);
+            setHiddenPart("appear login");
           }}
           onMouseLeave={() => {
             setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-          }}
-          onClick={() => {
-            hiddenPart === "login"
-              ? setHiddenPart("hidden login")
-              : setHiddenPart("login");
+            setHiddenPart("login");
           }}
         >
           <div className="link-section">
             <img src={activeProfile} alt="account-icon" />
-            <span>Login</span>
+            <span>
+              {session ? session.user.user_metadata.first_name : data.login}
+            </span>
           </div>
-          <div className={hiddenPart}>
-            <span>Sign In</span>
-            <span>Sign Up</span>
-          </div>
+          {session ? (
+            <Profile hiddenPart={hiddenPart} onSetHiddenPart={setHiddenPart} />
+          ) : (
+            <Login
+              hiddenPart={hiddenPart}
+              onSetHiddenPart={setHiddenPart}
+              onSetActiveProfile={setActiveProfile}
+            />
+          )}
         </div>
       </div>
     </div>

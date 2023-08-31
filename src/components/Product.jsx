@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import langData from "../languageData";
+import { useEffect } from "react";
+import { LanguageContext } from "../Router";
+import { toast } from "react-toastify";
+import { useWishlist } from "react-use-wishlist";
 
 const Product = ({ product, active }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].details);
+
+  useEffect(() => {
+    setData(langData[language].details);
+  }, [language]);
+
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const theme = localStorage.getItem("mode");
   const { items, addItem, removeItem, updateItemQuantity } = useCart();
+  const {
+    addWishlistItem,
+    items: wishItems,
+    removeWishlistItem,
+  } = useWishlist();
   const [changeVisibility, setChangeVisibility] = useState("");
   const [activeCart, setActiveCart] = useState(
     `/images/${theme}/icons/shopping-cart-icon.png`
@@ -14,8 +38,14 @@ const Product = ({ product, active }) => {
   );
   return (
     <div className="product" key={product.id}>
-      <span className="product-type">{product.type}</span>
-      {product.hot == false ? "" : <span className="product-hot">Hot</span>}
+      <span className="product-type">
+        {language == "en" ? product.typeEn : product.typeAz}
+      </span>
+      {product.hot == false ? (
+        ""
+      ) : (
+        <span className="product-hot">{data.new}</span>
+      )}
       <div
         className={changeVisibility}
         onMouseEnter={() => {
@@ -28,11 +58,19 @@ const Product = ({ product, active }) => {
         <div className="link-sections">
           <div
             onClick={() => {
-              items.some((item) => {
-                return item.id == product.id;
-              })
-                ? removeItem(product.id)
-                : addItem(product);
+              if (
+                items.some((item) => {
+                  return item.id == product.id;
+                })
+              ) {
+                toast.success(
+                  `${product.name} removed from cart successfully.`
+                );
+                removeItem(product.id);
+              } else {
+                toast.success(`${product.name} added to cart successfully.`);
+                addItem(product);
+              }
             }}
             className="link-section"
             onMouseEnter={() => {
@@ -49,14 +87,31 @@ const Product = ({ product, active }) => {
             }) ? (
               <img
                 src={`/images/${theme}/icons/shopping-cart-icon-active2.png`}
-                alt="heart icon"
+                alt="cart icon"
                 style={{ backgroundColor: "#ed0f0f" }}
               />
             ) : (
-              <img src={activeCart} alt="heart icon" />
+              <img src={activeCart} alt="cart icon" />
             )}
           </div>
           <div
+            onClick={() => {
+              if (
+                wishItems.some((item) => {
+                  return item.id == product.id;
+                })
+              ) {
+                toast.success(
+                  `${product.name} removed from wishlist successfully.`
+                );
+                removeWishlistItem(product.id);
+              } else {
+                toast.success(
+                  `${product.name} added to wishlist successfully.`
+                );
+                addWishlistItem(product);
+              }
+            }}
             className="link-section"
             onMouseEnter={() => {
               setActiveWishlist(
@@ -67,17 +122,31 @@ const Product = ({ product, active }) => {
               setActiveWishlist(`/images/${theme}/icons/heart-icon.png`);
             }}
           >
-            <img src={activeWishlist} alt="heart icon" />
+            {wishItems.some((item) => {
+              return item.id == product.id;
+            }) ? (
+              <img
+                src={`/images/${theme}/icons/heart-icon-active2.png`}
+                alt="heart icon"
+                style={{ backgroundColor: "#ed0f0f" }}
+              />
+            ) : (
+              <img src={activeWishlist} alt="heart icon" />
+            )}
           </div>
         </div>
-        <NavLink to={`/Details/${product.id}`}>
+        <NavLink to={`/Details/${product.id}`} onClick={goToTop}>
           <img src={product.image} alt="glasses" className="product-image" />
         </NavLink>
       </div>
       <div className="product-info">
         <div className="product-name-price-brand">
           <div className="product-name-price">
-            <NavLink className="navLink" to={`/Details/${product.id}`}>
+            <NavLink
+              className="navLink"
+              to={`/Details/${product.id}`}
+              onClick={goToTop}
+            >
               {active && (
                 <span className="product-quantity"> {product.quantity} x </span>
               )}

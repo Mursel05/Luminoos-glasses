@@ -132,6 +132,13 @@ body {
   border: 1px #ed0f0f solid;
   width: 100%;
 }
+.active {
+  color: #ed0f0f;
+  .link-line {
+    border: 1px #ed0f0f solid;
+    width: 100%;
+  }
+}
 .section {
   @include padding-sides();
   padding-left: 10.6rem;
@@ -200,30 +207,29 @@ body {
   margin-top: 0.2rem;
   text-align: center;
   background-color: $secondary-light-color;
-  cursor: pointer;
-  border-radius: 9px;
+  font-size: 0.9rem;
+  overflow: hidden;
+  font-weight: 500;
+  height: 1.9rem;
+  border-radius: 5px;
   padding-top: 0.2rem;
-  span {
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
-  }
+  transition: all 0.3s ease-in;
 }
-.language-list {
-  span {
-    font-size: 0.9rem;
-    padding-left: 0rem;
-    padding-right: 0rem;
-  }
+.language:hover {
+  height: 3.6rem;
 }
 .language-section {
   display: flex;
   gap: 0.3rem;
   padding: 0.3rem;
+  cursor: pointer;
 }
 .language-section:hover {
   background-color: $navbar-background-color;
+}
+.main-language {
+  cursor: unset;
+  background-color: $secondary-light-color !important;
 }
 .search {
   margin-left: 10rem;
@@ -254,25 +260,130 @@ body {
 .link-section:hover > span {
   color: #ed0f0f;
 }
+.profile:hover > .link-section span {
+  color: #ed0f0f;
+}
 .login {
-  display: flex;
-  flex-direction: column;
   position: absolute;
-  margin-top: 1rem;
-  gap: 0.4rem;
-  background-color: #006666;
-  padding: 0.8rem;
-  padding-top: 0rem;
-  border-radius: 0px 0px 5px 5px;
-  span {
-    font-size: 1rem;
+  z-index: 999;
+  background-color: #85c1e9;
+  border-radius: 5px;
+  display: flex;
+  margin-left: -6.5rem;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2rem);
+  padding: 2rem;
+  transition: all 0.4s ease-in-out;
+  align-items: center;
+  flex-direction: column;
+  font-size: 0.9rem;
+  h1 {
+    margin-top: 0rem;
+  }
+
+  .forgot-password {
+    margin-left: 0.3rem;
     cursor: pointer;
   }
-  span:hover {
-    text-decoration: underline;
+  .forgot-password:hover {
+    color: #ed0f0f;
+  }
+  button {
+    @include button-style();
+    padding: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+  button:hover {
+    @include slider-button-hover();
+  }
+  .switch-login {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+    .login-link {
+      cursor: pointer;
+    }
+    .login-link:hover {
+      color: #ed0f0f;
+    }
+  }
+  .login-message {
+    font-size: 1rem;
+    width: 12rem;
+    text-align: center;
   }
 }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-input-error {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.error {
+  color: #ed0f0f;
+  font-size: 0.6rem;
+  margin-left: 0.2rem;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  input {
+    outline: none;
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    border-radius: 5px;
+    border: none;
+  }
+  label {
+    margin-left: 0.1rem;
+  }
+}
+.password-input {
+  display: flex;
+  align-items: center;
+  background-color: $default-light-color;
+  padding: 0.1rem;
+  padding-left: 0.1rem;
+  border-radius: 5px;
+  img {
+    margin-right: 0.25rem;
+    cursor: pointer;
+  }
+}
+.appear {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0rem);
+}
+.new-password {
+  background-color: #85c1e9;
 
+  form {
+    font-size: 0.8rem;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    button {
+      @include button-style();
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+    }
+    button:hover {
+      @include slider-button-hover();
+    }
+  }
+}
 .each-slide-effect > div {
   display: flex;
   align-items: center;
@@ -334,10 +445,13 @@ body {
   }
   span {
     font-size: 1rem;
-    color: $default-dark-color;
+    color: $default-light-color;
     text-decoration: underline;
   }
-  background-color: #85c1e9;
+  span:hover {
+    color: #ed0f0f;
+  }
+  background-color: #004d4d;
   img {
     height: 350px;
   }
@@ -975,6 +1089,32 @@ body {
 .no-match {
   text-align: center;
   font-size: 1.5rem;
+}
+.wishlist {
+  .empty-text {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 3rem;
+    padding-bottom: 3em;
+    align-items: center;
+    margin: 0 !important;
+    font-size: 2rem;
+    flex-direction: column;
+    span:hover {
+      color: #ed0f0f;
+    }
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  padding-left: 15rem;
+  padding-right: 15rem;
+  .wishlist-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
 }
 //
 //

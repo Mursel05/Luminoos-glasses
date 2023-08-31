@@ -1,7 +1,18 @@
 import React from "react";
+import { useContext } from "react";
+import { LanguageContext } from "../Router";
+import langData from "../languageData";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Blog = () => {
-  const data = [
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].blogs);
+
+  useEffect(() => {
+    setData(langData[language].blogs);
+  }, [language]);
+  const datas = [
     {
       id: 1,
       image: "/images/blog/blog-right-frame.webp",
@@ -30,9 +41,9 @@ const Blog = () => {
   ];
   return (
     <div className="blog">
-      <h1>Blogs</h1>
+      <h1>{data.header}</h1>
       <div className="blogs">
-        {data.map((blog) => {
+        {datas.map((blog) => {
           return (
             <div className="blogs-part" key={blog.id}>
               <img src={blog.image} alt="blog" />

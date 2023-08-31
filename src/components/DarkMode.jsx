@@ -14,6 +14,7 @@ const DarkMode = () => {
       ? "dark-mode-eye"
       : "dark-mode-eye light-mode-eye"
   );
+
   function openEye() {
     setTransition("");
     source.props.src === "/images/light/icons/dark-mode.png"

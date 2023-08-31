@@ -1,13 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Product from "./Product";
 import { SortContext } from "../Router";
 import { useContext } from "react";
-import { useEffect } from "react";
 
 const Sunglasses = () => {
   const { sortedData } = useContext(SortContext);
-  const products = sortedData.filter((product) => product.type == "Sunglasses");
+  const products = sortedData.filter((product) => product.typeEn == "Sunglasses");
   if (products == false) {
     return (
       <div className="no-match">

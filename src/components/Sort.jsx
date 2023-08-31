@@ -57,11 +57,11 @@ const Sort = () => {
       (product) => product.price >= range[0] && product.price <= range[1]
     );
     const sortGender = sortRange.filter((product) => {
-      if (product.gender != "Both") {
+      if (product.genderEn != "Both") {
         if (checkMen || checkWomen) {
           return (
-            (checkMen && product.gender == "Men") ||
-            (checkWomen && product.gender == "Women")
+            (checkMen && product.genderEn == "Men") ||
+            (checkWomen && product.genderEn == "Women")
           );
         } else {
           return product;
@@ -82,14 +82,14 @@ const Sort = () => {
         checkOrange
       ) {
         return (
-          (checkYellow && product.color == "Yellow") ||
-          (checkPink && product.color == "Pink") ||
-          (checkBlack && product.color == "Black") ||
-          (checkBlue && product.color == "Blue") ||
-          (checkBrown && product.color == "Brown") ||
-          (checkGray && product.color == "Gray") ||
-          (checkGreen && product.color == "Green") ||
-          (checkOrange && product.color == "Orange")
+          (checkYellow && product.colorEn == "Yellow") ||
+          (checkPink && product.colorEn == "Pink") ||
+          (checkBlack && product.colorEn == "Black") ||
+          (checkBlue && product.colorEn == "Blue") ||
+          (checkBrown && product.colorEn == "Brown") ||
+          (checkGray && product.colorEn == "Gray") ||
+          (checkGreen && product.colorEn == "Green") ||
+          (checkOrange && product.colorEn == "Orange")
         );
       } else {
         return product;

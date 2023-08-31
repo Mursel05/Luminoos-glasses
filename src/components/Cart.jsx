@@ -3,9 +3,20 @@ import { useCart } from "react-use-cart";
 import Product from "./Product";
 import { NavLink, useNavigate } from "react-router-dom";
 import supabase from "../supabase";
+import { useContext } from "react";
+import { LanguageContext, LoginContext } from "../Router";
+import langData from "../languageData";
+import { toast } from "react-toastify";
 const Cart = () => {
+  const { language } = useContext(LanguageContext);
+  const session = useContext(LoginContext);
+  const [data, setData] = useState(langData[language].cart);
+
+  useEffect(() => {
+    setData(langData[language].cart);
+  }, [language]);
   const navigate = useNavigate();
-  const [data, setData] = useState("");
+  const [datas, setDatas] = useState("");
   const fetchData = async () => {
     try {
       const { data, error } = await supabase
@@ -13,7 +24,7 @@ const Cart = () => {
         .select("*")
         .limit(1);
       if (error) throw error;
-      if (data !== "") setData(data);
+      if (data !== "") setDatas(data);
     } catch (error) {
       window.location.reload();
     }
@@ -39,7 +50,7 @@ const Cart = () => {
     return (
       <div className="cart">
         <div className="empty-text">
-          <p>Your cart is empty</p>
+          <p>{data.empty}</p>
           <NavLink className="navLink">
             <span>Continue Shopping</span>
           </NavLink>
@@ -48,29 +59,37 @@ const Cart = () => {
     );
   return (
     <div className="cart">
-      <p>Your cart</p>
+      <p>{data.header}</p>
       <div className="cart-products">
         {items.map((product) => {
           return (
-            <div>
+            <div key={product.id}>
               <Product product={product} active={"active"} />
             </div>
           );
         })}
       </div>
-      <div className="">
+      <div>
         <div className="cart-buy">
           <div className="cart-info">
-            <span className="cart-items">{totalItems} product</span>
-            <span className="cart-total">Total: ${price}</span>
+            <span className="cart-items">
+              {totalItems} {data.item}
+            </span>
+            <span className="cart-total">
+              {data.sum}: ${price}
+            </span>
           </div>
           <button
             onClick={() => {
-              emptyCart();
-              navigate("/Thank");
+              if (session) {
+                emptyCart();
+                navigate("/Thank");
+              } else {
+                toast.warning("You should sign in to buy glasses!");
+              }
             }}
           >
-            Buy
+            {data.mainBtn}
           </button>
         </div>
         <div className="discount-code">
@@ -86,7 +105,7 @@ const Cart = () => {
               }}
               id="promo-checkbox"
             />
-            <label htmlFor="promo-checkbox">Enter promo code</label>
+            <label htmlFor="promo-checkbox">{data.code}</label>
           </div>
           {isChecked == true && (
             <div>
@@ -94,8 +113,8 @@ const Cart = () => {
                 action="/"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (data != "") {
-                    data.some((item) => {
+                  if (datas != "") {
+                    datas.some((item) => {
                       return item.code == code;
                     })
                       ? trueCode()
@@ -111,11 +130,11 @@ const Cart = () => {
                       setCode(e.target.value);
                     }}
                   />
-                  <button type="submit">Get discount</button>
+                  <button type="submit">{data.codeBtn}</button>
                 </div>
               </form>
               <div>
-                <span className={errorAppearance}>Wrong code</span>
+                <span className={errorAppearance}>{data.error}</span>
               </div>
             </div>
           )}

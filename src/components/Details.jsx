@@ -2,9 +2,26 @@ import React, { useState } from "react";
 import { useCart } from "react-use-cart";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useContext } from "react";
+import langData from "../languageData";
+import { LanguageContext } from "../Router";
+import { useWishlist } from "react-use-wishlist";
+import { toast } from "react-toastify";
 
 const Details = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].details);
+
+  useEffect(() => {
+    setData(langData[language].details);
+  }, [language]);
   const { addItem, items, removeItem } = useCart();
+  const {
+    addWishlistItem,
+    items: wishItems,
+    removeWishlistItem,
+  } = useWishlist();
   const [activeWishlist, setActiveWishlist] = useState(
     "/images/light/icons/heart-icon.png"
   );
@@ -15,35 +32,43 @@ const Details = () => {
     return (
       <div className="details">
         <div>
-          <span className="product-type">{product.type}</span>
-          {product.hot == false ? "" : <span className="product-hot">Hot</span>}
+          <span className="product-type">
+            {language == "en" ? product.typeEn : product.typeAz}
+          </span>
+          {product.hot == false ? (
+            ""
+          ) : (
+            <span className="product-hot">{data.new}</span>
+          )}
           <img src={product.image} alt={`${product.name} glasses`} />
         </div>
         <div className="product-details">
           <span className="product-name">{product.name}</span>
           <div className="product-brand-gender">
             <span className="product-brand">{product.brand}</span>
-            <span className="product-gender">{product.gender}</span>
+            <span className="product-gender">
+              {language == "en" ? product.genderEn : product.genderAz}
+            </span>
           </div>
           <span className="product-color">
-            Color: <span className="color">{product.color}</span>
+            {data.color}:{" "}
+            <span className="color">
+              {language == "en" ? product.colorEn : product.colorAz}
+            </span>
             <div
               className="circle-color"
-              style={{ backgroundColor: product.color }}
+              style={{ backgroundColor: product.colorEn }}
             ></div>
           </span>
           <p className="product-text">
-            {product.name} These oval glasses are flexible and lightweight for
-            all-day comfort. The medium-wide acetate frame features matte
-            turquoise textured embellishments on the outside corners of the
-            frame that match the temple arms.
+            {product.name} {data.description}
           </p>
           <div className="price">
             <div className="product-properties">
-              <span className="properties-title">Price includes</span>
+              <span className="properties-title">{data.priceHeader}</span>
               <div className="properties">
-                <span className="property">• Frame & cleaning cloth</span>
-                <span className="property">• Quality 1.5 index lenses</span>
+                <span className="property">• {data.include1}</span>
+                <span className="property">• {data.include2}</span>
               </div>
             </div>
             <span className="product-price">${product.price}</span>
@@ -51,28 +76,58 @@ const Details = () => {
           <div className="product-cart-wishlist">
             <button
               onClick={() => {
-                items.some((item) => {
-                  return item.id == product.id;
-                })
-                  ? removeItem(product.id)
-                  : addItem(product);
+                if (
+                  items.some((item) => {
+                    return item.id == product.id;
+                  })
+                ) {
+                  toast.success(
+                    `${product.name} removed from cart successfully.`
+                  );
+                  removeItem(product.id);
+                } else {
+                  toast.success(`${product.name} added to cart successfully.`);
+                  addItem(product);
+                }
               }}
             >
               {items.some((item) => {
                 return item.id == product.id;
               })
-                ? "Remove from cart"
-                : "Add to cart"}
+                ? data.mainBtn2
+                : data.mainBtn1}
             </button>
-
             <img
-              src={activeWishlist}
+              src={
+                wishItems.some((item) => {
+                  return item.id == product.id;
+                })
+                  ? "/images/light/icons/heart-icon-active3.png"
+                  : "/images/light/icons/heart-icon.png"
+              }
               alt="heart icon"
               onMouseEnter={() => {
                 setActiveWishlist("/images/light/icons/heart-icon-active3.png");
               }}
               onMouseLeave={() => {
                 setActiveWishlist("/images/light/icons/heart-icon.png");
+              }}
+              onClick={() => {
+                if (
+                  wishItems.some((item) => {
+                    return item.id == product.id;
+                  })
+                ) {
+                  toast.success(
+                    `${product.name} removed from wishlist successfully.`
+                  );
+                  removeWishlistItem(product.id);
+                } else {
+                  toast.success(
+                    `${product.name} added to wishlist successfully.`
+                  );
+                  addWishlistItem(product);
+                }
               }}
             />
           </div>

@@ -5,7 +5,7 @@ import { SortContext } from "../Router";
 
 const GameGlasses = () => {
   const { sortedData } = useContext(SortContext);
-  const products = sortedData.filter((product) => product.type == "Game Glasses");
+  const products = sortedData.filter((product) => product.typeEn == "Game Glasses");
   if (products == false) {
     return (
       <div className="no-match">

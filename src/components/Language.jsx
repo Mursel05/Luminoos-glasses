@@ -1,35 +1,43 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { LanguageContext } from "../Router";
+import langData from "../languageData";
+import { useEffect } from "react";
 
 const Language = () => {
-  const [hiddenPart, setHiddenPart] = useState("hidden language-list");
+  const { language, setLanguage } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language]);
+
+  useEffect(() => {
+    setData(langData[language]);
+  }, [language]);
+
   return (
-    <div
-      className="language"
-      onMouseEnter={() => {
-        setHiddenPart("language-list");
-      }}
-      onMouseLeave={() => {
-        setHiddenPart("hidden language-list");
-      }}
-    >
-      <span>Language</span>
-      <div className={hiddenPart}>
-        <div className="language-section">
-          <img
-            src="/images/light/icons/azerbaijan-flag.png"
-            width="25px"
-            alt="Azerbaijan flag"
-          />
-          <span>Azərbaycan</span>
-        </div>
-        <div className="language-section">
-          <img
-            src="/images/light/icons/english-flag.png"
-            width="25px"
-            alt="English flag"
-          />
-          <span>English</span>
-        </div>
+    <div className="language">
+      <div className="main-language language-section">
+        <img
+          src={`/images/light/icons/${data.language}-flag.png`}
+          width="25px"
+          alt="flag"
+        />
+        <span>{data.language}</span>
+      </div>
+      <div
+        className="language-section"
+        onClick={() => {
+          localStorage.setItem(
+            "language",
+            data.other.toLowerCase().slice(0, 2)
+          );
+          setLanguage(data.other.toLowerCase().slice(0, 2));
+        }}
+      >
+        <img
+          src={`/images/light/icons/${data.other}-flag.png`}
+          width="25px"
+          alt=" flag"
+        />
+        <span>{data.other}</span>
       </div>
     </div>
   );
