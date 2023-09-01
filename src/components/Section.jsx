@@ -9,15 +9,44 @@ import langData from "../languageData";
 import { useEffect } from "react";
 import Login from "./Login";
 import Profile from "./Profile";
+import { toast } from "react-toastify";
 
 const Section = () => {
+  const [signed, setSigned] = useState(false);
+  const [sign, setSign] = useState("");
   const { language } = useContext(LanguageContext);
-  const session = useContext(LoginContext);
   const [data, setData] = useState(langData[language].section);
-  console.log(session);
   useEffect(() => {
     setData(langData[language].section);
   }, [language]);
+
+  const session = useContext(LoginContext);
+  useEffect(() => {
+    signed === "in" && setSign(toast.loading("Please wait, signing in..."));
+    signed === "out" && setSign(toast.loading("Please wait, signing out..."));
+  }, [signed]);
+  useEffect(() => {
+    if (session) {
+      setSigned(false);
+      toast.update(sign, {
+        render: "Signed in.",
+        type: "success",
+        isLoading: false,
+        closeButton: true,
+        autoClose: 2000,
+      });
+    } else {
+      setSigned(false);
+      toast.update(sign, {
+        render: "Signed Out.",
+        type: "success",
+        isLoading: false,
+        closeButton: true,
+        autoClose: 2000,
+      });
+    }
+  }, [session]);
+
   const theme = localStorage.getItem("mode");
   const [hiddenPart, setHiddenPart] = useState("login");
   const [activeProfile, setActiveProfile] = useState(
@@ -29,6 +58,7 @@ const Section = () => {
   const [activeWishlist, setActiveWishlist] = useState(
     `/images/${theme}/icons/heart-icon.png`
   );
+
   return (
     <div className="section">
       <div className="section-first-part">
@@ -122,12 +152,13 @@ const Section = () => {
             </span>
           </div>
           {session ? (
-            <Profile hiddenPart={hiddenPart} onSetHiddenPart={setHiddenPart} />
+            <Profile hiddenPart={hiddenPart} onSetSigned={setSigned} />
           ) : (
             <Login
               hiddenPart={hiddenPart}
               onSetHiddenPart={setHiddenPart}
               onSetActiveProfile={setActiveProfile}
+              onSetSigned={setSigned}
             />
           )}
         </div>

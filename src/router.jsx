@@ -28,10 +28,6 @@ export const LanguageContext = createContext();
 export const LoginContext = createContext();
 
 const Router = () => {
-  async function signOut() {
-    const { error } = await supabase.auth.signOut();
-  }
-
   const [sortedData, setSortedData] = useState([]);
   const [language, setLanguage] = useState(
     localStorage.getItem("language") ? localStorage.getItem("language") : "en"
@@ -49,7 +45,6 @@ const Router = () => {
     if (localStorage.getItem("language") == undefined) {
       localStorage.setItem("language", "en");
     }
-    // signOut()
   }, []);
 
   useEffect(() => {

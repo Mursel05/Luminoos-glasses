@@ -2,7 +2,7 @@ import supabase from "../supabase";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Profile = ({ hiddenPart, onSetHiddenPart }) => {
+const Profile = ({ hiddenPart, onSetSigned }) => {
   async function signOut() {
     const { error } = await supabase.auth.signOut();
   }
@@ -22,6 +22,7 @@ const Profile = ({ hiddenPart, onSetHiddenPart }) => {
         <span
           onClick={() => {
             signOut();
+            onSetSigned("out");
             navigate("/");
           }}
         >

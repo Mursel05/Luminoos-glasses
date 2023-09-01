@@ -2,7 +2,12 @@ import { toast } from "react-toastify";
 import supabase from "../supabase";
 import React, { useState } from "react";
 
-const Login = ({ hiddenPart, onSetHiddenPart }) => {
+const Login = ({
+  hiddenPart,
+  onSetHiddenPart,
+  onSetActiveProfile,
+  onSetSigned,
+}) => {
   const [eye, setEye] = useState("hide");
   const [type, setType] = useState("password");
   const [email, setEmail] = useState("");
@@ -18,6 +23,7 @@ const Login = ({ hiddenPart, onSetHiddenPart }) => {
   const check1 = emailRegex.test(String(email).toLowerCase());
   const check2 = passwordRegex.test(String(password).toLowerCase());
   const check3 = nameRegex.test(String(name).toLowerCase());
+  const theme = localStorage.getItem("mode");
 
   async function sendLink() {
     await supabase.auth.resetPasswordForEmail(email, {
@@ -55,7 +61,7 @@ const Login = ({ hiddenPart, onSetHiddenPart }) => {
       },
     });
   }
-
+  //do something else
   const signIn = (e) => {
     e.preventDefault();
     if (check1) {
@@ -71,9 +77,10 @@ const Login = ({ hiddenPart, onSetHiddenPart }) => {
       setPasswordError("error");
     }
     if (check1 && check2) {
+      onSetSigned("in");
       signInWithEmail();
       onSetHiddenPart("login");
-      OnsetActiveProfile(`/images/${theme}/icons/account-icon.png`);
+      onSetActiveProfile(`/images/${theme}/icons/account-icon.png`);
       setName("");
       setEmail("");
       setPassword("");
