@@ -462,7 +462,7 @@ const Sort = () => {
                 type="checkbox"
                 id="hyperx"
               />
-              <label htmlFor="hyperx">Hyperx</label>
+              <label htmlFor="hyperx">HyperX</label>
             </div>
             <div className="sort-property">
               <input

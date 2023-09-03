@@ -61,7 +61,6 @@ const Login = ({
       },
     });
   }
-  //do something else
   const signIn = (e) => {
     e.preventDefault();
     if (check1) {

@@ -84,6 +84,9 @@ body {
   text-decoration: none;
   color: $default-dark-color;
 }
+.navLink:hover {
+  color: #ed0f0f;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -282,22 +285,12 @@ body {
   h1 {
     margin-top: 0rem;
   }
-
   .forgot-password {
     margin-left: 0.3rem;
     cursor: pointer;
   }
   .forgot-password:hover {
     color: #ed0f0f;
-  }
-  button {
-    @include button-style();
-    padding: 0.5rem;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
-  }
-  button:hover {
-    @include slider-button-hover();
   }
   .switch-login {
     display: flex;
@@ -320,6 +313,15 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  button {
+    @include button-style();
+    padding: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+  button:hover {
+    @include slider-button-hover();
+  }
 }
 .form-input-error {
   display: flex;
@@ -491,6 +493,7 @@ form {
 }
 .bestSeller,
 .recommend {
+  padding-bottom: 2rem;
   h1 {
     text-align: center;
     font-size: 1.5rem;
@@ -829,6 +832,7 @@ form {
 }
 .brands {
   img {
+    cursor: pointer;
     width: 9rem;
     height: 5rem;
   }
@@ -896,7 +900,6 @@ form {
   @include padding-sides();
   padding-bottom: 3rem;
   padding-top: 3rem;
-  margin-top: 2rem;
   background-color: #f5f5f5;
   justify-content: space-between;
   .apps-icons {
@@ -935,9 +938,6 @@ form {
     gap: 0.5rem;
     font-size: 1rem;
     font-weight: 400;
-    .navLink:hover {
-      color: #ed0f0f;
-    }
   }
 }
 .loading {
@@ -1114,6 +1114,296 @@ form {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+  }
+}
+.signed {
+  padding: 1rem;
+  margin-left: -3rem;
+  gap: 0rem;
+  .header {
+    border-bottom: 1px #e2e2e2 solid;
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .signed-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1rem;
+    span:hover {
+      cursor: pointer;
+      color: #ed0f0f;
+    }
+  }
+}
+.account {
+  @include padding-sides();
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  button {
+    font-size: 0.9rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      width: 12rem;
+      border: 1px solid #ced4da;
+    }
+  }
+  .password-input {
+    border: 1px solid #ced4da;
+
+    input {
+      width: 10.6rem;
+      border: none;
+    }
+  }
+}
+.blog-page {
+  gap: 1rem;
+  display: flex;
+  padding-top: 2rem;
+  flex-direction: column;
+  @include padding-sides();
+  text-align: center;
+  .blog-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    span {
+      font-size: 1rem;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+  .img-answer {
+    display: flex;
+    gap: 2rem;
+  }
+  img {
+    width: 28rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .answer-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    button {
+      @include button-style();
+      margin-bottom: 15rem;
+      align-self: center;
+    }
+  }
+}
+.admin-blogs {
+  .image {
+    width: 13rem;
+  }
+  .date {
+    width: 3rem;
+  }
+  .header {
+    width: 18rem;
+  }
+  .button {
+    width: 3rem;
+  }
+  .answer {
+    width: 19rem;
+  }
+  @include padding-sides();
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .blogs-row {
+    display: flex;
+    gap: 2rem;
+    span {
+      font-size: 1rem;
+    }
+  }
+  .blog-row {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    textarea {
+      outline: none;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 0.5rem;
+      padding-left: 0.7rem;
+    }
+    input {
+      outline: none;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 0.5rem;
+    }
+  }
+  .edit {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .delete {
+      background-color: #ed0f0f;
+    }
+    button {
+      @include button-style();
+      padding: 0.5rem;
+    }
+  }
+  .blog-edit {
+    display: flex;
+    align-items: center;
+  }
+  .error-input {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.special-products {
+  @include padding-sides();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 3rem;
+  padding-top: 2rem;
+  h1 {
+    font-size: 1.5rem;
+  }
+  .products {
+    display: flex;
+    padding-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+.admin-products {
+  .labels {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .id {
+    font-size: 1rem;
+  }
+  .product-row,
+  .product-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @include padding-sides();
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  .none {
+    opacity: 0;
+  }
+  input[type="text"],
+  input[type="number"] {
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+  .error-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  @include input-style();
+  .edit {
+    display: flex;
+    gap: 0.5rem;
+  }
+  button {
+    @include button-style();
+    padding: 0.5rem;
+  }
+  label {
+    cursor: pointer;
+  }
+  .delete {
+    background-color: #ed0f0f;
+  }
+}
+.faq {
+  @include padding-sides();
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #e9ecfd;
+  align-items: center;
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+  .item {
+    overflow: hidden;
+    display: flex;
+    background-color: $default-light-color;
+    flex-direction: column;
+    padding: 1.5rem;
+    font-size: 1rem;
+    border-radius: 9px;
+  }
+  .first-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      width: 1.3rem;
+      cursor: pointer;
+      transition: all 0.5s linear;
+    }
+  }
+  .id-circle {
+    background-color: #e9ecfd;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  span {
+    width: 40rem;
+  }
+  .id-question {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .item-answer {
+    max-height: 0rem;
+    overflow: hidden;
+    border-left: 2px solid #a0a0a0;
+    margin-bottom: 0.5rem;
+    margin-left: 2.5rem;
+    transition: all 0.5s linear;
+  }
+  .open {
+    img {
+      transform: rotate(180deg);
+    }
+    .item-answer {
+      max-height: 15rem;
+      margin-top: 2rem;
+      padding: 1rem;
+    }
   }
 }
 //

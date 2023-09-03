@@ -59,6 +59,7 @@ const langData = {
     recommend: { header: "Recommend" },
     section: {
       link1: "Products",
+      link2: "Blogs",
       cart: "Cart",
       wishlist: "Wishlist",
       login: "Login",
@@ -116,15 +117,16 @@ const langData = {
       others: { header: "Digər", link1: "Xidmət" },
     },
     navbar: {
-      link1: "Günəş eynəyi",
-      link2: "Oyun eynəyi",
-      link3: "Göz eynəyi",
+      link1: "Günəş eynəkləri",
+      link2: "Oyun eynəkləri",
+      link3: "Göz eynəkləri",
       link4: "Təmir",
     },
     notFound: {},
     recommend: { header: "Tövsiyə edin" },
     section: {
       link1: "Məhsullar",
+      link2: "Bloqlar",
       cart: "Səbət",
       wishlist: "Bəyəndiklərim",
       login: "Daxil ol",

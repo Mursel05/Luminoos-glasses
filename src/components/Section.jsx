@@ -67,16 +67,6 @@ const Section = () => {
         <Search />
       </div>
       <div className="links-account">
-        {session && session.user.user_metadata.admin ? (
-          <div className="links">
-            <NavLink className="link" to="/Products">
-              <span>{data.link1}</span>
-              <hr className="link-line" />
-            </NavLink>
-          </div>
-        ) : (
-          ""
-        )}
         <NavLink
           className={({ isActive }) => {
             if (isActive) {

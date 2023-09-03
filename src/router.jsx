@@ -16,12 +16,15 @@ import Wishlist from "./pages/wishlist";
 import Products from "./pages/products";
 import Thank from "./pages/thank";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "./redux/dataPost";
+import { getBlogs, getCodes, getData, getFaq } from "./redux/dataPost";
 import { useState } from "react";
 import supabase from "./supabase";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Account from "./pages/account";
+import Blogs from "./pages/blogs";
+import BlogDetail from "./pages/blogDetail";
+import SpecialProducts from "./pages/specialProducts";
 
 export const SortContext = createContext();
 export const LanguageContext = createContext();
@@ -36,9 +39,11 @@ const Router = () => {
   const theme = localStorage.getItem("mode");
   const loading = useSelector((state) => state.fetchReducer.loading);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getData());
+    dispatch(getBlogs());
+    dispatch(getCodes());
+    dispatch(getFaq());
     if (localStorage.getItem("mode") == undefined) {
       localStorage.setItem("mode", "light");
     }
@@ -94,7 +99,13 @@ const Router = () => {
                 <Route path="/Thank" element={<Thank />} />
                 <Route path="/My Account" element={<Account />} />
                 <Route path="/Service" element={<Service />} />
+                <Route
+                  path="/Special Products/:sort/:value"
+                  element={<SpecialProducts />}
+                />
                 <Route path="/Eyeglasses" element={<Eyeglasses />} />
+                <Route path="/Blogs" element={<Blogs />} />
+                <Route path="/Blog/:id" element={<BlogDetail />} />
                 <Route path="/Products" element={<Products />} />
                 <Route path="/New Password" element={<NewPassword />} />
                 <Route path="/Game Glasses" element={<GameGlasses />} />

@@ -1,19 +1,20 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Brands = () => {
+  const navigate = useNavigate();
   const slides = [
-    { image: "/images/brands/persol.png", id: 1 },
-    { image: "/images/brands/gucci.png", id: 2 },
-    { image: "/images/brands/adidas.png", id: 3 },
-    { image: "/images/brands/hyperx.png", id: 4 },
-    { image: "/images/brands/razer.png", id: 5 },
-    { image: "/images/brands/ray-ban.png", id: 6 },
+    { image: "/images/brands/persol.png", brand: "Persol", id: 1 },
+    { image: "/images/brands/gucci.png", brand: "Gucci", id: 2 },
+    { image: "/images/brands/adidas.png", brand: "Adidas", id: 3 },
+    { image: "/images/brands/hyperx.png", brand: "HyperX", id: 4 },
+    { image: "/images/brands/razer.png", brand: "Razer", id: 5 },
+    { image: "/images/brands/ray-ban.png", brand: "Ray-Ban", id: 6 },
   ];
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -41,7 +42,14 @@ const Brands = () => {
         centerMode={true}
       >
         {slides.map((slide) => {
-          return <img src={slide.image} alt="brand" key={slide.id} />;
+          return (
+            <img
+              src={slide.image}
+              alt="brand"
+              key={slide.id}
+              onClick={() => navigate(`/Special Products/brand/${slide.brand}`)}
+            />
+          );
         })}
       </Carousel>
     </div>

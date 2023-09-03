@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 import Product from "./Product";
 import { NavLink, useNavigate } from "react-router-dom";
-import supabase from "../supabase";
 import { useContext } from "react";
 import { LanguageContext, LoginContext } from "../Router";
 import langData from "../languageData";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 const Cart = () => {
   const { language } = useContext(LanguageContext);
   const session = useContext(LoginContext);
@@ -16,30 +16,22 @@ const Cart = () => {
     setData(langData[language].cart);
   }, [language]);
   const navigate = useNavigate();
-  const [datas, setDatas] = useState("");
-  const fetchData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("promo-code")
-        .select("*")
-        .limit(1);
-      if (error) throw error;
-      if (data !== "") setDatas(data);
-    } catch (error) {
-      window.location.reload();
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const codes = useSelector((state) => state.fetchReducer.codes);
   const { isEmpty, cartTotal, totalItems, items, emptyCart } = useCart();
   const [price, setPrice] = useState(cartTotal);
   const [code, setCode] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errorAppearance, setErrorAppearance] = useState("code-error hidden");
   const trueCode = () => {
-    isChecked ? setPrice((cartTotal / 2).toFixed(2)) : setPrice(cartTotal);
+    let total = 0;
+    items.map((item) => {
+      if (item.discount) {
+        total += item.price / 2;
+      } else {
+        total += item.price;
+      }
+    });
+    isChecked ? setPrice(total) : setPrice(cartTotal);
     setErrorAppearance("code-error hidden");
   };
   const falseCode = () => {
@@ -113,8 +105,8 @@ const Cart = () => {
                 action="/"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (datas != "") {
-                    datas.some((item) => {
+                  if (codes) {
+                    codes.some((item) => {
                       return item.code == code;
                     })
                       ? trueCode()

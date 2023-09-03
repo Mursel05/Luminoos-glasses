@@ -152,7 +152,17 @@ const Product = ({ product, active }) => {
               )}
               <span className="product-name">{product.name}</span>
             </NavLink>
-            <span className="product-price">{product.price}$</span>
+            <span
+              className="product-price"
+              style={{ textDecoration: product.price > 100 && "line-through" }}
+            >
+              {product.price}$
+            </span>
+            {product.price > 100 && (
+              <span className="product-price">
+                {(product.price * 0.7).toFixed(2)}$
+              </span>
+            )}
           </div>
           <span className="product-brand">{product.brand}</span>
         </div>

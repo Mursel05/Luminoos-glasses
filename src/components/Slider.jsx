@@ -1,9 +1,10 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Slider = () => {
+  const navigate = useNavigate();
   return (
     <div className="slider">
       <Slide>
@@ -21,7 +22,13 @@ const Slider = () => {
                 From the beach to your dream house, <br />
                 these vibrant pink styles turn heads.
               </p>
-              <button>Go to shopping</button>
+              <button
+                onClick={() => {
+                  navigate("/Special Products/colorEn/Pink");
+                }}
+              >
+                Go to shopping
+              </button>
             </div>
           </div>
         </div>
@@ -35,7 +42,13 @@ const Slider = () => {
               backgroundSize: "1200px 290px",
             }}
           >
-            <button>Enter code</button>
+            <button
+              onClick={() => {
+                navigate("/Cart");
+              }}
+            >
+              Enter code
+            </button>
           </div>
         </div>
         <div className="each-slide-effect">
@@ -67,12 +80,18 @@ const Slider = () => {
               <span className="slider-header">Eyes on Summer</span>
               <span className="slider-main">
                 30% OFF <br />
-                Orders $60+
+                Orders $100+
               </span>
               <span className="slider-description">
                 Set your sights on summer <br /> with a new look for less.
               </span>
-              <button>Shop now</button>{" "}
+              <button
+                onClick={() => {
+                  navigate("/Sunglasses");
+                }}
+              >
+                Shop now
+              </button>
             </div>
           </div>
         </div>
