@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
 import supabase from "../supabase";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Login = ({
   hiddenPart,
   onSetHiddenPart,
   onSetActiveProfile,
   onSetSigned,
+  onSetFocusInput,
 }) => {
   const [eye, setEye] = useState("hide");
   const [type, setType] = useState("password");
@@ -24,6 +25,12 @@ const Login = ({
   const check2 = passwordRegex.test(String(password).toLowerCase());
   const check3 = nameRegex.test(String(name).toLowerCase());
   const theme = localStorage.getItem("mode");
+
+  useEffect(() => {
+    setName("");
+    setEmail("");
+    setPassword("");
+  }, [login]);
 
   async function sendLink() {
     await supabase.auth.resetPasswordForEmail(email, {
@@ -126,6 +133,8 @@ const Login = ({
             <div className="form-input">
               <label htmlFor="email">Email</label>
               <input
+                onFocus={() => onSetFocusInput(true)}
+                onBlur={() => onSetFocusInput(false)}
                 type="email"
                 id="email"
                 value={email}
@@ -144,6 +153,8 @@ const Login = ({
               <label htmlFor="password">Password</label>
               <div className="password-input">
                 <input
+                  onFocus={() => onSetFocusInput(true)}
+                  onBlur={() => onSetFocusInput(false)}
                   type={type}
                   value={password}
                   onChange={(e) => {
@@ -185,6 +196,8 @@ const Login = ({
             <div className="form-input">
               <label htmlFor="name">Name</label>
               <input
+                onFocus={() => onSetFocusInput(true)}
+                onBlur={() => onSetFocusInput(false)}
                 type="text"
                 id="name"
                 value={name}
@@ -202,6 +215,8 @@ const Login = ({
             <div className="form-input">
               <label htmlFor="email">Email</label>
               <input
+                onFocus={() => onSetFocusInput(true)}
+                onBlur={() => onSetFocusInput(false)}
                 type="email"
                 id="email"
                 value={email}
@@ -220,6 +235,8 @@ const Login = ({
               <label htmlFor="password">Password</label>
               <div className="password-input">
                 <input
+                  onFocus={() => onSetFocusInput(true)}
+                  onBlur={() => onSetFocusInput(false)}
                   type={type}
                   value={password}
                   onChange={(e) => {

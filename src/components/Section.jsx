@@ -16,13 +16,41 @@ const Section = () => {
   const [sign, setSign] = useState("");
   const { language } = useContext(LanguageContext);
   const [data, setData] = useState(langData[language].section);
+  const [focusDiv, setFocusDiv] = useState(false);
+  const [focusInput, setFocusInput] = useState(false);
   useEffect(() => {
     setData(langData[language].section);
   }, [language]);
-
+  useEffect(() => {
+    if (!focusDiv && !focusInput) {
+      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+      setHiddenPart("login");
+    }
+  }, [focusDiv]);
+  useEffect(() => {
+    if (!focusDiv && !focusInput) {
+      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+      setHiddenPart("login");
+    }
+  }, [focusInput]);
+  signed === "in" &&
+    setTimeout(() => {
+      if (!session) {
+        setSigned(false);
+        toast.update(sign, {
+          render: "Invalid login credentials!!!",
+          type: "error",
+          isLoading: false,
+          closeButton: true,
+          autoClose: 2000,
+        });
+      }
+    }, 4000);
   const session = useContext(LoginContext);
   useEffect(() => {
-    signed === "in" && setSign(toast.loading("Please wait, signing in..."));
+    if (signed === "in") {
+      setSign(toast.loading("Please wait, signing in..."));
+    }
     signed === "out" && setSign(toast.loading("Please wait, signing out..."));
   }, [signed]);
   useEffect(() => {
@@ -129,10 +157,17 @@ const Section = () => {
           onMouseEnter={() => {
             setActiveProfile(`/images/${theme}/icons/account-icon-active.png`);
             setHiddenPart("appear login");
+            setFocusDiv(true);
+            // console.log("dive girdi");
           }}
           onMouseLeave={() => {
-            setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-            setHiddenPart("login");
+            setFocusDiv(false);
+            console.log(focusDiv);
+            console.log(focusInput);
+            if (!focusDiv && !focusInput) {
+              setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+              setHiddenPart("login");
+            }
           }}
         >
           <div className="link-section">
@@ -149,6 +184,7 @@ const Section = () => {
               onSetHiddenPart={setHiddenPart}
               onSetActiveProfile={setActiveProfile}
               onSetSigned={setSigned}
+              onSetFocusInput={setFocusInput}
             />
           )}
         </div>

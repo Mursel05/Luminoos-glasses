@@ -47,7 +47,7 @@ const langData = {
         link2: "Contact Us",
         link3: "FAQ",
       },
-      others: { header: "others", link1: "Service" },
+      others: { header: "Others", link1: "Service" },
     },
     navbar: {
       link1: "Sunglasses",
@@ -114,7 +114,7 @@ const langData = {
         link2: "Əlaqə",
         link3: "Sual-Cavab",
       },
-      others: { header: "Digər", link1: "Xidmət" },
+      others: { header: "Digərlər", link1: "Xidmət" },
     },
     navbar: {
       link1: "Günəş eynəkləri",

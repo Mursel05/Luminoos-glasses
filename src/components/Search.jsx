@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import SearchItem from "./SearchItem";
+import { Metronome } from "@uiball/loaders";
 
 const Search = () => {
   const navigate = useNavigate();
   const products = useSelector((state) => state.fetchReducer.products);
   const [text, setText] = useState("");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   function getKeyByValue(array, value) {
     for (let i = 0; i < array.length; i++) {
       for (let prop in array[i]) {
@@ -17,25 +21,59 @@ const Search = () => {
       }
     }
   }
+  function search(e) {
+    e.preventDefault();
+    if (text) {
+      const word = text.trim();
+      const value = word[0].toUpperCase() + word.slice(1);
+      const sort = getKeyByValue(products, value);
+      navigate(`/Special Products/${sort}/${value}`);
+    }
+  }
+  useEffect(() => {
+    setTimeout(() => {
+      const word = text.trim();
+      const value = word.length > 1 && word[0].toUpperCase() + word.slice(1);
+      const sort = getKeyByValue(products, value);
+      setData(
+        text && products.filter((item) => item[sort] == value).slice(0, 5)
+      );
+      setLoading(false);
+    }, 1500);
+  }, [text]);
   return (
     <div className="search">
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          const value = text[0].toUpperCase() + text.slice(1);
-          const sort = getKeyByValue(products, value);
-          navigate(`/Special Products/${sort}/${value}`);
-          console.log(sort);
-        }}
-      >
-        Search
-      </button>
+      <form onSubmit={search} action="/">
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+            setLoading(true);
+          }}
+        />
+        <button>
+          <img
+            onClick={() => {}}
+            src="/images/light/icons/search-icon.png"
+            alt="search"
+          />
+        </button>
+      </form>
+
+      <div className="search-result">
+        {loading ? (
+          <div className="search-loading">
+            <span>Wait...</span>
+            <Metronome size={40} speed={1.6} color="black" />
+          </div>
+        ) : (
+          data &&
+          data.map((product) => (
+            <SearchItem product={product} key={product.id} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

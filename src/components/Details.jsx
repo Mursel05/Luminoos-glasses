@@ -71,7 +71,22 @@ const Details = () => {
                 <span className="property">• {data.include2}</span>
               </div>
             </div>
-            <span className="product-price">${product.price}</span>
+            <div className="prices">
+              <span
+                className="product-price"
+                style={{
+                  fontSize: product.price > 100 && "1.2rem",
+                  textDecoration: product.price > 100 && "line-through",
+                }}
+              >
+                ${product.price}
+              </span>
+              {product.price > 100 && (
+                <span className="product-price">
+                  {(product.price * 0.7).toFixed(2)}$
+                </span>
+              )}
+            </div>
           </div>
           <div className="product-cart-wishlist">
             <button

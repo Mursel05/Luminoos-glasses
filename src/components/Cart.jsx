@@ -26,9 +26,17 @@ const Cart = () => {
     let total = 0;
     items.map((item) => {
       if (item.discount) {
-        total += item.price / 2;
+        if (item.price > 100) {
+          total += (item.price * 0.7).toFixed(2) / 2;
+        } else {
+          total += item.price / 2;
+        }
       } else {
-        total += item.price;
+        if (item.price > 100) {
+          total += (item.price * 0.7).toFixed(2);
+        } else {
+          total += item.price;
+        }
       }
     });
     isChecked ? setPrice(total) : setPrice(cartTotal);

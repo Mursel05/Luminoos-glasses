@@ -1,4 +1,4 @@
-main hisse - 3*3 seklinde  markalarin eynek sekilleri.
+main hisse - 3\*3 seklinde markalarin eynek sekilleri.
 //thank you page dil
 //login offer words bug
 //sort language
@@ -7,5 +7,4 @@ contact
 about
 dark
 language
-search
 service
