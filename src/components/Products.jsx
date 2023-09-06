@@ -4,7 +4,6 @@ import ProductsSingle from "./ProductsSingle";
 
 const Products = () => {
   const products = useSelector((state) => state.fetchReducer.products);
-  // const sortedProducts = products.sort((a, b) => b.id - a.id);
   return (
     <div className="admin-products">
       {products.map((product) => (

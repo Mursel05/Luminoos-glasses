@@ -10,7 +10,7 @@ const Wishlist = () => {
       <div className="wishlist">
         <div className="empty-text">
           <p>Your cart is empty</p>
-          <NavLink className="navLink">
+          <NavLink className="navLink" to="/">
             <span>Continue Shopping</span>
           </NavLink>
         </div>

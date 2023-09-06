@@ -14,6 +14,12 @@ const Footer = () => {
   useEffect(() => {
     setData(langData[language].footer);
   }, [language]);
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const theme = localStorage.getItem("mode");
   const [hoverFacebook, setHoverFacebook] = useState(
     `/images/${theme}/icons/facebook-logo.png`
@@ -28,6 +34,7 @@ const Footer = () => {
     <div className="footer">
       <div className="logo-parts">
         <NavLink
+          onClick={goToTop}
           className={({ isActive }) => (isActive ? "logo-link" : "logo-link")}
           to="/"
         >
@@ -97,6 +104,7 @@ const Footer = () => {
         <span className="links-name">{data.category.header}</span>
         <div className="links-column">
           <NavLink
+            onClick={goToTop}
             to="/Sunglasses"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -105,6 +113,7 @@ const Footer = () => {
             {data.category.link1}
           </NavLink>
           <NavLink
+            onClick={goToTop}
             to="/Game Glasses"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -113,6 +122,7 @@ const Footer = () => {
             {data.category.link2}
           </NavLink>
           <NavLink
+            onClick={goToTop}
             to="/Eyeglasses"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -126,6 +136,7 @@ const Footer = () => {
         <span className="links-name">{data.information.header}</span>
         <div className="links-column">
           <NavLink
+            onClick={goToTop}
             to="/About Us"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -134,6 +145,7 @@ const Footer = () => {
             {data.information.link1}
           </NavLink>
           <NavLink
+            onClick={goToTop}
             to="/Contact Us"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -142,6 +154,7 @@ const Footer = () => {
             {data.information.link2}
           </NavLink>
           <NavLink
+            onClick={goToTop}
             to="/FAQ"
             className={({ isActive }) =>
               isActive ? "active navLink" : "navLink"
@@ -154,7 +167,7 @@ const Footer = () => {
       <div className="links-part">
         <span className="links-name">{data.others.header}</span>
         <div className="links-column">
-          <NavLink to="/Service" className="navLink">
+          <NavLink onClick={goToTop} to="/Service" className="navLink">
             {data.others.link1}
           </NavLink>
         </div>

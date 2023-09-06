@@ -9,9 +9,9 @@ import BlogSingle from "./BlogSingle";
 
 const Blog = () => {
   const { language } = useContext(LanguageContext);
-  const [data, setData] = useState(langData[language].blogs);
+  const [data, setData] = useState(langData[language].blog);
   useEffect(() => {
-    setData(langData[language].blogs);
+    setData(langData[language].blog);
   }, [language]);
 
   const blogs = useSelector((state) => state.fetchReducer.blogs);

@@ -51,8 +51,8 @@ const Cart = () => {
       <div className="cart">
         <div className="empty-text">
           <p>{data.empty}</p>
-          <NavLink className="navLink">
-            <span>Continue Shopping</span>
+          <NavLink className="navLink" to="/">
+            <span>{data.emptyBtn}</span>
           </NavLink>
         </div>
       </div>
