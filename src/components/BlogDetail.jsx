@@ -2,8 +2,20 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogSingle from "./BlogSingle";
+import { useContext } from "react";
+import langData from "../languageData";
+import { useEffect } from "react";
+import { useState } from "react";
+import { LanguageContext } from "../Router";
 
 const BlogDetail = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].blog);
+
+  useEffect(() => {
+    setData(langData[language].blog);
+  }, [language]);
+
   const navigate = useNavigate();
   const blogs = useSelector((state) => state.fetchReducer.blogs);
   let id = useParams();
@@ -26,7 +38,7 @@ const BlogDetail = () => {
             </div>
           </div>
         </div>
-        <h1>Other Blogs</h1>
+        <h1>{data.detailHeader}</h1>
         <div className="blogs">
           {blogs.map((blog) => {
             return blog.id != id.id && <BlogSingle blog={blog} key={blog.id} />;

@@ -1,8 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import supabase from "../supabase";
+import { useContext } from "react";
+import langData from "../languageData";
+import { useEffect } from "react";
+import { LanguageContext } from "../Router";
 
 const BlogAdminSingle = ({ blog }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].blog);
+
+  useEffect(() => {
+    setData(langData[language].blog);
+  }, [language]);
+
   const [image, setImage] = useState(blog ? blog.image : "");
   const [imageError, setImageError] = useState("error hidden");
   const [header, setHeader] = useState(blog ? blog.header : "");
@@ -40,7 +51,7 @@ const BlogAdminSingle = ({ blog }) => {
             onChange={(e) => setImage(e.target.value)}
             value={image}
           />
-          <span className={imageError}>Should not be empty!</span>
+          <span className={imageError}>{data.error}</span>
         </div>
         <div className="error-input">
           <input
@@ -49,7 +60,7 @@ const BlogAdminSingle = ({ blog }) => {
             onChange={(e) => setDate(e.target.value)}
             value={date}
           />
-          <span className={dateError}>Should not be empty!</span>
+          <span className={dateError}>{data.error}</span>
         </div>
         <div className="error-input">
           <input
@@ -58,7 +69,7 @@ const BlogAdminSingle = ({ blog }) => {
             onChange={(e) => setHeader(e.target.value)}
             value={header}
           />
-          <span className={headerError}>Should not be empty!</span>
+          <span className={headerError}>{data.error}</span>
         </div>
         <div className="error-input">
           <textarea
@@ -67,7 +78,7 @@ const BlogAdminSingle = ({ blog }) => {
             rows="5"
             value={answer}
           ></textarea>
-          <span className={answerError}>Should not be empty!</span>
+          <span className={answerError}>{data.error}</span>
         </div>
         <input
           className="button"
@@ -96,10 +107,10 @@ const BlogAdminSingle = ({ blog }) => {
               }
             }}
           >
-            Update
+            {data.updBtn}
           </button>
           <button onClick={remove} className="delete">
-            Delete
+            {data.dltBtn}
           </button>
         </div>
       ) : (
@@ -116,7 +127,7 @@ const BlogAdminSingle = ({ blog }) => {
               }
             }}
           >
-            Create
+            {data.crtBtn}
           </button>
         </div>
       )}

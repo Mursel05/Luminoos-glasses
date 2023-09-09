@@ -6,14 +6,12 @@ import langData from "../languageData";
 const BestSeller = () => {
   const { language } = useContext(LanguageContext);
   const [data, setData] = useState(langData[language].bestSeller);
-
   useEffect(() => {
     setData(langData[language].bestSeller);
   }, [language]);
 
-  const products = useSelector((state) => state.fetchReducer.products).filter(
-    (product) => product.bestSeller == true
-  );
+  const products = useSelector((state) => state.fetchReducer.products)
+    .filter((product) => product.bestSeller == true)
   if (products !== "") {
     return (
       <div className="bestSeller">

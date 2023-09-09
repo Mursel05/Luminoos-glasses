@@ -10,8 +10,11 @@ import { useEffect } from "react";
 import Login from "./Login";
 import Profile from "./Profile";
 import { toast } from "react-toastify";
+import useWindowDimensions from "./GetWindowDimensions";
 
 const Section = () => {
+  const {touch} = useWindowDimensions();
+  const [hiddenPart, setHiddenPart] = useState("login");
   const [signed, setSigned] = useState(false);
   const [sign, setSign] = useState("");
   const { language } = useContext(LanguageContext);
@@ -22,17 +25,22 @@ const Section = () => {
     setData(langData[language].section);
   }, [language]);
   useEffect(() => {
-    if (!focusDiv && !focusInput) {
-      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-      setHiddenPart("login");
+    if (!touch) {
+      if (!focusDiv && !focusInput) {
+        setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+        setHiddenPart("login");
+      }
     }
   }, [focusDiv]);
   useEffect(() => {
-    if (!focusDiv && !focusInput) {
-      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-      setHiddenPart("login");
+    if (!touch) {
+      if (!focusDiv && !focusInput) {
+        setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+        setHiddenPart("login");
+      }
     }
   }, [focusInput]);
+
   signed === "in" &&
     setTimeout(() => {
       if (!session) {
@@ -45,7 +53,8 @@ const Section = () => {
           autoClose: 2000,
         });
       }
-    }, 4000);
+    }, 6000);
+
   const session = useContext(LoginContext);
   useEffect(() => {
     if (signed === "in") {
@@ -76,7 +85,6 @@ const Section = () => {
   }, [session]);
 
   const theme = localStorage.getItem("mode");
-  const [hiddenPart, setHiddenPart] = useState("login");
   const [activeProfile, setActiveProfile] = useState(
     `/images/${theme}/icons/account-icon.png`
   );
@@ -151,26 +159,43 @@ const Section = () => {
             <span>{data.wishlist}</span>
           </div>
         </NavLink>
-
         <div
           className="profile"
           onMouseEnter={() => {
-            setActiveProfile(`/images/${theme}/icons/account-icon-active.png`);
-            setHiddenPart("appear login");
-            setFocusDiv(true);
-            // console.log("dive girdi");
+            if (!touch) {
+              setActiveProfile(
+                `/images/${theme}/icons/account-icon-active.png`
+              );
+              setHiddenPart("appear login");
+              setFocusDiv(true);
+            }
           }}
           onMouseLeave={() => {
-            setFocusDiv(false);
-            console.log(focusDiv);
-            console.log(focusInput);
-            if (!focusDiv && !focusInput) {
-              setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-              setHiddenPart("login");
+            if (!touch) {
+              setFocusDiv(false);
+              if (!focusDiv && !focusInput) {
+                setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+                setHiddenPart("login");
+              }
             }
           }}
         >
-          <div className="link-section">
+          <div
+            className="link-section"
+            onClick={() => {
+              if (touch) {
+                setActiveProfile(
+                  activeProfile === `/images/${theme}/icons/account-icon.png`
+                    ? `/images/${theme}/icons/account-icon-active.png`
+                    : `/images/${theme}/icons/account-icon.png`
+                );
+                setHiddenPart(
+                  hiddenPart === "login" ? "appear login" : "login"
+                );
+                setFocusDiv(!focusDiv);
+              }
+            }}
+          >
             <img src={activeProfile} alt="account-icon" />
             <span>
               {session ? session.user.user_metadata.first_name : data.login}

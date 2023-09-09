@@ -15,8 +15,7 @@ export const getData = createAsyncThunk(
     const { data, error } = await supabase
       .from("Products")
       .select("*")
-      .order("id", { ascending: true })
-      .limit(25);
+      .order("id", { ascending: true });
     if (error) throw error;
     return data;
   }
@@ -29,10 +28,7 @@ export const getFaq = createAsyncThunk("fetchData/getFaq", async (thunkApi) => {
 export const getCodes = createAsyncThunk(
   "fetchData/getCodes",
   async (thunkApi) => {
-    const { data, error } = await supabase
-      .from("promo-code")
-      .select("*")
-      .limit(1);
+    const { data, error } = await supabase.from("promo-code").select("*");
     if (error) throw error;
     return data;
   }
@@ -40,7 +36,7 @@ export const getCodes = createAsyncThunk(
 export const getBlogs = createAsyncThunk(
   "fetchData/getBlogs",
   async (thunkApi) => {
-    const { data, error } = await supabase.from("blogs").select("*").limit(6);
+    const { data, error } = await supabase.from("blogs").select("*");
     if (error) throw error;
     return data;
   }

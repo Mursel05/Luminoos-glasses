@@ -2,20 +2,16 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import useWindowDimensions from "./GetWindowDimensions";
 
 const Slider = () => {
+  const { touch, width } = useWindowDimensions();
   const navigate = useNavigate();
   return (
     <div className="slider">
       <Slide>
         <div className="each-slide-effect">
-          <div
-            style={{
-              backgroundImage: "url(/images/advertizes/barbie-discount.png)",
-              backgroundSize: "1200px 290px",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
+          <div className="barbie-slide-effect">
             <div className="barbie-slider">
               <h1>Let’s Go Party</h1>
               <p>
@@ -33,15 +29,7 @@ const Slider = () => {
           </div>
         </div>
         <div className="each-slide-effect">
-          <div
-            className="promo-code-slider"
-            style={{
-              backgroundImage:
-                "url(/images/advertizes/promo-code-discount.png)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "1200px 290px",
-            }}
-          >
+          <div className="promo-code-slider">
             <button
               onClick={() => {
                 navigate("/Cart");
@@ -61,7 +49,6 @@ const Slider = () => {
                 <span>Go to service →</span>
               </NavLink>
             </div>
-
             <img
               src="/images/advertizes/repair-glasses.png"
               alt="person repairs glasses"
@@ -69,13 +56,7 @@ const Slider = () => {
           </div>
         </div>
         <div className="each-slide-effect">
-          <div
-            style={{
-              backgroundImage: "url(/images/advertizes/top60-discount.png)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "1200px 290px",
-            }}
-          >
+          <div className="discount-slide-effect">
             <div className="discount-slider">
               <span className="slider-header">Eyes on Summer</span>
               <span className="slider-main">

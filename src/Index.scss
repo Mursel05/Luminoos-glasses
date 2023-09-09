@@ -8,11 +8,31 @@ $search-background-color: #006666;
 $account-background-color-hover: #2e8a99;
 $button-background-color: #008080;
 
+@mixin respond($breakpoint) {
+  @if $breakpoint==phone {
+    @media only screen and (max-width: 320px) {
+      @content;
+    }
+  }
+  @if $breakpoint==tab {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+}
 @mixin padding-sides {
   padding-left: 10rem;
   padding-right: 10rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  @include respond(tab) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  @include respond(phone) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 @mixin button-style {
   color: $default-light-color;
@@ -89,10 +109,15 @@ body {
 }
 .navbar {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   background-color: white;
   @include padding-sides();
+}
+.navbar-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .logo {
   display: flex;
@@ -117,6 +142,27 @@ body {
   display: flex;
   gap: 1.3rem;
   align-items: center;
+}
+.menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem !important;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  max-height: 0rem;
+  @include respond(phone) {
+    display: grid;
+    grid-template-columns: 7rem 7rem;
+    gap: 0rem;
+  }
+}
+.appear {
+  padding: 1.5rem;
+  padding-top: 2.5rem;
+  @include respond(phone) {
+    padding: 5.5rem;
+    padding-top: 0.5rem;
+  }
 }
 .link {
   text-decoration: none;
@@ -149,11 +195,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include respond(tab) {
+  }
+  @include respond(phone) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .section-first-part {
   display: flex;
+  @include respond(tab) {
+    display: grid;
+    grid-template-rows: 2.5rem 2.2rem;
+  }
+  @include respond(phone) {
+  }
 }
 .dark-mode-eye {
+  @include respond(tab) {
+    margin-left: 1.5rem;
+  }
+  @include respond(phone) {
+    margin-top: 0.2rem;
+  }
   background-color: $default-light-color;
   width: 1.9rem;
   height: 1.9rem;
@@ -178,7 +242,6 @@ body {
   position: absolute;
   transform: translate(-50%, -50%) rotate(-45deg);
   z-index: 999;
-
   span {
     display: block;
     width: 100%;
@@ -205,6 +268,9 @@ body {
   background-color: $default-dark-color;
 }
 .language {
+  @include respond(tab) {
+    margin-left: 5rem;
+  }
   position: absolute;
   margin-left: 3.5rem;
   margin-top: 0.2rem;
@@ -235,6 +301,14 @@ body {
   background-color: $secondary-light-color !important;
 }
 .search {
+  padding-left: 0.5rem;
+  border-radius: 5px;
+  margin-left: 10rem;
+  margin-top: 0.2rem;
+  padding-right: 0.3rem;
+  @include respond(tab) {
+    margin-left: 0rem;
+  }
   form {
     display: flex;
     align-items: center;
@@ -251,14 +325,9 @@ body {
   button:hover {
     background-color: $default-light-color;
   }
-  border-radius: 5px;
-  margin-left: 10rem;
-  margin-top: 0.2rem;
-  padding-right: 0.3rem;
   img {
     width: 1.5rem;
   }
-  padding-left: 0.5rem;
   input {
     outline: none;
     border: none;
@@ -391,6 +460,11 @@ body {
 .links-account {
   display: flex;
   gap: 1rem;
+  @include respond(phone) {
+    width: 100%;
+    justify-content: center;
+    padding-top: 1rem;
+  }
   .links {
     margin-top: 1rem;
   }
@@ -432,6 +506,11 @@ body {
   align-items: center;
   flex-direction: column;
   font-size: 0.9rem;
+  @include respond(tab) {
+    margin-left: -12rem;
+  }
+  @include respond(phone) {
+  }
   h1 {
     margin-top: 0rem;
   }
@@ -545,20 +624,60 @@ form {
 }
 .react-slideshow-container .default-nav:first-of-type {
   margin-left: 15px !important;
+  @include respond(phone) {
+    display: none !important;
+  }
 }
 .react-slideshow-container .default-nav:last-of-type {
   margin-right: 15px !important;
+  @include respond(phone) {
+    display: none !important;
+  }
+}
+.images-wrap {
+  transform: translate(-1280px) !important;
+  width: 1920px;
 }
 .slider {
   @include padding-sides();
   width: 1200px;
   padding-top: 4rem;
+  @include respond(tab) {
+    width: 600px;
+  }
+  @include respond(phone) {
+    padding-right: 0rem;
+    padding-left: 0rem;
+    width: 320px;
+  }
 }
 .slide {
   border-radius: 15px;
   height: 290px;
+  @include respond(phone) {
+    border-radius: 0px;
+  }
+}
+.barbie-slide-effect {
+  background-image: url("../public/images/advertizes/barbie-discount.png");
+  background-size: 1200px 290px !important;
+  background-repeat: no-repeat;
+  @include respond(tab) {
+    background-image: url("../public/images/advertizes/barbie-discount-tab.png");
+    background-size: 600px 290px !important;
+  }
+  @include respond(phone) {
+    background-image: url("../public/images/advertizes/barbie-discount-phone.png");
+    background-size: 320px 290px !important;
+  }
 }
 .barbie-slider {
+  @include respond(tab) {
+    margin-right: 0rem;
+  }
+  @include respond(phone) {
+    padding: 1rem;
+  }
   margin-bottom: 5rem;
   margin-right: 35rem;
   h1 {
@@ -575,7 +694,26 @@ form {
   }
 }
 .promo-code-slider {
+  background-image: url("../public/images/advertizes/promo-code-discount.png");
+  background-size: 1200px 290px !important;
+  background-repeat: no-repeat;
+  @include respond(tab) {
+    margin-right: 0rem;
+    background-image: url("../public/images/advertizes/promo-code-discount-tab.png");
+    background-size: 600px 290px !important;
+  }
+  @include respond(phone) {
+    background-image: url("../public/images/advertizes/promo-code-discount-phone.png");
+    background-size: 320px 290px !important;
+  }
   button {
+    @include respond(tab) {
+      margin-right: -14rem;
+      margin-top: 10.5rem;
+    }
+    @include respond(phone) {
+      margin-right: -1rem;
+    }
     margin-right: 49.5rem;
     margin-top: 3rem;
     @include slider-button();
@@ -587,13 +725,37 @@ form {
 .service-slider {
   display: flex;
   gap: 5rem;
+  margin-bottom: 7rem;
+  margin-right: 7rem;
+  @include respond(tab) {
+    gap: 0rem;
+  }
+  @include respond(phone) {
+    background-repeat: no-repeat;
+    background-image: url("../public/images/advertizes/repair-glasses.png");
+    background-size: 320px 290px !important;
+    img {
+      display: none;
+    }
+    margin-right: 0rem;
+  }
   div {
-    margin-bottom: 7rem;
-    margin-right: 7rem;
+    @include respond(tab) {
+      margin-left: 1rem;
+      margin-bottom: 6rem;
+    }
+    @include respond(phone) {
+    }
   }
   p {
     font-size: 2.5rem;
     color: #ff6b6b;
+    @include respond(tab) {
+      font-size: 2rem;
+    }
+    @include respond(phone) {
+      font-size: 2.5rem;
+    }
   }
   span {
     font-size: 1rem;
@@ -608,19 +770,47 @@ form {
     height: 350px;
   }
 }
+.discount-slide-effect {
+  background-image: url("../public/images/advertizes/top60-discount.png");
+  background-size: 1200px 290px !important;
+  background-repeat: no-repeat;
+  @include respond(tab) {
+    background-image: url("../public/images/advertizes/top60-discount-tab.png");
+    background-size: 600px 290px !important;
+  }
+  @include respond(phone) {
+    background-image: url("../public/images/advertizes/top60-discount-phone.png");
+    background-size: 320px 290px !important;
+  }
+}
 .discount-slider {
   gap: 0.5rem;
   margin-bottom: 4rem;
   margin-right: 40rem;
   text-align: center;
+  @include respond(tab) {
+    margin-right: 15rem;
+  }
+  @include respond(phone) {
+    margin-right: 3rem;
+  }
   .slider-header {
     font-size: 1.8rem;
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
   }
   .slider-main {
     font-size: 2.8rem;
+    @include respond(phone) {
+      font-size: 2.5rem;
+    }
   }
   .slider-description {
     font-size: 1.3rem;
+    @include respond(phone) {
+      font-size: 1rem;
+    }
   }
   display: flex;
   flex-direction: column;
@@ -640,10 +830,18 @@ form {
   justify-content: center;
   gap: 1.5rem;
   padding-top: 2rem;
+  @include respond(tab) {
+    display: grid;
+    grid-template-columns: 20rem 20rem;
+  }
+  @include respond(phone) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 .bestSeller,
 .recommend {
-  padding-bottom: 2rem;
   h1 {
     text-align: center;
     font-size: 1.5rem;
@@ -666,17 +864,16 @@ form {
   .link-sections {
     position: absolute;
     display: flex;
-    gap: 1rem;
-    flex-direction: column;
+    gap: 13.1rem;
     opacity: 0;
-    margin-top: 3rem;
-    transform: translateX(-10px);
+    margin-top: 8.5rem;
+    transform: translateY(12px);
     margin-left: 0.7rem;
     transition: all 0.4s ease;
   }
   .show-section .link-sections {
     opacity: 1;
-    transform: translateX(3px);
+    transform: translateY(0px);
   }
   .link-section {
     padding: 0rem;
@@ -893,7 +1090,6 @@ form {
       color: #ed0f0f;
     }
   }
-
   .product-info {
     display: flex;
     justify-content: space-between;
@@ -993,12 +1189,26 @@ form {
     width: 9rem;
     height: 5rem;
   }
-  padding-right: 10rem;
+  padding-right: 5rem;
+  padding-left: 5rem;
   padding-top: 5rem;
   padding-bottom: 3rem;
+  @include respond(tab) {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+  @include respond(phone) {
+    padding-right: 0rem;
+    padding-left: 0rem;
+  }
 }
-.react-multi-carousel-list {
-  overflow: visible;
+
+.react-multi-carousel-track {
+  @include respond(tab) {
+    overflow: hidden;
+  }
+  @include respond(phone) {
+  }
 }
 .blog {
   @include padding-sides();
@@ -1009,11 +1219,19 @@ form {
     text-align: center;
     margin-top: 0rem;
   }
+  @include respond(phone) {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
 }
 .blogs {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  @include respond(tab) {
+    align-items: center;
+    flex-direction: column;
+  }
   .blogs-part {
     display: flex;
     flex-direction: column;
@@ -1023,6 +1241,10 @@ form {
       cursor: pointer;
       width: 24rem;
       height: 30rem;
+      @include respond(phone) {
+        width: 20rem;
+        height: 25rem;
+      }
     }
   }
   .blog-details {
@@ -1032,6 +1254,11 @@ form {
     padding: 2rem;
     width: 20rem;
     padding-top: 0.5rem;
+    height: 13rem;
+    @include respond(phone) {
+      width: 16rem;
+      height: auto;
+    }
     .blog-date {
       font-size: 0.8rem;
       color: #a0a0a0;
@@ -1049,7 +1276,6 @@ form {
       color: #a0a0a0;
       text-align: center;
     }
-    height: 13rem;
   }
 }
 .footer {
@@ -1059,6 +1285,15 @@ form {
   padding-top: 3rem;
   background-color: #f5f5f5;
   justify-content: space-between;
+  @include respond(phone) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .logo {
+    @include respond(phone) {
+      justify-content: center;
+    }
+  }
   .apps-icons {
     border-top: 2px #ed0f0f solid;
     padding-top: 1rem;
@@ -1076,6 +1311,9 @@ form {
     display: block;
     width: 11rem;
     margin-top: 1rem;
+    @include respond(phone) {
+      width: auto;
+    }
   }
   .links-part {
     margin-top: 1rem;
@@ -1086,6 +1324,9 @@ form {
     .links-name {
       font-size: 1.2rem;
     }
+    @include respond(phone) {
+      gap: 0.5rem;
+    }
   }
   .links-column {
     border-top: 2px #ed0f0f solid;
@@ -1095,6 +1336,9 @@ form {
     gap: 0.5rem;
     font-size: 1rem;
     font-weight: 400;
+    @include respond(phone) {
+      padding-top: 0.5rem;
+    }
   }
 }
 .loading {
@@ -1277,7 +1521,13 @@ form {
   padding: 1rem;
   margin-left: -3rem;
   gap: 0rem;
+  @include respond(tab) {
+    margin-left: -5rem;
+  }
+  @include respond(phone) {
+  }
   .header {
+    text-align: center;
     border-bottom: 1px #e2e2e2 solid;
     padding-bottom: 0.5rem;
     font-size: 1.2rem;
@@ -1626,6 +1876,7 @@ form {
     }
   }
 }
+
 //
 //
 //
@@ -1633,6 +1884,7 @@ form {
 //
 //
 .dark {
+  background-color: #1c1c1c;
   .page {
     display: flex;
     flex-direction: column;
@@ -1668,6 +1920,44 @@ form {
   .bestSeller,
   .brands {
     background-color: #1c1c1c;
+    h1 {
+      color: $default-light-color;
+    }
+  }
+  .product {
+    .product-name-price-brand,
+    .product-info {
+      color: $default-light-color;
+      background-color: #1c1c1c;
+    }
+    .product-name {
+      color: $default-light-color;
+    }
+    .link-section {
+      img {
+        background-color: #1c1c1c;
+      }
+      img:hover {
+        background-color: #ed0f0f;
+      }
+    }
+  }
+  .blog {
+    h1 {
+      color: $default-light-color;
+    }
+  }
+  .footer {
+    span {
+      color: $default-light-color;
+    }
+    background-color: #131a22;
+    .navLink {
+      color: $default-light-color;
+    }
+    .navLink:hover {
+      color: #ed0f0f;
+    }
   }
 }
 .hidden {

@@ -2,10 +2,18 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../Router";
 import supabase from "../supabase";
+import langData from "../languageData";
+import { useEffect } from "react";
 
 const Account = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].account);
+
+  useEffect(() => {
+    setData(langData[language].account);
+  }, [language]);
   const session = useContext(LoginContext);
   console.log(session);
   const [eye, setEye] = useState("hide");
@@ -71,7 +79,7 @@ const Account = () => {
       <form action="/" onSubmit={update}>
         <div className="form-input-error">
           <div className="form-input">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{data.name}</label>
             <input
               type="text"
               id="name"
@@ -84,11 +92,11 @@ const Account = () => {
               }}
             />
           </div>
-          <span className={nameError}>Only letters!</span>
+          <span className={nameError}>{data.errorName}</span>
         </div>
         <div className="form-input-error">
           <div className="form-input">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{data.email}</label>
             <input
               type="email"
               id="email"
@@ -101,11 +109,11 @@ const Account = () => {
               }}
             />
           </div>
-          <span className={emailError}>Wrong email!</span>
+          <span className={emailError}>{data.errorEmail}</span>
         </div>
         <div className="form-input-error">
           <div className="form-input">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{data.password}</label>
             <div className="password-input">
               <input
                 type={type}
@@ -128,12 +136,9 @@ const Account = () => {
               />
             </div>
           </div>
-          <span className={passwordError}>
-            Minimum eight characters, at least one letter
-            <br /> and one number!
-          </span>
+          <span className={passwordError}>{data.errorPassword}</span>
         </div>
-        <button type="submit">Update account</button>
+        <button type="submit">{data.button}</button>
       </form>
     </div>
   );

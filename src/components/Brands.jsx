@@ -5,13 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 const Brands = () => {
   const navigate = useNavigate();
+  const theme = localStorage.getItem("mode");
   const slides = [
-    { image: "/images/brands/persol.png", brand: "Persol", id: 1 },
-    { image: "/images/brands/gucci.png", brand: "Gucci", id: 2 },
-    { image: "/images/brands/adidas.png", brand: "Adidas", id: 3 },
-    { image: "/images/brands/hyperx.png", brand: "HyperX", id: 4 },
-    { image: "/images/brands/razer.png", brand: "Razer", id: 5 },
-    { image: "/images/brands/ray-ban.png", brand: "Ray-Ban", id: 6 },
+    { image: `/images/brands/persol-${theme}.png`, brand: "Persol", id: 1 },
+    { image: `/images/brands/gucci-${theme}.png`, brand: "Gucci", id: 2 },
+    { image: `/images/brands/adidas-${theme}.png`, brand: "Adidas", id: 3 },
+    { image: `/images/brands/hyperx-${theme}.png`, brand: "HyperX", id: 4 },
+    { image: `/images/brands/razer-${theme}.png`, brand: "Razer", id: 5 },
+    {
+      image: `/images/brands/ray-ban-${theme}.png`,
+      brand: "Ray-Ban",
+      id: 6,
+    },
   ];
   const responsive = {
     superLargeDesktop: {
@@ -20,15 +25,15 @@ const Brands = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 3.5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1.7,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 0.76,
     },
   };
   return (

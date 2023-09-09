@@ -31,6 +31,12 @@ export const LanguageContext = createContext();
 export const LoginContext = createContext();
 
 const Router = () => {
+  const mode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+
   const [sortedData, setSortedData] = useState([]);
   const [language, setLanguage] = useState(
     localStorage.getItem("language") ? localStorage.getItem("language") : "en"
@@ -45,7 +51,7 @@ const Router = () => {
     dispatch(getCodes());
     dispatch(getFaq());
     if (localStorage.getItem("mode") == undefined) {
-      localStorage.setItem("mode", "light");
+      localStorage.setItem("mode", mode);
     }
     if (localStorage.getItem("language") == undefined) {
       localStorage.setItem("language", "en");
