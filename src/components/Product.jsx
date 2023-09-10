@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import langData from "../languageData";
 import { useEffect } from "react";
@@ -16,6 +16,11 @@ const Product = ({ product, active }) => {
     setData(langData[language].details);
   }, [language]);
 
+  function goDetail() {
+    navigate(`/Details/${product.id}`);
+    goToTop();
+  }
+  const navigate = useNavigate();
   const goToTop = () => {
     window.scrollTo({
       top: 0,
@@ -55,9 +60,10 @@ const Product = ({ product, active }) => {
           setChangeVisibility("");
         }}
       >
-        <div className="link-sections">
+        <div className="link-sections" onClick={goDetail}>
           <div
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               if (
                 items.some((item) => {
                   return item.id == product.id;
@@ -95,7 +101,8 @@ const Product = ({ product, active }) => {
             )}
           </div>
           <div
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               if (
                 wishItems.some((item) => {
                   return item.id == product.id;
@@ -135,9 +142,12 @@ const Product = ({ product, active }) => {
             )}
           </div>
         </div>
-        <NavLink to={`/Details/${product.id}`} onClick={goToTop}>
-          <img src={product.image} alt="glasses" className="product-image" />
-        </NavLink>
+        <img
+          onClick={goDetail}
+          src={product.image}
+          alt="glasses"
+          className="product-image"
+        />
       </div>
       <div className="product-info">
         <div className="product-name-price-brand">
@@ -158,13 +168,20 @@ const Product = ({ product, active }) => {
             >
               {product.price}$
             </span>
-            {product.price > 100 && (
+            {!active && product.price > 100 && (
               <span className="product-price">
                 {(product.price * 0.7).toFixed(2)}$
               </span>
             )}
           </div>
-          <span className="product-brand">{product.brand}</span>
+          <div className="price-brand">
+            <span className="product-brand">{product.brand}</span>
+            {active && product.price > 100 && (
+              <span className="product-price">
+                {(product.price * 0.7).toFixed(2)}$
+              </span>
+            )}
+          </div>
         </div>
         {active && (
           <div className="product-quantity-update">

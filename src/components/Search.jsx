@@ -60,7 +60,6 @@ const Search = () => {
           />
         </button>
       </form>
-
       <div className="search-result">
         {loading ? (
           <div className="search-loading">
@@ -70,7 +69,7 @@ const Search = () => {
         ) : (
           data &&
           data.map((product) => (
-            <SearchItem product={product} key={product.id} />
+            <SearchItem product={product} key={product.id} onSetData={setData}/>
           ))
         )}
       </div>

@@ -1,9 +1,9 @@
-main hisse - 3\*3 seklinde markalarin eynek sekilleri.
 responsivlik
 contact
 dark
 language
 service
-bug notify error
 mehsul review
 brand
+sayt router adi
+add to cart bug

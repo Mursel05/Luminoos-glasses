@@ -8,7 +8,7 @@ import { useState } from "react";
 import useWindowDimensions from "./GetWindowDimensions";
 
 const Navbar = () => {
-  const  {touch}  = useWindowDimensions();
+  const { touch } = useWindowDimensions();
   const { language } = useContext(LanguageContext);
   const [data, setData] = useState(langData[language].navbar);
   const theme = localStorage.getItem("mode");
@@ -34,53 +34,50 @@ const Navbar = () => {
             <span>S</span>
           </div>
         </NavLink>
-        {touch ? (
-          <img
-            src={menuImg}
-            alt="menu"
-            onClick={() => {
-              setAppear(
-                appear === "links menu" ? "links  menu appear" : "links menu"
-              );
-              setMenuImg(
-                menuImg === `/images/${theme}/icons/menu-icon.png`
-                  ? `/images/${theme}/icons/cancel-icon.png`
-                  : `/images/${theme}/icons/menu-icon.png`
-              );
-            }}
-          />
-        ) : (
-          <div className="links">
-            <NavLink
-              className={({ isActive }) => (isActive ? "active link" : "link")}
-              to="/Sunglasses"
-            >
-              <span>{data.link1}</span>
-              <hr className="link-line" />
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active link" : "link")}
-              to="/Game Glasses"
-            >
-              <span>{data.link2}</span>
-              <hr className="link-line" />
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active link" : "link")}
-              to="/Eyeglasses"
-            >
-              <span>{data.link3}</span>
-              <hr className="link-line" />
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active link" : "link")}
-              to="/Service"
-            >
-              <span>{data.link4}</span>
-              <hr className="link-line" />
-            </NavLink>
-          </div>
-        )}
+        <img
+          src={menuImg}
+          alt="menu"
+          onClick={() => {
+            setAppear(
+              appear === "links menu" ? "links  menu appear" : "links menu"
+            );
+            setMenuImg(
+              menuImg === `/images/${theme}/icons/menu-icon.png`
+                ? `/images/${theme}/icons/cancel-icon.png`
+                : `/images/${theme}/icons/menu-icon.png`
+            );
+          }}
+        />
+        <div className="links">
+          <NavLink
+            className={({ isActive }) => (isActive ? "active link" : "link")}
+            to="/Sunglasses"
+          >
+            <span>{data.link1}</span>
+            <hr className="link-line" />
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active link" : "link")}
+            to="/Game Glasses"
+          >
+            <span>{data.link2}</span>
+            <hr className="link-line" />
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active link" : "link")}
+            to="/Eyeglasses"
+          >
+            <span>{data.link3}</span>
+            <hr className="link-line" />
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active link" : "link")}
+            to="/Service"
+          >
+            <span>{data.link4}</span>
+            <hr className="link-line" />
+          </NavLink>
+        </div>
       </div>
       <div className={appear}>
         <NavLink

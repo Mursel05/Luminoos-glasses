@@ -1,12 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const SearchItem = ({ product }) => {
+const SearchItem = ({ product, onSetData }) => {
   const navigate = useNavigate();
   return (
     <div
       className="search-item"
-      onClick={() => navigate(`/Details/${product.id}`)}
+      onClick={() => {
+        onSetData([]);
+        navigate(`/Details/${product.id}`);
+      }}
     >
       <img src={product.image} alt="glasses" />
       <div className="item-properties">

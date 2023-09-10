@@ -10,6 +10,7 @@ import { useWishlist } from "react-use-wishlist";
 import { toast } from "react-toastify";
 
 const Details = () => {
+  const theme = localStorage.getItem("mode");
   const { language } = useContext(LanguageContext);
   const [data, setData] = useState(langData[language].details);
 
@@ -22,16 +23,13 @@ const Details = () => {
     items: wishItems,
     removeWishlistItem,
   } = useWishlist();
-  const [activeWishlist, setActiveWishlist] = useState(
-    "/images/light/icons/heart-icon.png"
-  );
   let id = useParams();
   const products = useSelector((state) => state.fetchReducer.products);
   const product = products.find((product) => product.id == id.id);
   if (product != undefined) {
     return (
       <div className="details">
-        <div>
+        <div className="product-type-hot">
           <span className="product-type">
             {language == "en" ? product.typeEn : product.typeAz}
           </span>
@@ -117,16 +115,10 @@ const Details = () => {
                 wishItems.some((item) => {
                   return item.id == product.id;
                 })
-                  ? "/images/light/icons/heart-icon-active3.png"
-                  : "/images/light/icons/heart-icon.png"
+                  ? `/images/${theme}/icons/heart-icon-active3.png`
+                  : `/images/${theme}/icons/heart-icon.png`
               }
               alt="heart icon"
-              onMouseEnter={() => {
-                setActiveWishlist("/images/light/icons/heart-icon-active3.png");
-              }}
-              onMouseLeave={() => {
-                setActiveWishlist("/images/light/icons/heart-icon.png");
-              }}
               onClick={() => {
                 if (
                   wishItems.some((item) => {

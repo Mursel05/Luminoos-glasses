@@ -10,10 +10,8 @@ import { useEffect } from "react";
 import Login from "./Login";
 import Profile from "./Profile";
 import { toast } from "react-toastify";
-import useWindowDimensions from "./GetWindowDimensions";
 
 const Section = () => {
-  const {touch} = useWindowDimensions();
   const [hiddenPart, setHiddenPart] = useState("login");
   const [signed, setSigned] = useState(false);
   const [sign, setSign] = useState("");
@@ -25,19 +23,15 @@ const Section = () => {
     setData(langData[language].section);
   }, [language]);
   useEffect(() => {
-    if (!touch) {
-      if (!focusDiv && !focusInput) {
-        setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-        setHiddenPart("login");
-      }
+    if (!focusDiv && !focusInput) {
+      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+      setHiddenPart("login");
     }
   }, [focusDiv]);
   useEffect(() => {
-    if (!touch) {
-      if (!focusDiv && !focusInput) {
-        setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-        setHiddenPart("login");
-      }
+    if (!focusDiv && !focusInput) {
+      setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+      setHiddenPart("login");
     }
   }, [focusInput]);
 
@@ -162,40 +156,19 @@ const Section = () => {
         <div
           className="profile"
           onMouseEnter={() => {
-            if (!touch) {
-              setActiveProfile(
-                `/images/${theme}/icons/account-icon-active.png`
-              );
-              setHiddenPart("appear login");
-              setFocusDiv(true);
-            }
+            setActiveProfile(`/images/${theme}/icons/account-icon-active.png`);
+            setHiddenPart("appear login");
+            setFocusDiv(true);
           }}
           onMouseLeave={() => {
-            if (!touch) {
-              setFocusDiv(false);
-              if (!focusDiv && !focusInput) {
-                setActiveProfile(`/images/${theme}/icons/account-icon.png`);
-                setHiddenPart("login");
-              }
+            setFocusDiv(false);
+            if (!focusDiv && !focusInput) {
+              setActiveProfile(`/images/${theme}/icons/account-icon.png`);
+              setHiddenPart("login");
             }
           }}
         >
-          <div
-            className="link-section"
-            onClick={() => {
-              if (touch) {
-                setActiveProfile(
-                  activeProfile === `/images/${theme}/icons/account-icon.png`
-                    ? `/images/${theme}/icons/account-icon-active.png`
-                    : `/images/${theme}/icons/account-icon.png`
-                );
-                setHiddenPart(
-                  hiddenPart === "login" ? "appear login" : "login"
-                );
-                setFocusDiv(!focusDiv);
-              }
-            }}
-          >
+          <div className="link-section">
             <img src={activeProfile} alt="account-icon" />
             <span>
               {session ? session.user.user_metadata.first_name : data.login}

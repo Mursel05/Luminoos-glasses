@@ -33,7 +33,7 @@ const Cart = () => {
         }
       } else {
         if (item.price > 100) {
-          total += (item.price * 0.7).toFixed(2);
+          total += Number((item.price * 0.7).toFixed(2));
         } else {
           total += item.price;
         }
@@ -69,7 +69,7 @@ const Cart = () => {
           );
         })}
       </div>
-      <div>
+      <div className="cart-buy-discount">
         <div className="cart-buy">
           <div className="cart-info">
             <span className="cart-items">
