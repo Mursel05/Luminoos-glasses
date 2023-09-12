@@ -29,6 +29,7 @@ const Search = () => {
       const sort = getKeyByValue(products, value);
       navigate(`/Special Products/${sort}/${value}`);
     }
+    setData([]);
   }
   useEffect(() => {
     setTimeout(() => {
@@ -39,7 +40,7 @@ const Search = () => {
         text && products.filter((item) => item[sort] == value).slice(0, 5)
       );
       setLoading(false);
-    }, 1500);
+    }, 1000);
   }, [text]);
   return (
     <div className="search">
@@ -69,7 +70,11 @@ const Search = () => {
         ) : (
           data &&
           data.map((product) => (
-            <SearchItem product={product} key={product.id} onSetData={setData}/>
+            <SearchItem
+              product={product}
+              key={product.id}
+              onSetData={setData}
+            />
           ))
         )}
       </div>

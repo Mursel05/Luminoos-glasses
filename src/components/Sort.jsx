@@ -172,7 +172,7 @@ const Sort = () => {
           <label htmlFor="hot">Hot</label>
         </div>
       </div>
-      <div className="two-sorts">
+      <div className="two-sorts gender-color">
         <div
           className="sort-part"
           onMouseEnter={() => {
@@ -342,7 +342,7 @@ const Sort = () => {
           </div>
         </div>
       </div>
-      <div className="two-sorts">
+      <div className="two-sorts brand-layout">
         <div
           className="sort-part"
           onMouseEnter={() => {
