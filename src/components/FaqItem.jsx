@@ -1,6 +1,18 @@
 import React from "react";
+import { useContext } from "react";
+import { LanguageContext } from "../Router";
+import langData from "../languageData";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const FaqItem = ({ item, open, onSetOpen }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].faq);
+
+  useEffect(() => {
+    setData(langData[language].faq);
+  }, [language]);
+
   return (
     <div className={open === item.id ? "open item" : "item"}>
       <div className="first-part">
@@ -8,7 +20,7 @@ const FaqItem = ({ item, open, onSetOpen }) => {
           <div className="id-circle">
             <p>{item.id}</p>
           </div>
-          <span>{item.question}</span>
+          <span>{language === "en" ? item.questionEn : item.questionAz}</span>
         </div>
         <img
           onClick={() => onSetOpen(open === item.id ? "" : item.id)}
@@ -16,7 +28,9 @@ const FaqItem = ({ item, open, onSetOpen }) => {
           alt="arrow"
         />
       </div>
-      <span className="item-answer">{item.answer}</span>
+      <span className="item-answer">
+        {language === "en" ? item.answerEn : item.answerAz}
+      </span>
     </div>
   );
 };

@@ -24,15 +24,15 @@ const BlogDetail = () => {
     blog && (
       <div className="blog-page">
         <div className="blog-detail">
-          <h1>{blog.header}</h1>
+          <h1>{language === "en" ? blog.headerEn : blog.headerAz}</h1>
           <span>{blog.date}</span>
           <div className="img-answer">
             <img src={blog.image} alt="blog" />
             <div className="answer-link">
-              <span>{blog.answer}</span>
+              <span>{language === "en" ? blog.answerEn : blog.answerAz}</span>
               {blog.button && (
                 <button onClick={() => navigate(`/${blog.button}`)}>
-                  {`Go to ${blog.button}`}
+                  {`${data.actBtn} ${blog.button}`}
                 </button>
               )}
             </div>

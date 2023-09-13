@@ -1,7 +1,18 @@
 import React from "react";
+import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import langData from "../languageData";
+import { useState } from "react";
+import { useEffect } from "react";
+import { LanguageContext } from "../Router";
 
 const BlogSingle = ({ blog }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].blog);
+
+  useEffect(() => {
+    setData(langData[language].blog);
+  }, [language]);
   const navigate = useNavigate();
   const goToTop = () => {
     window.scrollTo({
@@ -26,12 +37,11 @@ const BlogSingle = ({ blog }) => {
           to={`/Blog/${blog.id}`}
           className={({ isActive }) => (isActive ? "navLink" : "navLink")}
         >
-          <p className="blog-question">{blog.header}</p>
+          <p className="blog-question">
+            {language === "en" ? blog.headerEn : blog.headerAz}
+          </p>
         </NavLink>
-        <span className="blog-answer">
-          "Not sure what your glasses measurements are or how to find them? Keep
-          reading, you’ll find all the information you need! The...
-        </span>
+        <span className="blog-answer">{data.blogAnswer}</span>
       </div>
     </div>
   );

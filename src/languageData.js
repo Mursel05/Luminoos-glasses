@@ -39,6 +39,7 @@ const langData = {
       edit: "edit",
       blogAnswer:
         "Not sure what your glasses measurements are or how to find them? Keep       reading, you’ll find all the information you need! The...",
+      actBtn: "Go to",
     },
     cart: {
       error: "Wrong code",
@@ -80,6 +81,22 @@ const langData = {
         link3: "FAQ",
       },
       others: { header: "Others", link1: "Service" },
+    },
+    special: "Products",
+    login: {
+      email: "Email",
+      errorEmail: "Wrong email!",
+      password: "Password",
+      errorPassword1: "Wrong password!",
+      forgot: "Forgot your password?",
+      registerLink: "Don’t have an account?",
+      register: "Sign Up",
+      name: "Name",
+      errorName: "Only letters!",
+      errorPassword2:
+        "Minimum eight characters, at least one letter and one number!",
+      signLink: "Already a member?",
+      sign: "Sign In",
     },
     navbar: {
       link1: "Sunglasses",
@@ -134,6 +151,7 @@ const langData = {
       hot: "Hot",
       men: "Men",
       women: "Women",
+      gender: "Gender",
       color: "Color",
       yellow: "Yellow",
       black: "Black",
@@ -199,6 +217,7 @@ const langData = {
       edit: "Düzəliş",
       blogAnswer:
         "Eynəyinizin ölçülərinin nə olduğuna və ya onları necə tapacağınıza əmin deyilsiniz? Oxumağa davam edin, sizə lazım olan bütün məlumatları tapacaqsınız! Tapacaqsınız...",
+      actBtn: "Keçid",
     },
     cart: {
       error: "Səhv kod",
@@ -240,6 +259,21 @@ const langData = {
         link3: "Sual-Cavab",
       },
       others: { header: "Digərlər", link1: "Xidmət" },
+    },
+    special: "Məhsullar",
+    login: {
+      email: "Email",
+      errorEmail: "Səhv email!",
+      password: "Parol",
+      errorPassword1: "Səhv password!",
+      forgot: "Parolu unutdun?",
+      registerLink: "Hesabın yoxdur?",
+      register: "Hesab yarat",
+      name: "Ad",
+      errorName: "Yalnız hərflər!",
+      errorPassword2: "Minimum səkkiz simvol, ən azı bir hərf və bir rəqəm!",
+      signLink: "Artıq üzvsən?",
+      sign: "Giriş et",
     },
     navbar: {
       link1: "Günəş eynəkləri",
@@ -294,6 +328,7 @@ const langData = {
       hot: "Yeni",
       men: "Kişi",
       women: "Qadın",
+      gender: "Cins",
       color: "Rəng",
       yellow: "Sarı",
       black: "Qara",

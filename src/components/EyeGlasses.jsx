@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import { useContext } from "react";
-import { SortContext } from "../Router";
+import { LanguageContext, SortContext } from "../Router";
+import langData from "../languageData";
 
 const Eyeglasses = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].empty);
+
+  useEffect(() => {
+    setData(langData[language].empty);
+  }, [language]);
   const { sortedData } = useContext(SortContext);
-  const products = sortedData.filter((product) => product.typeEn == "Eyeglasses");
+  const products = sortedData.filter(
+    (product) => product.typeEn == "Eyeglasses"
+  );
   if (products == false) {
     return (
       <div className="no-match">
-        <p>No matching products were found</p>
+        <p>{data}</p>
       </div>
     );
   }

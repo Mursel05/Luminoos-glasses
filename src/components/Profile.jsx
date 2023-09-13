@@ -1,10 +1,19 @@
 import supabase from "../supabase";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../Router";
 import { useContext } from "react";
+import { useState } from "react";
+import langData from "../languageData";
+import { useEffect } from "react";
 
 const Profile = ({ hiddenPart, onSetSigned }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].profile);
+
+  useEffect(() => {
+    setData(langData[language].profile);
+  }, [language]);
   const session = useContext(LoginContext);
   async function signOut() {
     const { error } = await supabase.auth.signOut();
@@ -12,7 +21,7 @@ const Profile = ({ hiddenPart, onSetSigned }) => {
   const navigate = useNavigate();
   return (
     <div className={`${hiddenPart} signed`}>
-      <span className="header">Welcome Back</span>
+      <span className="header">{data.header}</span>
       <div className="signed-links">
         <NavLink
           className={({ isActive }) =>
@@ -20,7 +29,7 @@ const Profile = ({ hiddenPart, onSetSigned }) => {
           }
           to="/My Account"
         >
-          <span>My Account</span>
+          <span>{data.link1}</span>
         </NavLink>
         {session && session.user.user_metadata.admin ? (
           <NavLink
@@ -29,7 +38,7 @@ const Profile = ({ hiddenPart, onSetSigned }) => {
             }
             to="/Products"
           >
-            <span>Products</span>
+            <span>{data.link2}</span>
           </NavLink>
         ) : (
           ""
@@ -41,7 +50,7 @@ const Profile = ({ hiddenPart, onSetSigned }) => {
             }
             to="/Blogs"
           >
-            <span>Blogs</span>
+            <span>{data.link3}</span>
           </NavLink>
         ) : (
           ""
@@ -53,7 +62,7 @@ const Profile = ({ hiddenPart, onSetSigned }) => {
             navigate("/");
           }}
         >
-          Sign Out
+          {data.link4}
         </span>
       </div>
     </div>

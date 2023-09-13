@@ -1,10 +1,18 @@
 import React, { useContext, useState } from "react";
 import Slider from "@mui/material/Slider";
-import { SortContext } from "../Router";
+import { LanguageContext, SortContext } from "../Router";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import langData from "../languageData";
 
 const Sort = () => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].sort);
+
+  useEffect(() => {
+    setData(langData[language].sort);
+  }, [language]);
+  
   const { setSortedData } = useContext(SortContext);
   const products = useSelector((state) => state.fetchReducer.products);
   const [genderSec, setGenderSec] = useState("part-section hidden gender");
@@ -149,7 +157,7 @@ const Sort = () => {
     <div className="sort">
       <div className="two-sorts">
         <div className="sort-part price">
-          <span>Price</span>
+          <span>{data.price}</span>
           <Slider
             min={5}
             max={330}
@@ -169,7 +177,7 @@ const Sort = () => {
             type="checkbox"
             id="hot"
           />
-          <label htmlFor="hot">Hot</label>
+          <label htmlFor="hot">{data.hot}</label>
         </div>
       </div>
       <div className="two-sorts gender-color">
@@ -182,7 +190,7 @@ const Sort = () => {
             setGenderSec("part-section gender hidden");
           }}
         >
-          <span className="part-name">Gender</span>
+          <span className="part-name">{data.gender}</span>
           <div className={genderSec}>
             <div className="sort-property">
               <input
@@ -193,7 +201,7 @@ const Sort = () => {
                 type="checkbox"
                 id="men"
               />
-              <label htmlFor="men">Men</label>
+              <label htmlFor="men">{data.men}</label>
             </div>
             <div className="sort-property">
               <input
@@ -204,7 +212,7 @@ const Sort = () => {
                 type="checkbox"
                 id="women"
               />
-              <label htmlFor="women">Women</label>
+              <label htmlFor="women">{data.women}</label>
             </div>
           </div>
         </div>
@@ -217,7 +225,7 @@ const Sort = () => {
             setColorSec("part-section color hidden");
           }}
         >
-          <span className="part-name">Color</span>
+          <span className="part-name">{data.color}</span>
           <div className={colorSec}>
             <div className="sort-property">
               <input
@@ -228,7 +236,7 @@ const Sort = () => {
                 type="checkbox"
                 id="yellow"
               />
-              <label htmlFor="yellow">Yellow</label>
+              <label htmlFor="yellow">{data.yellow}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "yellow" }}
@@ -243,7 +251,7 @@ const Sort = () => {
                 type="checkbox"
                 id="black"
               />
-              <label htmlFor="black">Black</label>
+              <label htmlFor="black">{data.black}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "black" }}
@@ -258,7 +266,7 @@ const Sort = () => {
                 type="checkbox"
                 id="brown"
               />
-              <label htmlFor="brown">Brown</label>
+              <label htmlFor="brown">{data.brown}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "brown" }}
@@ -273,7 +281,7 @@ const Sort = () => {
                 type="checkbox"
                 id="blue"
               />
-              <label htmlFor="blue">Blue</label>
+              <label htmlFor="blue">{data.blue}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "blue" }}
@@ -288,7 +296,7 @@ const Sort = () => {
                 type="checkbox"
                 id="gray"
               />
-              <label htmlFor="gray">Gray</label>
+              <label htmlFor="gray">{data.gray}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "gray" }}
@@ -303,7 +311,7 @@ const Sort = () => {
                 type="checkbox"
                 id="green"
               />
-              <label htmlFor="green">Green</label>
+              <label htmlFor="green">{data.green}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "green" }}
@@ -318,7 +326,7 @@ const Sort = () => {
                 type="checkbox"
                 id="orange"
               />
-              <label htmlFor="orange">Orange</label>
+              <label htmlFor="orange">{data.orange}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "orange" }}
@@ -333,7 +341,7 @@ const Sort = () => {
                 type="checkbox"
                 id="pink"
               />
-              <label htmlFor="pink">Pink</label>
+              <label htmlFor="pink">{data.pink}</label>
               <div
                 className="circle-color"
                 style={{ backgroundColor: "pink" }}
@@ -352,7 +360,7 @@ const Sort = () => {
             setBrandSec("part-section brand hidden");
           }}
         >
-          <span className="part-name">Brand</span>
+          <span className="part-name">{data.brand}</span>
           <div className={brandSec}>
             <div className="sort-property">
               <input
@@ -541,10 +549,10 @@ const Sort = () => {
             setLayoutSec("part-section layout hidden");
           }}
         >
-          <span className="part-name">Layout</span>
+          <span className="part-name">{data.layout}</span>
           <div className={layoutSec}>
             <div className="sort-property">
-              <label htmlFor="cheap">Cheap at first</label>
+              <label htmlFor="cheap">{data.cheap}</label>
               <input
                 checked={checkCheap}
                 onChange={() => {
@@ -557,7 +565,7 @@ const Sort = () => {
               />
             </div>
             <div className="sort-property">
-              <label htmlFor="expensive">Expensive at first</label>
+              <label htmlFor="expensive">{data.expensive}</label>
               <input
                 checked={checkExpensive}
                 onChange={() => {
@@ -573,7 +581,7 @@ const Sort = () => {
         </div>
       </div>
       <div className="button-part">
-        <button onClick={sortingData}>Search</button>
+        <button onClick={sortingData}>{data.btn}</button>
       </div>
     </div>
   );

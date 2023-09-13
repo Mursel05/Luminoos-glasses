@@ -21,7 +21,7 @@ const Blog = () => {
       <h1>{data.header}</h1>
       <div className="blogs">
         {blogs.map((blog) => {
-          return <BlogSingle blog={blog} key={blog.id} />;
+          return <BlogSingle blog={blog} language={language} key={blog.id} />;
         })}
       </div>
     </div>

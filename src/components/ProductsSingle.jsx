@@ -1,8 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import supabase from "../supabase";
+import { LanguageContext } from "../Router";
+import { useContext } from "react";
+import langData from "../languageData";
+import { useEffect } from "react";
 
 const ProductsSingle = ({ product }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].products);
+
+  useEffect(() => {
+    setData(langData[language].products);
+  }, [language]);
   const [image, setImage] = useState(product ? product.image : "");
   const [imageError, setImageError] = useState("error none");
   const [name, setName] = useState(product ? product.name : "");
@@ -82,7 +92,7 @@ const ProductsSingle = ({ product }) => {
           <span className="id">{product && product.id}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">{data.image}</label>
           <input
             id="image"
             className="image"
@@ -90,10 +100,10 @@ const ProductsSingle = ({ product }) => {
             onChange={(e) => setImage(e.target.value)}
             value={image}
           />
-          <span className={imageError}>Should not be empty!</span>
+          <span className={imageError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="typeEn">TypeEn</label>
+          <label htmlFor="typeEn">{data.typeEn}</label>
           <input
             id="typeEn"
             className="typeEn"
@@ -101,10 +111,10 @@ const ProductsSingle = ({ product }) => {
             onChange={(e) => setTypeEn(e.target.value)}
             value={typeEn}
           />
-          <span className={typeEnError}>Should not be empty!</span>
+          <span className={typeEnError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{data.name}</label>
           <input
             id="name"
             className="name"
@@ -112,81 +122,81 @@ const ProductsSingle = ({ product }) => {
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
-          <span className={nameError}>Should not be empty!</span>
+          <span className={nameError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="brand">Brand</label>
+          <label htmlFor="brand">{data.brand}</label>
           <input
             id="brand"
             type="text"
             onChange={(e) => setBrand(e.target.value)}
             value={brand}
           />
-          <span className={brandError}>Should not be empty!</span>
+          <span className={brandError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">{data.price}</label>
           <input
             id="price"
             type="number"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
           />
-          <span className={priceError}>Should not be empty!</span>
+          <span className={priceError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="genderEn">GenderEn</label>
+          <label htmlFor="genderEn">{data.genderEn}</label>
           <input
             id="genderEn"
             type="text"
             onChange={(e) => setGenderEn(e.target.value)}
             value={genderEn}
           />
-          <span className={genderEnError}>Should not be empty!</span>
+          <span className={genderEnError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="colorEn">ColorEn</label>
+          <label htmlFor="colorEn">{data.colorEn}</label>
           <input
             id="colorEn"
             type="text"
             onChange={(e) => setColorEn(e.target.value)}
             value={colorEn}
           />
-          <span className={colorEnError}>Should not be empty!</span>
+          <span className={colorEnError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="typeAz">TypeAz</label>
+          <label htmlFor="typeAz">{data.typeAz}</label>
           <input
             id="typeAz"
             type="text"
             onChange={(e) => setTypeAz(e.target.value)}
             value={typeAz}
           />
-          <span className={typeAzError}>Should not be empty!</span>
+          <span className={typeAzError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="colorAz">ColorAz</label>
+          <label htmlFor="colorAz">{data.colorAz}</label>
           <input
             id="colorAz"
             type="text"
             onChange={(e) => setColorAz(e.target.value)}
             value={colorAz}
           />
-          <span className={colorAzError}>Should not be empty!</span>
+          <span className={colorAzError}>{data.error}</span>
         </div>
         <div className="error-input">
-          <label htmlFor="genderAz">GenderAz</label>
+          <label htmlFor="genderAz">{data.genderAz}</label>
           <input
             id="genderAz"
             type="text"
             onChange={(e) => setGenderAz(e.target.value)}
             value={genderAz}
           />
-          <span className={genderAzError}>Should not be empty!</span>
+          <span className={genderAzError}>{data.error}</span>
         </div>
         <div className="labels">
           <div className="error-input">
-            <label htmlFor="hot">Hot</label>
+            <label htmlFor="hot">{data.hot}</label>
             <input
               id="hot"
               type="checkBox"
@@ -195,7 +205,7 @@ const ProductsSingle = ({ product }) => {
             />
           </div>
           <div className="error-input">
-            <label htmlFor="discount">Discount</label>
+            <label htmlFor="discount">{data.discount}</label>
             <input
               id="discount"
               type="checkBox"
@@ -204,7 +214,7 @@ const ProductsSingle = ({ product }) => {
             />
           </div>
           <div className="error-input">
-            <label htmlFor="bestSeller">BestSeller</label>
+            <label htmlFor="bestSeller">{data.bestSeller}</label>
             <input
               id="bestSeller"
               type="checkBox"
@@ -260,10 +270,10 @@ const ProductsSingle = ({ product }) => {
               }
             }}
           >
-            Update
+            {data.updBtn}
           </button>
           <button onClick={remove} className="delete">
-            Delete
+            {data.dltBtn}
           </button>
         </div>
       ) : (
@@ -297,7 +307,7 @@ const ProductsSingle = ({ product }) => {
               }
             }}
           >
-            Create
+            {data.crtBtn}
           </button>
         </div>
       )}

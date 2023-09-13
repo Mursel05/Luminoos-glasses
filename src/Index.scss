@@ -383,8 +383,8 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding-left: 3.7rem;
-    padding-right: 3.7rem;
+    justify-content: center;
+    width: 13.1rem;
   }
 }
 .metronome {
@@ -574,6 +574,7 @@ form {
   color: #ed0f0f;
   font-size: 0.6rem;
   margin-left: 0.2rem;
+  width: 10rem;
 }
 .form-input {
   display: flex;

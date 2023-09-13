@@ -1,6 +1,9 @@
 import { toast } from "react-toastify";
 import supabase from "../supabase";
 import React, { useEffect, useState } from "react";
+import { LanguageContext } from "../Router";
+import { useContext } from "react";
+import langData from "../languageData";
 
 const Login = ({
   hiddenPart,
@@ -9,6 +12,13 @@ const Login = ({
   onSetSigned,
   onSetFocusInput,
 }) => {
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].login);
+
+  useEffect(() => {
+    setData(langData[language].login);
+  }, [language]);
+
   const [eye, setEye] = useState("hide");
   const [type, setType] = useState("password");
   const [email, setEmail] = useState("");
@@ -17,7 +27,7 @@ const Login = ({
   const [emailError, setEmailError] = useState("hidden error");
   const [nameError, setNameError] = useState("hidden error");
   const [passwordError, setPasswordError] = useState("hidden error");
-  const [login, setLogin] = useState("Sign In");
+  const [login, setLogin] = useState(data.sign);
   const nameRegex = /^[A-Za-z]+$/;
   const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -42,7 +52,7 @@ const Login = ({
       sendLink();
       toast.info("Go to email and reset your password.");
       onSetHiddenPart("login");
-      setLogin("Sign In");
+      setLogin(data.sign);
       setName("");
       setEmail("");
       setPassword("");
@@ -117,7 +127,7 @@ const Login = ({
       createUser();
       toast.info("Go to email and confirm your user.");
       onSetHiddenPart("login");
-      setLogin("Sign In");
+      setLogin(data.sign);
       setName("");
       setEmail("");
       setPassword("");
@@ -127,11 +137,11 @@ const Login = ({
   return (
     <div className={hiddenPart}>
       <h1 className="header">{login}</h1>
-      {login === "Sign In" ? (
+      {login === data.sign ? (
         <form action="/" onSubmit={signIn}>
           <div className="form-input-error">
             <div className="form-input">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{data.email}</label>
               <input
                 onFocus={() => onSetFocusInput(true)}
                 onBlur={() => onSetFocusInput(false)}
@@ -146,11 +156,11 @@ const Login = ({
                 }}
               />
             </div>
-            <span className={emailError}>Wrong email!</span>
+            <span className={emailError}>{data.errorEmail}</span>
           </div>
           <div className="form-input-error">
             <div className="form-input">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{data.password}</label>
               <div className="password-input">
                 <input
                   onFocus={() => onSetFocusInput(true)}
@@ -172,21 +182,23 @@ const Login = ({
                 />
               </div>
             </div>
-            <span className={passwordError}>Wrong password!</span>
+            <span className={passwordError}>{data.errorPassword1}</span>
           </div>
           <span onClick={resetPassword} className="forgot-password">
             Forgot your password?
           </span>
           <button type="submit">{login}</button>
           <div className="switch-login">
-            <span>Don’t have an account?</span>
+            <span>{data.registerLink}</span>
             <span
               onClick={() => {
-                login === "Sign In" ? setLogin("Sign Up") : setLogin("Sign In");
+                login === data.sign
+                  ? setLogin(data.register)
+                  : setLogin(data.sign);
               }}
               className="login-link"
             >
-              Sign Up
+              {data.register}
             </span>
           </div>
         </form>
@@ -194,7 +206,7 @@ const Login = ({
         <form action="/" onSubmit={signUp}>
           <div className="form-input-error">
             <div className="form-input">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{data.name}</label>
               <input
                 onFocus={() => onSetFocusInput(true)}
                 onBlur={() => onSetFocusInput(false)}
@@ -209,11 +221,11 @@ const Login = ({
                 }}
               />
             </div>
-            <span className={nameError}>Only letters!</span>
+            <span className={nameError}>{data.errorName}</span>
           </div>
           <div className="form-input-error">
             <div className="form-input">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{data.email}</label>
               <input
                 onFocus={() => onSetFocusInput(true)}
                 onBlur={() => onSetFocusInput(false)}
@@ -228,11 +240,11 @@ const Login = ({
                 }}
               />
             </div>
-            <span className={emailError}>Wrong email!</span>
+            <span className={emailError}>{data.errorEmail}</span>
           </div>
           <div className="form-input-error">
             <div className="form-input">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{data.password}</label>
               <div className="password-input">
                 <input
                   onFocus={() => onSetFocusInput(true)}
@@ -257,21 +269,20 @@ const Login = ({
                 />
               </div>
             </div>
-            <span className={passwordError}>
-              Minimum eight characters, at least one letter
-              <br /> and one number!
-            </span>
+            <span className={passwordError}>{data.errorPassword2}</span>
           </div>
           <button type="submit">{login}</button>
           <div className="switch-login">
-            <span>Already a member?</span>
+            <span>{data.signLink}</span>
             <span
               className="login-link"
               onClick={() => {
-                login === "Sign In" ? setLogin("Sign Up") : setLogin("Sign In");
+                login === data.sign
+                  ? setLogin(data.register)
+                  : setLogin(data.sign);
               }}
             >
-              Sign In
+              {data.sign}
             </span>
           </div>
         </form>

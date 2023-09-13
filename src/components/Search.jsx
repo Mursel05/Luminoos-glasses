@@ -3,8 +3,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SearchItem from "./SearchItem";
 import { Metronome } from "@uiball/loaders";
+import { useContext } from "react";
+import langData from "../languageData";
+import { LanguageContext } from "../Router";
 
 const Search = () => {
+  const { language } = useContext(LanguageContext);
+  const [lang, setLang] = useState(langData[language].search);
+
+  useEffect(() => {
+    setLang(langData[language].search);
+  }, [language]);
   const navigate = useNavigate();
   const products = useSelector((state) => state.fetchReducer.products);
   const [text, setText] = useState("");
@@ -46,6 +55,7 @@ const Search = () => {
     <div className="search">
       <form onSubmit={search} action="/">
         <input
+          placeholder={data.header}
           type="text"
           value={text}
           onChange={(e) => {
@@ -64,7 +74,7 @@ const Search = () => {
       <div className="search-result">
         {loading ? (
           <div className="search-loading">
-            <span>Wait...</span>
+            <span>{lang}</span>
             <Metronome size={40} speed={1.6} color="black" />
           </div>
         ) : (
