@@ -944,6 +944,12 @@ form {
     display: flex;
     justify-content: space-between;
   }
+  .rate {
+    padding-top: 0.3rem;
+    img {
+      width: 1.5rem;
+    }
+  }
 }
 .details-page {
   .recommend {
@@ -1051,10 +1057,34 @@ form {
   .product-color-hot {
     align-items: center;
   }
-  .product-color {
+  .rate-review {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .review-link {
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .color-rate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 0.7rem;
     padding-top: 0.7rem;
     border-top: 1px solid #e2e2e2;
+    img {
+      width: 1.5rem;
+    }
+  }
+  .product-color {
     font-size: 1rem;
     display: flex;
     gap: 0.3rem;
@@ -1130,6 +1160,28 @@ form {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
+}
+.img-number {
+  padding-right: 0.3rem;
+  position: relative;
+  cursor: pointer;
+}
+.number {
+  color: $default-light-color;
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  border-radius: 50%;
+  span {
+    font-size: 0.6rem;
+    font-weight: 600;
+  }
+  width: 1rem;
+  background-color: #000080;
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  justify-content: center;
 }
 .cart {
   p {

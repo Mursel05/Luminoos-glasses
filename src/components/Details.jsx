@@ -8,6 +8,7 @@ import langData from "../languageData";
 import { LanguageContext } from "../Router";
 import { useWishlist } from "react-use-wishlist";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Details = () => {
   const theme = localStorage.getItem("mode");
@@ -29,6 +30,9 @@ const Details = () => {
   if (product != undefined) {
     return (
       <div className="details">
+        <Helmet>
+          <title>{`${product.brand} ${product.name}`}</title>
+        </Helmet>
         <div className="product-type-hot">
           <span className="product-type">
             {language == "en" ? product.typeEn : product.typeAz}
@@ -48,16 +52,71 @@ const Details = () => {
               {language == "en" ? product.genderEn : product.genderAz}
             </span>
           </div>
-          <span className="product-color">
-            {data.color}:{" "}
-            <span className="color">
-              {language == "en" ? product.colorEn : product.colorAz}
+          <div className="color-rate">
+            <span className="product-color">
+              {data.color}:
+              <span className="color">
+                {language == "en" ? product.colorEn : product.colorAz}
+              </span>
+              <div
+                className="circle-color"
+                style={{ backgroundColor: product.colorEn }}
+              ></div>
             </span>
-            <div
-              className="circle-color"
-              style={{ backgroundColor: product.colorEn }}
-            ></div>
-          </span>
+            <div className="rate-review">
+              <div className="rate">
+                <img
+                  src={
+                    product.rate > 0
+                      ? "/images/light/icons/star-icon-point.png"
+                      : "/images/light/icons/star-icon.png"
+                  }
+                  alt="star"
+                />
+                <img
+                  src={
+                    product.rate > 1
+                      ? "/images/light/icons/star-icon-point.png"
+                      : "/images/light/icons/star-icon.png"
+                  }
+                  alt="star"
+                />
+                <img
+                  src={
+                    product.rate > 2
+                      ? "/images/light/icons/star-icon-point.png"
+                      : "/images/light/icons/star-icon.png"
+                  }
+                  alt="star"
+                />
+                <img
+                  src={
+                    product.rate > 3
+                      ? "/images/light/icons/star-icon-point.png"
+                      : "/images/light/icons/star-icon.png"
+                  }
+                  alt="star"
+                />
+                <img
+                  src={
+                    product.rate > 4
+                      ? "/images/light/icons/star-icon-point.png"
+                      : "/images/light/icons/star-icon.png"
+                  }
+                  alt="star"
+                />
+              </div>
+              <div className="review">
+                <div className="img-number">
+                  <img src="/images/light/icons/review-icon.png" alt="review" />
+                  <div className="number">
+                    <span>{product.review.length}</span>
+                  </div>
+                </div>
+                <span className="review-link">Write a review</span>
+              </div>
+            </div>
+          </div>
           <p className="product-text">
             {product.name} {data.description}
           </p>

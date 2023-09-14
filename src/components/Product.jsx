@@ -204,6 +204,48 @@ const Product = ({ product, active }) => {
           </div>
         )}
       </div>
+      <div className="rate">
+        <img
+          src={
+            product.rate > 0
+              ? "/images/light/icons/star-icon-point.png"
+              : "/images/light/icons/star-icon.png"
+          }
+          alt="star"
+        />
+        <img
+          src={
+            product.rate > 1
+              ? "/images/light/icons/star-icon-point.png"
+              : "/images/light/icons/star-icon.png"
+          }
+          alt="star"
+        />
+        <img
+          src={
+            product.rate > 2
+              ? "/images/light/icons/star-icon-point.png"
+              : "/images/light/icons/star-icon.png"
+          }
+          alt="star"
+        />
+        <img
+          src={
+            product.rate > 3
+              ? "/images/light/icons/star-icon-point.png"
+              : "/images/light/icons/star-icon.png"
+          }
+          alt="star"
+        />
+        <img
+          src={
+            product.rate > 4
+              ? "/images/light/icons/star-icon-point.png"
+              : "/images/light/icons/star-icon.png"
+          }
+          alt="star"
+        />
+      </div>
     </div>
   );
 };

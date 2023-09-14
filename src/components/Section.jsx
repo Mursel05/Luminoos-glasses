@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import Login from "./Login";
 import Profile from "./Profile";
 import { toast } from "react-toastify";
+import { useCart } from "react-use-cart";
+import { useWishlist } from "react-use-wishlist";
 
 const Section = () => {
   const [hiddenPart, setHiddenPart] = useState("login");
@@ -77,7 +79,8 @@ const Section = () => {
       });
     }
   }, [session]);
-
+  const { totalItems } = useCart();
+  const { totalWishlistItems } = useWishlist();
   const theme = localStorage.getItem("mode");
   const [activeProfile, setActiveProfile] = useState(
     `/images/${theme}/icons/account-icon.png`
@@ -121,7 +124,12 @@ const Section = () => {
               setActiveCart(`/images/${theme}/icons/shopping-cart-icon.png`);
             }}
           >
-            <img src={activeCart} alt="heart icon" />
+            <div className="img-number">
+              <img src={activeCart} alt="heart icon" />
+              <div className="number">
+                <span>{totalItems}</span>
+              </div>
+            </div>
             <span>{data.cart}</span>
           </div>
         </NavLink>
@@ -149,7 +157,12 @@ const Section = () => {
               setActiveWishlist(`/images/${theme}/icons/heart-icon.png`);
             }}
           >
-            <img src={activeWishlist} alt="heart icon" />
+            <div className="img-number">
+              <img src={activeWishlist} alt="heart icon" />
+              <div className="number">
+                <span>{totalWishlistItems}</span>
+              </div>
+            </div>
             <span>{data.wishlist}</span>
           </div>
         </NavLink>

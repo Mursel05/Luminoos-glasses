@@ -7,6 +7,7 @@ import { LanguageContext } from "../Router";
 import { useState } from "react";
 import { useEffect } from "react";
 import langData from "../languageData";
+import { Helmet } from "react-helmet";
 
 const SpecialProducts = () => {
   const { language } = useContext(LanguageContext);
@@ -20,7 +21,6 @@ const SpecialProducts = () => {
   const products = useSelector((state) => state.fetchReducer.products).filter(
     (item) => item[product.sort] == product.value
   );
-  console.log(products);
   return (
     <div className="special-products">
       <h1>{data}</h1>

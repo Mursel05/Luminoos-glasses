@@ -6,9 +6,13 @@ import Section from "../components/Section";
 import Slider from "../components/Slider";
 import Blog from "../components/Blog";
 import BestSeller from "../components/BestSeller";
+import { Helmet } from "react-helmet";
 const home = () => {
   return (
     <div className="page">
+      <Helmet>
+        <title>{"Luminoos"}</title>
+      </Helmet>
       <Navbar />
       <Section />
       <Slider />

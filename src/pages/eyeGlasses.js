@@ -4,16 +4,20 @@ import Footer from "../components/Footer";
 import EyeGlasses from "../components/Eyeglasses";
 import Sort from "../components/Sort";
 import Section from '../components/Section';
+import { Helmet } from 'react-helmet';
 const eyeglasses = () => {
   return (
     <div>
-      <Navbar/>
-      <Section/>
-      <Sort/>
-      <EyeGlasses/>
-      <Footer/>
+      <Helmet>
+        <title>{"Eyeglasses"}</title>
+      </Helmet>
+      <Navbar />
+      <Section />
+      <Sort />
+      <EyeGlasses />
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default eyeglasses
