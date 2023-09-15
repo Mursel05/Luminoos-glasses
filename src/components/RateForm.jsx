@@ -2,7 +2,7 @@ import React from "react";
 import supabase from "../supabase";
 import { useState } from "react";
 
-const RateForm = ({ product, appear, onSetAppear }) => {
+const RateForm = ({ product, appearForm, onSetAppearForm }) => {
   const theme = localStorage.getItem("mode");
 
   const [rate, setRate] = useState("");
@@ -43,13 +43,13 @@ const RateForm = ({ product, appear, onSetAppear }) => {
     }
   }
   return (
-    <div className={appear}>
+    <div className={appearForm}>
       <div className="header">
         <span>Add review</span>
         <img
           src={`/images/${theme}/icons/cancel-icon.png`}
           alt="cancel"
-          onClick={() => onSetAppear("send-review")}
+          onClick={() => onSetAppearForm("send-review")}
         />
       </div>
       <form action="/" onSubmit={sendForm}>

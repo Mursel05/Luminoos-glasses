@@ -17,11 +17,11 @@ const Product = ({ product, active }) => {
   }, [language]);
 
   let sum = 0;
-  product &&
+  product.review &&
     product.review.map((item) => {
       return (sum += item.rate);
     });
-  const rate = product && sum / product.review.length;
+  const rate = product.review && sum / product.review.length;
 
   function goDetail() {
     navigate(`/Details/${product.id}`);

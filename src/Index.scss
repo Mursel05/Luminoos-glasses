@@ -963,17 +963,20 @@ form {
     padding-bottom: 2rem;
   }
 }
-.details {
+.details-review {
   @include padding-sides();
-  background-color: #f5f5f5;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  position: relative;
-  @include respond(tab) {
-    flex-direction: column;
-  }
-  @include respond(tab) {
-    padding-bottom: 0rem;
+  background-color: #f5f5f5;
+  .details {
+    display: flex;
+    align-items: center;
+    position: relative;
+    @include respond(tab) {
+      padding-bottom: 0rem;
+      flex-direction: column;
+    }
   }
   .product-type-hot {
     img {
@@ -986,7 +989,7 @@ form {
     position: absolute;
     background-color: #ed0f0f;
     padding: 1rem;
-    top: 1rem;
+    top: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
     margin-left: 2rem;
@@ -994,11 +997,11 @@ form {
     color: $default-light-color;
     font-size: 0.8rem;
     @include respond(tab) {
-      left: 3rem;
+      margin-left: 0rem;
+      left: 0rem;
+      top: 0rem;
     }
     @include respond(phone) {
-      left: 0rem;
-      top: 0.5rem;
       padding: 0.5rem;
       margin-left: 0.5rem;
       padding-left: 1rem;
@@ -1008,8 +1011,8 @@ form {
   .product-hot {
     background-color: #ffd700;
     padding: 1rem;
-    top: 1rem;
-    left: 37.5rem;
+    top: 3rem;
+    left: 28rem;
     border-radius: 5px;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -1017,11 +1020,11 @@ form {
     font-size: 0.8rem;
     color: $default-light-color;
     @include respond(tab) {
-      left: 35.5rem;
+      top: 0rem;
+      left: 30rem;
     }
     @include respond(phone) {
       left: 15rem;
-      top: 0.5rem;
       padding: 0.5rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
@@ -1038,7 +1041,7 @@ form {
     flex-direction: column;
     gap: 0.3rem;
     @include respond(phone) {
-      padding: 0.5rem;
+      padding: 0rem;
       border-radius: 0px;
       box-shadow: 0 -5px 5px -5px #a0a0a0;
     }
@@ -1072,21 +1075,20 @@ form {
     background-color: $default-light-color;
     border: 1px solid #a0a0a0;
     font-size: 0.9rem;
+    transition: all 0.3s linear;
     top: 1rem;
     width: min-content;
     right: 10.5rem;
-    z-index: 99;
-  }
-  .appear {
-    visibility: visible;
-    opacity: 1;
+    @include respond(phone) {
+      left: 0rem;
+      top: 1rem;
+    }
   }
   .send-review::before {
     content: "";
     border-right: 1px solid #a0a0a0;
     border-top: 1px solid #a0a0a0;
     position: absolute;
-    z-index: 1;
     width: 1.9rem;
     top: 6.4rem;
     right: -1rem;
@@ -1101,7 +1103,8 @@ form {
     font-size: 1.2rem;
     padding-bottom: 0.5rem;
     img {
-      width: 1.5rem;cursor: pointer;
+      width: 1.5rem;
+      cursor: pointer;
     }
   }
   .send-rate {
@@ -1134,6 +1137,9 @@ form {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    @include respond(phone) {
+      flex-direction: column;
+    }
   }
   .review {
     display: flex;
@@ -1218,6 +1224,51 @@ form {
       width: 40px;
       cursor: pointer;
     }
+  }
+  .reviews {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: column;
+    .all-reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  .review-single {
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    @include respond(phone) {
+    }
+    .description {
+      font-weight: 500;
+    }
+    img {
+      width: 1.5rem;
+    }
+    .name-rate {
+      display: flex;
+      justify-content: space-between;
+      gap: 15rem;
+      align-items: center;
+      @include respond(phone) {
+        flex-direction: column-reverse;
+        justify-content: baseline;
+        align-items: baseline;
+        gap: 0.5rem;
+      }
+    }
+  }
+  .appear {
+    visibility: visible;
+    opacity: 1;
   }
 }
 .prices {
