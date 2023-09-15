@@ -5,10 +5,8 @@ import { LanguageContext } from "../Router";
 import langData from "../languageData";
 import { useEffect } from "react";
 import { useState } from "react";
-import useWindowDimensions from "./GetWindowDimensions";
 
 const Navbar = () => {
-  const { touch } = useWindowDimensions();
   const { language } = useContext(LanguageContext);
   const [data, setData] = useState(langData[language].navbar);
   const theme = localStorage.getItem("mode");

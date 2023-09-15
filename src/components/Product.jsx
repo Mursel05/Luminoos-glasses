@@ -16,6 +16,13 @@ const Product = ({ product, active }) => {
     setData(langData[language].details);
   }, [language]);
 
+  let sum = 0;
+  product &&
+    product.review.map((item) => {
+      return (sum += item.rate);
+    });
+  const rate = product && sum / product.review.length;
+
   function goDetail() {
     navigate(`/Details/${product.id}`);
     goToTop();
@@ -207,7 +214,7 @@ const Product = ({ product, active }) => {
       <div className="rate">
         <img
           src={
-            product.rate > 0
+            rate > 0
               ? "/images/light/icons/star-icon-point.png"
               : "/images/light/icons/star-icon.png"
           }
@@ -215,7 +222,7 @@ const Product = ({ product, active }) => {
         />
         <img
           src={
-            product.rate > 1
+            rate > 1
               ? "/images/light/icons/star-icon-point.png"
               : "/images/light/icons/star-icon.png"
           }
@@ -223,7 +230,7 @@ const Product = ({ product, active }) => {
         />
         <img
           src={
-            product.rate > 2
+            rate > 2
               ? "/images/light/icons/star-icon-point.png"
               : "/images/light/icons/star-icon.png"
           }
@@ -231,7 +238,7 @@ const Product = ({ product, active }) => {
         />
         <img
           src={
-            product.rate > 3
+            rate > 3
               ? "/images/light/icons/star-icon-point.png"
               : "/images/light/icons/star-icon.png"
           }
@@ -239,7 +246,7 @@ const Product = ({ product, active }) => {
         />
         <img
           src={
-            product.rate > 4
+            rate > 4
               ? "/images/light/icons/star-icon-point.png"
               : "/images/light/icons/star-icon.png"
           }

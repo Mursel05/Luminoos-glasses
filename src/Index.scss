@@ -905,6 +905,12 @@ form {
     cursor: pointer;
     background-color: $default-light-color;
   }
+  .rate {
+    @include respond(phone) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
   .product-info {
     @include respond(phone) {
       padding-left: 0.5rem;
@@ -1022,6 +1028,7 @@ form {
     }
   }
   .product-details {
+    position: relative;
     background-color: $default-light-color;
     padding: 2rem;
     border-radius: 5px;
@@ -1056,6 +1063,72 @@ form {
   }
   .product-color-hot {
     align-items: center;
+  }
+  .send-review {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    padding: 1rem;
+    background-color: $default-light-color;
+    border: 1px solid #a0a0a0;
+    font-size: 0.9rem;
+    top: 1rem;
+    width: min-content;
+    right: 10.5rem;
+    z-index: 99;
+  }
+  .appear {
+    visibility: visible;
+    opacity: 1;
+  }
+  .send-review::before {
+    content: "";
+    border-right: 1px solid #a0a0a0;
+    border-top: 1px solid #a0a0a0;
+    position: absolute;
+    z-index: 1;
+    width: 1.9rem;
+    top: 6.4rem;
+    right: -1rem;
+    transform: rotate(45deg);
+    height: 2rem;
+    background-color: $default-light-color;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    img {
+      width: 1.5rem;cursor: pointer;
+    }
+  }
+  .send-rate {
+    display: flex;
+    align-items: center;
+    span {
+      padding-right: 1rem;
+    }
+    img {
+      width: 1.5rem;
+      cursor: pointer;
+    }
+  }
+  .label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    input,
+    textarea {
+      width: min-content;
+      padding: 0.3rem;
+      padding-left: 0.5rem;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid #ced4da;
+      resize: none;
+    }
   }
   .rate-review {
     display: flex;

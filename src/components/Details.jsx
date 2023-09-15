@@ -9,6 +9,7 @@ import { LanguageContext } from "../Router";
 import { useWishlist } from "react-use-wishlist";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import RateForm from "./RateForm";
 
 const Details = () => {
   const theme = localStorage.getItem("mode");
@@ -24,9 +25,19 @@ const Details = () => {
     items: wishItems,
     removeWishlistItem,
   } = useWishlist();
+
   let id = useParams();
   const products = useSelector((state) => state.fetchReducer.products);
   const product = products.find((product) => product.id == id.id);
+
+  const [appear, setAppear] = useState("send-review");
+  let sum = 0;
+  product &&
+    product.review.map((item) => {
+      return (sum += item.rate);
+    });
+  const rate = product && sum / product.review.length;
+
   if (product != undefined) {
     return (
       <div className="details">
@@ -67,7 +78,7 @@ const Details = () => {
               <div className="rate">
                 <img
                   src={
-                    product.rate > 0
+                    rate > 0
                       ? "/images/light/icons/star-icon-point.png"
                       : "/images/light/icons/star-icon.png"
                   }
@@ -75,7 +86,7 @@ const Details = () => {
                 />
                 <img
                   src={
-                    product.rate > 1
+                    rate > 1
                       ? "/images/light/icons/star-icon-point.png"
                       : "/images/light/icons/star-icon.png"
                   }
@@ -83,7 +94,7 @@ const Details = () => {
                 />
                 <img
                   src={
-                    product.rate > 2
+                    rate > 2
                       ? "/images/light/icons/star-icon-point.png"
                       : "/images/light/icons/star-icon.png"
                   }
@@ -91,7 +102,7 @@ const Details = () => {
                 />
                 <img
                   src={
-                    product.rate > 3
+                    rate > 3
                       ? "/images/light/icons/star-icon-point.png"
                       : "/images/light/icons/star-icon.png"
                   }
@@ -99,7 +110,7 @@ const Details = () => {
                 />
                 <img
                   src={
-                    product.rate > 4
+                    rate > 4
                       ? "/images/light/icons/star-icon-point.png"
                       : "/images/light/icons/star-icon.png"
                   }
@@ -113,7 +124,12 @@ const Details = () => {
                     <span>{product.review.length}</span>
                   </div>
                 </div>
-                <span className="review-link">Write a review</span>
+                <span
+                  className="review-link"
+                  onClick={() => setAppear("send-review appear")}
+                >
+                  Write a review
+                </span>
               </div>
             </div>
           </div>
@@ -197,6 +213,7 @@ const Details = () => {
               }}
             />
           </div>
+          <RateForm product={product} appear={appear} onSetAppear={setAppear} />
         </div>
       </div>
     );
