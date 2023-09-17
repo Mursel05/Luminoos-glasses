@@ -16,9 +16,9 @@ const BlogAdminSingle = ({ blog }) => {
 
   const [image, setImage] = useState(blog ? blog.image : "");
   const [imageError, setImageError] = useState("error hidden");
-  const [header, setHeader] = useState(blog ? blog.header : "");
+  const [header, setHeader] = useState(blog ? blog.headerEn : "");
   const [headerError, setHeaderError] = useState("error hidden");
-  const [answer, setAnswer] = useState(blog ? blog.answer : "");
+  const [answer, setAnswer] = useState(blog ? blog.answerEn : "");
   const [answerError, setAnswerError] = useState("error hidden");
   const [date, setDate] = useState(blog ? blog.date : "");
   const [dateError, setDateError] = useState("error hidden");
@@ -26,7 +26,7 @@ const BlogAdminSingle = ({ blog }) => {
   async function update() {
     const { error } = await supabase
       .from("blogs")
-      .update({ image, header, answer, date, button })
+      .update({ image, headerEn: header, answerEn: answer, date, button })
       .eq("id", blog.id);
     window.location.reload();
   }
@@ -37,7 +37,7 @@ const BlogAdminSingle = ({ blog }) => {
   async function create() {
     const { error } = await supabase
       .from("blogs")
-      .insert({ image, header, answer, date, button });
+      .insert({ image, headerEn: header, answerEn: answer, date, button });
     window.location.reload();
   }
   return (
@@ -93,9 +93,9 @@ const BlogAdminSingle = ({ blog }) => {
             onClick={() => {
               if (
                 image === blog.image &&
-                header === blog.header &&
+                header === blog.headerEn &&
                 date === blog.date &&
-                answer === blog.answer
+                answer === blog.answerEn
               ) {
               } else if (image && header && date && answer) {
                 update();

@@ -2303,6 +2303,7 @@ form {
 .contact {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   @include padding-sides();
   h1 {
     font-size: 2rem;
@@ -2361,7 +2362,7 @@ form {
   }
   iframe {
     align-self: center;
-    margin: 2rem;
+    margin-bottom: 2rem;
   }
 }
 .service {
@@ -2501,7 +2502,8 @@ form {
   .bestSeller,
   .brands,
   .special-products,
-  .blog {
+  .blog,
+  .contact {
     background-color: #1c1c1c;
     h1 {
       color: $default-light-color;
@@ -2539,7 +2541,8 @@ form {
     }
   }
   .about-us,
-  .blog-page {
+  .blog-page,
+  .service {
     color: $default-light-color;
   }
   .cart {

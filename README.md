@@ -1,4 +1,3 @@
-service
 users admin
 toastfy dil
 blog admin
