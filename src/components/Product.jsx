@@ -215,40 +215,40 @@ const Product = ({ product, active }) => {
         <img
           src={
             rate > 0
-              ? "/images/light/icons/star-icon-point.png"
-              : "/images/light/icons/star-icon.png"
+              ? `/images/${theme}/icons/star-icon-point.png`
+              : `/images/${theme}/icons/star-icon.png`
           }
           alt="star"
         />
         <img
           src={
             rate > 1
-              ? "/images/light/icons/star-icon-point.png"
-              : "/images/light/icons/star-icon.png"
+              ? `/images/${theme}/icons/star-icon-point.png`
+              : `/images/${theme}/icons/star-icon.png`
           }
           alt="star"
         />
         <img
           src={
             rate > 2
-              ? "/images/light/icons/star-icon-point.png"
-              : "/images/light/icons/star-icon.png"
+              ? `/images/${theme}/icons/star-icon-point.png`
+              : `/images/${theme}/icons/star-icon.png`
           }
           alt="star"
         />
         <img
           src={
             rate > 3
-              ? "/images/light/icons/star-icon-point.png"
-              : "/images/light/icons/star-icon.png"
+              ? `/images/${theme}/icons/star-icon-point.png`
+              : `/images/${theme}/icons/star-icon.png`
           }
           alt="star"
         />
         <img
           src={
             rate > 4
-              ? "/images/light/icons/star-icon-point.png"
-              : "/images/light/icons/star-icon.png"
+              ? `/images/${theme}/icons/star-icon-point.png`
+              : `/images/${theme}/icons/star-icon.png`
           }
           alt="star"
         />

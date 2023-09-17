@@ -28,6 +28,7 @@
     "react-use-wishlist": "^1.0.1",
     "redux-thunk": "^2.4.2",
     "sass": "^1.64.1",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

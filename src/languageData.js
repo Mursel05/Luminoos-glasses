@@ -54,11 +54,19 @@ const langData = {
     },
     contactUs: {},
     details: {
+      formHeader: "Add review",
+      rate: "Rate:",
+      rateError: "Please rate",
+      error: "Should not be empty",
+      name: "Name",
+      descriptionReview: "description",
+      formBtn: "Send",
+      reviewHeader: "Reviews",
+      linkReview: "Write a review",
       new: "Hot",
       color: "Color",
       description:
         "These oval glasses are flexible and lightweight for all-day comfort. The medium-wide acetate frame features matte turquoise textured embellishments on the outside corners of the frame that match the temple arms.",
-
       priceHeader: "Price includes",
       include1: "Frame & cleaning cloth",
       include2: "Quality 1.5 index lenses",
@@ -232,6 +240,15 @@ const langData = {
     },
     contactUs: {},
     details: {
+      formHeader: "Rəy əlavə et",
+      rate: "Qiymətləndir:",
+      rateError: "Zəhmət olmasa qiymətləndir",
+      error: "Boş olmamlıdır",
+      name: "Ad",
+      descriptionReview: "Təsvir",
+      formBtn: "Göndər",
+      reviewHeader: "Şərhlər",
+      linkReview: "Rəy yaz",
       new: "Yeni",
       color: "Rəng",
       description:

@@ -1,9 +1,17 @@
+import supabase from "../supabase";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   const theme = localStorage.getItem("mode");
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("hidden");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("hidden");
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("hidden");
+  const [comment, setComment] = useState("");
   const [hoverFacebook, setHoverFacebook] = useState(
     `/images/${theme}/icons/facebook-logo.png`
   );
@@ -13,25 +21,63 @@ const ContactUs = () => {
   const [hoverInstagram, setHoverInstagram] = useState(
     `/images/${theme}/icons/instagram-logo.png`
   );
+  async function sendData() {
+    const { error } = await supabase
+      .from("contact")
+      .insert({ name, phone, email, comment });
+  }
+  function checkForm(e) {
+    e.preventDefault();
+    if (!name) {
+      setNameError("error");
+    } else if (!email) {
+      setEmailError("error");
+    } else if (!phone) {
+      setPhoneError("error");
+    } else {
+      sendData();
+      window.location.reload();
+    }
+  }
   return (
-    <div>
+    <div className="contact">
       <h1>Contact Luminoos</h1>
-      <div>
-        <form action="/">
-          <div>
-            <input type="text" placeholder="Name" />
-            <span>Should not be empty</span>
+      <div className="form-img">
+        <form action="/" onSubmit={checkForm}>
+          <div className="input-error">
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <span className={nameError}>Should not be empty</span>
+          </div>
+          <div className="input-error">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <span className={emailError}>Should not be empty</span>
+          </div>
+          <div className="input-error">
+            <input
+              type="tel"
+              placeholder="Telephone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <span className={phoneError}>Should not be empty</span>
           </div>
           <div>
-            <input type="email" placeholder="Email" />
-            <span>Should not be empty</span>
-          </div>
-          <div>
-            <input type="tel" placeholder="Telephone" />
-            <span>Should not be empty</span>
-          </div>
-          <div>
-            <textarea placeholder="Comment" cols="30" rows="10"></textarea>
+            <textarea
+              placeholder="Comment"
+              cols="30"
+              rows="10"
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
           </div>
           <button>Submit</button>
         </form>
@@ -40,13 +86,16 @@ const ContactUs = () => {
           alt="people with telephone"
         />
       </div>
-      <div>
-        <div>
+      <div className="contact-details">
+        <div className="detail">
           <span>Got questions? We’ve got answers.</span>
-          <span>luminoosglasses@mail.ru</span>
-          <span>+994 050 555 55 55</span>
+          <p>+994 050 555 55 55</p>
         </div>
-        <div>
+        <div className="detail">
+          <span>Customer Service Department</span>
+          <p>luminoosglasses@mail.ru</p>
+        </div>
+        <div className="detail">
           <span>
             You can also follow us and send a direct message to our Social
             Concierge Team:
@@ -107,10 +156,6 @@ const ContactUs = () => {
               />
             </Link>
           </div>
-          <span>
-            Reaching out to us with a direct message is fast and easy. Our
-            Social Concierge Team is ready to assist you!
-          </span>
         </div>
       </div>
       <iframe

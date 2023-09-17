@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useCart } from "react-use-cart";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -31,6 +31,10 @@ const Details = () => {
   const products = useSelector((state) => state.fetchReducer.products);
   const product = products.find((product) => product.id == id.id);
 
+  const scrollRef = useRef("");
+  const goToElement = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   const [appearForm, setAppearForm] = useState("send-review");
   const [appearReview, setAppearReview] = useState("reviews hidden");
   let sum = 0;
@@ -82,40 +86,40 @@ const Details = () => {
                   <img
                     src={
                       rate > 0
-                        ? "/images/light/icons/star-icon-point.png"
-                        : "/images/light/icons/star-icon.png"
+                        ? `/images/${theme}/icons/star-icon-point.png`
+                        : `/images/${theme}/icons/star-icon.png`
                     }
                     alt="star"
                   />
                   <img
                     src={
                       rate > 1
-                        ? "/images/light/icons/star-icon-point.png"
-                        : "/images/light/icons/star-icon.png"
+                        ? `/images/${theme}/icons/star-icon-point.png`
+                        : `/images/${theme}/icons/star-icon.png`
                     }
                     alt="star"
                   />
                   <img
                     src={
                       rate > 2
-                        ? "/images/light/icons/star-icon-point.png"
-                        : "/images/light/icons/star-icon.png"
+                        ? `/images/${theme}/icons/star-icon-point.png`
+                        : `/images/${theme}/icons/star-icon.png`
                     }
                     alt="star"
                   />
                   <img
                     src={
                       rate > 3
-                        ? "/images/light/icons/star-icon-point.png"
-                        : "/images/light/icons/star-icon.png"
+                        ? `/images/${theme}/icons/star-icon-point.png`
+                        : `/images/${theme}/icons/star-icon.png`
                     }
                     alt="star"
                   />
                   <img
                     src={
                       rate > 4
-                        ? "/images/light/icons/star-icon-point.png"
-                        : "/images/light/icons/star-icon.png"
+                        ? `/images/${theme}/icons/star-icon-point.png`
+                        : `/images/${theme}/icons/star-icon.png`
                     }
                     alt="star"
                   />
@@ -123,16 +127,19 @@ const Details = () => {
                 <div className="review">
                   <div
                     className="img-number"
-                    onClick={() =>
-                      setAppearReview(
-                        appearReview === "reviews"
-                          ? "reviews hidden"
-                          : "reviews"
-                      )
-                    }
+                    onClick={() => {
+                      if (product.review.length) {
+                        setTimeout(goToElement, 1);
+                        setAppearReview(
+                          appearReview === "reviews"
+                            ? "reviews hidden"
+                            : "reviews"
+                        );
+                      }
+                    }}
                   >
                     <img
-                      src="/images/light/icons/review-icon.png"
+                      src={`/images/${theme}/icons/review-icon.png`}
                       alt="review"
                     />
                     <div className="number">
@@ -143,7 +150,7 @@ const Details = () => {
                     className="review-link"
                     onClick={() => setAppearForm("send-review appear")}
                   >
-                    Write a review
+                    {data.linkReview}
                   </span>
                 </div>
               </div>
@@ -237,8 +244,8 @@ const Details = () => {
             />
           </div>
         </div>
-        <div className={appearReview}>
-          <p>Reviews</p>
+        <div className={appearReview} ref={scrollRef}>
+          <p>{data.reviewHeader}</p>
           <div className="all-reviews">
             {product.review.map((item, key) => (
               <ShowReview item={item} key={key} />

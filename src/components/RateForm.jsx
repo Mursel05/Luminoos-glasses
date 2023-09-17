@@ -1,9 +1,18 @@
 import React from "react";
 import supabase from "../supabase";
 import { useState } from "react";
+import { useContext } from "react";
+import { LanguageContext } from "../Router";
+import langData from "../languageData";
+import { useEffect } from "react";
 
 const RateForm = ({ product, appearForm, onSetAppearForm }) => {
-  const theme = localStorage.getItem("mode");
+  const { language } = useContext(LanguageContext);
+  const [data, setData] = useState(langData[language].details);
+
+  useEffect(() => {
+    setData(langData[language].details);
+  }, [language]);
 
   const [rate, setRate] = useState("");
   const [name, setName] = useState("");
@@ -45,9 +54,9 @@ const RateForm = ({ product, appearForm, onSetAppearForm }) => {
   return (
     <div className={appearForm}>
       <div className="header">
-        <span>Add review</span>
+        <span>{data.formHeader}</span>
         <img
-          src={`/images/${theme}/icons/cancel-icon.png`}
+          src={"/images/light/icons/cancel-icon.png"}
           alt="cancel"
           onClick={() => onSetAppearForm("send-review")}
         />
@@ -55,7 +64,7 @@ const RateForm = ({ product, appearForm, onSetAppearForm }) => {
       <form action="/" onSubmit={sendForm}>
         <div>
           <div className="send-rate">
-            <span>Rate:</span>
+            <span>{data.rate}</span>
             <img
               src={
                 rate > 0
@@ -102,11 +111,11 @@ const RateForm = ({ product, appearForm, onSetAppearForm }) => {
               onClick={() => setRate(5)}
             />
           </div>
-          <span className={errorRate}>Please rate</span>
+          <span className={errorRate}>{data.rateError}</span>
         </div>
         <div>
           <div className="label-input">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">{data.name}</label>
             <input
               type="text"
               id="name"
@@ -114,11 +123,11 @@ const RateForm = ({ product, appearForm, onSetAppearForm }) => {
               value={name}
             />
           </div>
-          <span className={errorName}>Should not be empty</span>
+          <span className={errorName}>{data.error}</span>
         </div>
         <div>
           <div className="label-input">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">{data.descriptionReview}</label>
             <textarea
               type="text"
               id="description"
@@ -127,9 +136,9 @@ const RateForm = ({ product, appearForm, onSetAppearForm }) => {
               value={description}
             ></textarea>
           </div>
-          <span className={errorDescription}>Should not be empty</span>
+          <span className={errorDescription}>{data.error}</span>
         </div>
-        <button>Send</button>
+        <button>{data.formBtn}</button>
       </form>
     </div>
   );
