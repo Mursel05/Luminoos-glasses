@@ -1,6 +1,6 @@
 import React from "react";
 import Product from "./Product";
-import { LanguageContext, SortContext } from "../Router";
+import { LanguageContext, SortContext } from "../App";
 import { useContext } from "react";
 import langData from "../languageData";
 import { useEffect } from "react";

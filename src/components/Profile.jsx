@@ -1,7 +1,7 @@
 import supabase from "../supabase";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { LanguageContext, LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../App";
 import { useContext } from "react";
 import { useState } from "react";
 import langData from "../languageData";

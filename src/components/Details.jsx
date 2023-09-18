@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useContext } from "react";
 import langData from "../languageData";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { useWishlist } from "react-use-wishlist";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";

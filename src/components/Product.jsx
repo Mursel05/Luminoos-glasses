@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import langData from "../languageData";
 import { useEffect } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { toast } from "react-toastify";
 import { useWishlist } from "react-use-wishlist";
 

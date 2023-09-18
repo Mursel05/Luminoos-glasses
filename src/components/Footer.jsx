@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import langData from "../languageData";
 import { useEffect } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const Footer = () => {
   const { language } = useContext(LanguageContext);

@@ -1814,7 +1814,7 @@ form {
   .button-part {
     grid-column: 1/4;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     border-top: 1px solid #a0a0a0;
     padding-top: 1rem;
     @include respond(tab) {
@@ -2440,7 +2440,7 @@ form {
     }
     button {
       @include button-style();
-      align-self: end;
+      align-self: flex-end;
       font-size: 0.8rem;
       padding: 0.5rem;
       width: max-content;
@@ -2454,7 +2454,7 @@ form {
     }
   }
   button {
-    align-self: end;
+    align-self: flex-end;
     width: 10rem;
   }
 }

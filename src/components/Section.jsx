@@ -4,7 +4,7 @@ import Language from "./Language";
 import Search from "./Search";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { LanguageContext, LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../App";
 import langData from "../languageData";
 import { useEffect } from "react";
 import Login from "./Login";

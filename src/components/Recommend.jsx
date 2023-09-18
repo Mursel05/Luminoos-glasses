@@ -2,7 +2,7 @@ import React from "react";
 import Product from "./Product";
 import { useSelector } from "react-redux";
 import { useContext } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import langData from "../languageData";
 import { useState } from "react";
 import { useEffect } from "react";

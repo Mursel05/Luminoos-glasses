@@ -5,7 +5,7 @@ import SearchItem from "./SearchItem";
 import { Metronome } from "@uiball/loaders";
 import { useContext } from "react";
 import langData from "../languageData";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const Search = () => {
   const { language } = useContext(LanguageContext);

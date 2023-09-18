@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import supabase from "../supabase";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { useContext } from "react";
 import langData from "../languageData";
 import { useEffect } from "react";

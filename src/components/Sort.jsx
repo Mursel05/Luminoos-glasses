@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Slider from "@mui/material/Slider";
-import { LanguageContext, SortContext } from "../Router";
+import { LanguageContext, SortContext } from "../App";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import langData from "../languageData";

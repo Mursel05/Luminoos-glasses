@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { useState } from "react";
 import langData from "../languageData";
 import { useEffect } from "react";

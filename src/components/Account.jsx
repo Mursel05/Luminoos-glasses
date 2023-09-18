@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { LanguageContext, LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../App";
 import supabase from "../supabase";
 import langData from "../languageData";
 import { useEffect } from "react";

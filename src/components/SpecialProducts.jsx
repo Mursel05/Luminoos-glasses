@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Product from "./Product";
 import { useContext } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { useState } from "react";
 import { useEffect } from "react";
 import langData from "../languageData";
-import { Helmet } from "react-helmet";
+
 
 const SpecialProducts = () => {
   const { language } = useContext(LanguageContext);

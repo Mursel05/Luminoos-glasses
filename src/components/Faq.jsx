@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import FaqItem from "./FaqItem";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import langData from "../languageData";
 
 const Faq = () => {

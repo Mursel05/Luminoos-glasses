@@ -30,7 +30,7 @@ export const SortContext = createContext();
 export const LanguageContext = createContext();
 export const LoginContext = createContext();
 
-const Router = () => {
+const App = () => {
   const mode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -130,4 +130,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default App;

@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import supabase from "../supabase";
 import React, { useEffect, useState } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import { useContext } from "react";
 import langData from "../languageData";
 

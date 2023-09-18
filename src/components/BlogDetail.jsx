@@ -6,7 +6,7 @@ import { useContext } from "react";
 import langData from "../languageData";
 import { useEffect } from "react";
 import { useState } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const BlogDetail = () => {
   const { language } = useContext(LanguageContext);

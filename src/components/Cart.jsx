@@ -3,7 +3,7 @@ import { useCart } from "react-use-cart";
 import Product from "./Product";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { LanguageContext, LoginContext } from "../Router";
+import { LanguageContext, LoginContext } from "../App";
 import langData from "../languageData";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";

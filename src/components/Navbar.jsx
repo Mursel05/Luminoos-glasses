@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 import langData from "../languageData";
 import { useEffect } from "react";
 import { useState } from "react";

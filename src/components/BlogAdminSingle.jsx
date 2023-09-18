@@ -4,7 +4,7 @@ import supabase from "../supabase";
 import { useContext } from "react";
 import langData from "../languageData";
 import { useEffect } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const BlogAdminSingle = ({ blog }) => {
   const { language } = useContext(LanguageContext);

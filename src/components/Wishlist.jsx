@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useWishlist } from "react-use-wishlist";
 import Product from "./Product";
 import langData from "../languageData";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const Wishlist = () => {
   const { language } = useContext(LanguageContext);

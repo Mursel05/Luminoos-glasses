@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import langData from "../languageData";
 import { useState } from "react";
 import { useEffect } from "react";
-import { LanguageContext } from "../Router";
+import { LanguageContext } from "../App";
 
 const BlogSingle = ({ blog }) => {
   const { language } = useContext(LanguageContext);

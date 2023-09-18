@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Router from "./Router";
+import App from "./App";
 import "./Index.scss";
 import { CartProvider } from "react-use-cart";
 import { store } from "./redux/store";
@@ -12,7 +12,7 @@ root.render(
   <Provider store={store}>
     <WishlistProvider>
       <CartProvider>
-        <Router />
+        <App />
       </CartProvider>
     </WishlistProvider>
   </Provider>
