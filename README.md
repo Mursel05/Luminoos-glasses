@@ -1,5 +1,7 @@
 ## Luminoos Glasses Website
 
+Use this link to visit the page: https://luminoos-glasses.vercel.app/
+
 Luminoos is an e-commmerce website. You can easily navigate between the pages and and you can choose English or Azerbaijan language. Website has dark and light mode. You can find anything in the search bar.
 
 
