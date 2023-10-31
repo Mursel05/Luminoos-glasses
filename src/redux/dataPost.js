@@ -21,7 +21,7 @@ export const getData = createAsyncThunk(
   }
 );
 export const getFaq = createAsyncThunk("fetchData/getFaq", async (thunkApi) => {
-  const { data, error } = await supabase.from("FAQ").select("*").limit(5);
+  const { data, error } = await supabase.from("FAQ").select("*") .order("id", { ascending: true });
   if (error) throw error;
   return data;
 });
