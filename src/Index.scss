@@ -35,7 +35,7 @@ $button-background-color: #008080;
     }
   }
   @if $breakpoint==laptopS {
-    @media only screen and (max-width: 1280px) {
+    @media only screen and (max-width: 1275px) {
       @content;
     }
   }
@@ -676,17 +676,18 @@ form {
 }
 .react-slideshow-container .default-nav:first-of-type {
   margin-left: 15px !important;
-  @include respond(phone) {
+  @include respond(phoneM) {
     display: none !important;
   }
 }
 .react-slideshow-container .default-nav:last-of-type {
   margin-right: 15px !important;
-  @include respond(phone) {
+  @include respond(phoneM) {
     display: none !important;
   }
 }
 .slider {
+  @include padding-sides();
   @include respond(4k) {
     padding-left: 20%;
   }
@@ -698,7 +699,6 @@ form {
     padding-left: calc(50% - 37rem);
     padding-top: 4rem;
   }
-  @include padding-sides();
   width: 1200px;
   padding-top: 4rem;
   @include respond(laptopS) {
@@ -1729,7 +1729,7 @@ form {
   }
 }
 .sort {
-  @include padding-sides();
+  padding-left: calc(60% - 50rem);
   display: grid;
   padding-top: 3rem;
   grid-template-columns: 21rem 15rem 15rem;
@@ -1738,12 +1738,16 @@ form {
   row-gap: 1rem;
   background-color: #f5f5f5;
   align-items: center;
+  @include respond(laptop) {
+    padding-left: calc(34% - 20rem);
+    column-gap: 8rem;
+  }
   @include respond(laptopS) {
     grid-template-columns: 21rem 15rem;
     column-gap: 10rem;
     row-gap: 1rem;
+    padding-left: calc(40% - 16rem);
     place-items: center;
-    padding-left: calc(30% - 10rem);
   }
   @include respond(tab) {
     grid-template-columns: 15rem 15rem;
