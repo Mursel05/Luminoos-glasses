@@ -2,10 +2,8 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import useWindowDimensions from "./GetWindowDimensions";
 
 const Slider = () => {
-  const { touch, width } = useWindowDimensions();
   const navigate = useNavigate();
   return (
     <div className="slider">

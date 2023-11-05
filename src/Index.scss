@@ -10,12 +10,47 @@ $button-background-color: #008080;
 
 @mixin respond($breakpoint) {
   @if $breakpoint==phone {
-    @media only screen and (max-width: 320px) {
+    @media only screen and (max-width: 350px) {
+      @content;
+    }
+  }
+  @if $breakpoint==phoneM {
+    @media only screen and (max-width: 500px) {
+      @content;
+    }
+  }
+  @if $breakpoint==phoneL {
+    @media only screen and (max-width: 640px) {
       @content;
     }
   }
   @if $breakpoint==tab {
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 830px) {
+      @content;
+    }
+  }
+  @if $breakpoint==tabletL {
+    @media only screen and (max-width: 1100px) {
+      @content;
+    }
+  }
+  @if $breakpoint==laptopS {
+    @media only screen and (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if $breakpoint==laptop {
+    @media only screen and (max-width: 1550px) {
+      @content;
+    }
+  }
+  @if $breakpoint==laptopL {
+    @media only screen and (max-width: 1710px) {
+      @content;
+    }
+  }
+  @if $breakpoint==4k {
+    @media only screen and (max-width: 2000px) {
       @content;
     }
   }
@@ -25,7 +60,7 @@ $button-background-color: #008080;
   padding-right: 10rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  @include respond(tab) {
+  @include respond(laptopL) {
     padding-left: 5rem;
     padding-right: 5rem;
   }
@@ -113,6 +148,10 @@ body {
   justify-content: space-between;
   background-color: white;
   @include padding-sides();
+  @include respond(phoneL) {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
 }
 .navbar-part {
   display: flex;
@@ -161,9 +200,9 @@ body {
   overflow: hidden;
   transition: all 1s ease-in-out;
   max-height: 0rem;
-  @include respond(phone) {
+  @include respond(phoneL) {
     display: grid;
-    grid-template-columns: 8rem 8rem;
+    grid-template-columns: 10rem 10rem;
     gap: 0rem;
     align-items: baseline;
   }
@@ -171,7 +210,7 @@ body {
 .appear {
   padding: 1rem;
   padding-top: 2.5rem;
-  @include respond(phone) {
+  @include respond(phoneL) {
     padding: 4.5rem;
     padding-top: 1rem;
   }
@@ -209,9 +248,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include respond(tab) {
-  }
-  @include respond(phone) {
+  @include respond(phoneL) {
     display: flex;
     flex-direction: column;
   }
@@ -474,7 +511,7 @@ body {
 .links-account {
   display: flex;
   gap: 1rem;
-  @include respond(phone) {
+  @include respond(phoneL) {
     width: 100%;
     justify-content: center;
     padding-top: 1rem;
@@ -650,22 +687,42 @@ form {
   }
 }
 .slider {
+  @include respond(4k) {
+    padding-left: 20%;
+  }
+  @include respond(laptopL) {
+    padding-left: 12%;
+  }
+  @include respond(laptop) {
+    padding: 2rem;
+    padding-left: calc(50% - 37rem);
+    padding-top: 4rem;
+  }
   @include padding-sides();
   width: 1200px;
   padding-top: 4rem;
+  @include respond(laptopS) {
+    width: 600px;
+    padding-left: calc(60% - 27rem);
+  }
+  @include respond(tabletL) {
+    width: 600px;
+    padding-left: calc(60% - 24rem);
+  }
   @include respond(tab) {
     width: 600px;
-  }
-  @include respond(phone) {
+    padding-left: calc(50% - 19rem);
     padding-right: 0rem;
-    padding-left: 0rem;
+  }
+  @include respond(phoneL) {
     width: 320px;
+    padding-left: calc(50% - 10rem);
   }
 }
 .slide {
   border-radius: 15px;
   height: 290px;
-  @include respond(phone) {
+  @include respond(phoneL) {
     border-radius: 0px;
   }
 }
@@ -673,20 +730,20 @@ form {
   background-image: url("../public/images/advertizes/barbie-discount.png");
   background-size: 1200px 290px !important;
   background-repeat: no-repeat;
-  @include respond(tab) {
+  @include respond(laptopS) {
     background-image: url("../public/images/advertizes/barbie-discount-tab.png");
     background-size: 600px 290px !important;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     background-image: url("../public/images/advertizes/barbie-discount-phone.png");
     background-size: 320px 290px !important;
   }
 }
 .barbie-slider {
-  @include respond(tab) {
+  @include respond(laptopS) {
     margin-right: 0rem;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     padding: 1rem;
   }
   margin-bottom: 5rem;
@@ -708,21 +765,21 @@ form {
   background-image: url("../public/images/advertizes/promo-code-discount.png");
   background-size: 1200px 290px !important;
   background-repeat: no-repeat;
-  @include respond(tab) {
+  @include respond(laptopS) {
     margin-right: 0rem;
     background-image: url("../public/images/advertizes/promo-code-discount-tab.png");
     background-size: 600px 290px !important;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     background-image: url("../public/images/advertizes/promo-code-discount-phone.png");
     background-size: 320px 290px !important;
   }
   button {
-    @include respond(tab) {
+    @include respond(laptopS) {
       margin-right: -14rem;
       margin-top: 10.5rem;
     }
-    @include respond(phone) {
+    @include respond(phoneL) {
       margin-right: -1rem;
     }
     margin-right: 49.5rem;
@@ -738,11 +795,11 @@ form {
   display: flex;
   gap: 10rem;
   margin-bottom: 7rem;
-  @include respond(tab) {
+  @include respond(laptopS) {
     padding-left: 8rem;
     gap: 0rem;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     background-repeat: no-repeat;
     background-image: url("../public/images/advertizes/repair-glasses.png");
     background-size: 320px 290px !important;
@@ -753,18 +810,18 @@ form {
   }
   div {
     margin-bottom: 7rem;
-    @include respond(tab) {
+    @include respond(laptopS) {
       margin-bottom: 6rem;
     }
   }
   p {
     font-size: 2.5rem;
     color: #ff6b6b;
-    @include respond(tab) {
+    @include respond(laptopS) {
       font-size: 2rem;
       width: 15rem;
     }
-    @include respond(phone) {
+    @include respond(phoneL) {
       font-size: 2.5rem;
     }
   }
@@ -784,11 +841,11 @@ form {
   background-image: url("../public/images/advertizes/top60-discount.png");
   background-size: 1200px 290px !important;
   background-repeat: no-repeat;
-  @include respond(tab) {
+  @include respond(laptopS) {
     background-image: url("../public/images/advertizes/top60-discount-tab.png");
     background-size: 600px 290px !important;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     background-image: url("../public/images/advertizes/top60-discount-phone.png");
     background-size: 320px 290px !important;
   }
@@ -798,27 +855,27 @@ form {
   margin-bottom: 4rem;
   margin-right: 40rem;
   text-align: center;
-  @include respond(tab) {
+  @include respond(laptopS) {
     margin-right: 15rem;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     margin-right: 3rem;
   }
   .slider-header {
     font-size: 1.8rem;
-    @include respond(phone) {
+    @include respond(phoneL) {
       font-size: 1.5rem;
     }
   }
   .slider-main {
     font-size: 2.8rem;
-    @include respond(phone) {
+    @include respond(phoneL) {
       font-size: 2.5rem;
     }
   }
   .slider-description {
     font-size: 1.3rem;
-    @include respond(phone) {
+    @include respond(phoneL) {
       font-size: 1rem;
     }
   }
@@ -840,11 +897,19 @@ form {
   justify-content: center;
   gap: 1.5rem;
   padding-top: 2rem;
-  @include respond(tab) {
+  @include respond(laptop) {
+    .product:last-child {
+      display: none;
+    }
+  }
+  @include respond(tabletL) {
+    .product:last-child {
+      display: unset;
+    }
     display: grid;
     grid-template-columns: 20rem 20rem;
   }
-  @include respond(phone) {
+  @include respond(tab) {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -1513,7 +1578,7 @@ form {
     text-align: center;
     margin-top: 0rem;
   }
-  @include respond(phone) {
+  @include respond(phoneL) {
     padding-left: 0rem;
     padding-right: 0rem;
   }
@@ -1521,8 +1586,9 @@ form {
 .blogs {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
-  @include respond(tab) {
+  @include respond(tabletL) {
     align-items: center;
     flex-direction: column;
   }
@@ -1535,8 +1601,8 @@ form {
       cursor: pointer;
       width: 24rem;
       height: 30rem;
-      @include respond(phone) {
-        width: 20rem;
+      @include respond(phoneM) {
+        width: 21rem;
         height: 25rem;
       }
     }
@@ -1549,8 +1615,8 @@ form {
     width: 20rem;
     padding-top: 0.5rem;
     height: 13rem;
-    @include respond(phone) {
-      width: 16rem;
+    @include respond(phoneM) {
+      width: 17rem;
       height: auto;
     }
     .blog-date {
@@ -1579,12 +1645,18 @@ form {
   padding-top: 3rem;
   background-color: #f5f5f5;
   justify-content: space-between;
-  @include respond(phone) {
+  @include respond(tab) {
+    display: grid;
+    grid-template-columns: 11rem 6rem;
+    row-gap: 1rem;
+  }
+  @include respond(phoneM) {
+    display: flex;
     flex-direction: column;
     gap: 2rem;
   }
   .logo {
-    @include respond(phone) {
+    @include respond(phoneM) {
       justify-content: center;
     }
   }
@@ -1605,7 +1677,7 @@ form {
     display: block;
     width: 11rem;
     margin-top: 1rem;
-    @include respond(phone) {
+    @include respond(phoneM) {
       width: auto;
     }
   }
@@ -1618,7 +1690,7 @@ form {
     .links-name {
       font-size: 1.2rem;
     }
-    @include respond(phone) {
+    @include respond(phoneM) {
       gap: 0.5rem;
     }
   }
@@ -1630,7 +1702,7 @@ form {
     gap: 0.5rem;
     font-size: 1rem;
     font-weight: 400;
-    @include respond(phone) {
+    @include respond(phoneM) {
       padding-top: 0.5rem;
     }
   }
@@ -1651,17 +1723,9 @@ form {
   flex-wrap: wrap;
   padding-top: 3rem;
   gap: 2rem;
-  @include respond(tab) {
-    display: grid;
-    grid-template-columns: 20rem 20rem;
-    align-items: center;
-    justify-content: center;
-  }
   @include respond(phone) {
     padding-left: 0rem;
     padding-right: 0rem;
-    display: flex;
-    flex-direction: column;
   }
 }
 .sort {
@@ -1674,9 +1738,22 @@ form {
   row-gap: 1rem;
   background-color: #f5f5f5;
   align-items: center;
+  @include respond(laptopS) {
+    grid-template-columns: 21rem 15rem;
+    column-gap: 10rem;
+    row-gap: 1rem;
+    place-items: center;
+    padding-left: calc(30% - 10rem);
+  }
   @include respond(tab) {
     grid-template-columns: 15rem 15rem;
     column-gap: 5rem;
+    padding-left: calc(34% - 10rem);
+    row-gap: 1rem;
+  }
+  @include respond(phoneL) {
+    grid-template-columns: 15rem;
+    padding-left: calc(50% - 7.5rem);
     row-gap: 1rem;
   }
   @include respond(phone) {
@@ -1687,24 +1764,30 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
   .gender-color {
     @include respond(tab) {
       gap: 2rem;
     }
-    @include respond(phone) {
+    @include respond(phoneL) {
       gap: 1rem;
     }
   }
   .brand-layout {
+    @include respond(laptopS) {
+      grid-column: 1/3;
+    }
     @include respond(tab) {
       flex-direction: row-reverse;
       grid-column: 1/3;
+      gap: 5rem;
       justify-content: space-between;
     }
-    @include respond(phone) {
+    @include respond(phoneL) {
       grid-column: auto;
       flex-direction: column;
+      gap: 1rem;
     }
   }
   .sort-part {
@@ -1794,9 +1877,7 @@ form {
     align-items: center;
     width: 20%;
     gap: 0.3rem;
-    margin-left: 6rem;
     @include respond(tab) {
-      margin-left: 4rem;
       width: 25%;
     }
   }
@@ -1814,6 +1895,9 @@ form {
   }
   .button-part {
     grid-column: 1/4;
+    @include respond(laptopS) {
+      grid-column: 1/3;
+    }
     display: flex;
     justify-content: flex-end;
     border-top: 1px solid #a0a0a0;
@@ -1821,7 +1905,7 @@ form {
     @include respond(tab) {
       grid-column: 1/3;
     }
-    @include respond(phone) {
+    @include respond(phoneL) {
       grid-column: auto;
     }
     button {
@@ -1942,7 +2026,7 @@ form {
   flex-direction: column;
   @include padding-sides();
   text-align: center;
-  @include respond(phone) {
+  @include respond(phoneL) {
     padding-left: 0rem;
     padding-right: 0rem;
   }
@@ -2459,12 +2543,7 @@ form {
     width: 10rem;
   }
 }
-//
-//
-//
-//
-//
-//
+
 .dark {
   background-color: #1c1c1c;
   .page {
