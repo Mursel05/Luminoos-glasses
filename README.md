@@ -2,7 +2,7 @@
 
 Use this link to visit the website: https://luminoos-glasses.vercel.app/
 
-Luminoos is an e-commmerce website. You can easily navigate between the pages and and you can choose English or Azerbaijan language. Website has dark and light mode. You can find anything in the search bar.
+Luminoos is an e-commerce website. You can easily navigate between the pages and and you can choose English or Azerbaijan language. Website has dark and light mode. You can find anything in the search bar.
 
 
 ![image](https://github.com/Mursel05/Luminoos-glasses/assets/134983247/8ec29597-1d92-4832-a545-880fabcfbb19)
